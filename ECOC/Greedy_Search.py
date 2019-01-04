@@ -20,8 +20,6 @@ def greedy_search(data, labels, dc_option = 'F1'):
     :param dc_option:
     :return: divided_partitons
     """
-    group1 = []
-    group2 = []
 
     classes = np.unique(labels)
     rand_classes = classes.tolist()
@@ -77,6 +75,7 @@ def get_DC_value(data,labels,group1,group2,dc_option):
         fun = getattr(GC,funname)
         DC = fun(list(group1_data),list(group1_label),list(group2_data),list(group2_label))
     except:
+        print('%s is Wrong!'%dc_option)
         logging.error('DC option is wrong')
         raise NameError('DC option is wrong')
     return DC

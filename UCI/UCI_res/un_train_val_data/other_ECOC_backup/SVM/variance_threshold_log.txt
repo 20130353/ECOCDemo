@@ -1,0 +1,720 @@
+
+
+SVM classifier
+Time: 2018-12-17 15:19:14
+FS: variance_threshold
+Dataset： car
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:19:54
+FS: variance_threshold
+Dataset： car
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:19:54
+FS: variance_threshold
+Dataset： car
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:19:55
+FS: variance_threshold
+Dataset： car
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:19:55
+FS: variance_threshold
+Dataset： car
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:04
+FS: variance_threshold
+Dataset： car
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:04
+FS: variance_threshold
+Dataset： cleveland
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:04
+FS: variance_threshold
+Dataset： cleveland
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:04
+FS: variance_threshold
+Dataset： cleveland
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:04
+FS: variance_threshold
+Dataset： cleveland
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： cleveland
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： dermatology
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： dermatology
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： dermatology
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： dermatology
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： dermatology
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:20:05
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:21:54
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:23
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:23
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: variance_threshold
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: linear_svc
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: linear_svc
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: linear_svc
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: linear_svc
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: linear_svc
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: tree
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: tree
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:24
+FS: tree
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: tree
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: tree
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: fclassif
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: fclassif
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: fclassif
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: fclassif
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: fclassif
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: RandForReg
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: RandForReg
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:25
+FS: RandForReg
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:26
+FS: RandForReg
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:25:26
+FS: RandForReg
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:02
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:02
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:03
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:41
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:41
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:41
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:41
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:26:41
+FS: variance_threshold
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:43
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:43
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:43
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:43
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: variance_threshold
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: linear_svc
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: linear_svc
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: linear_svc
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: linear_svc
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: linear_svc
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: tree
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: tree
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: tree
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: tree
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:44
+FS: tree
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: fclassif
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: fclassif
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: fclassif
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: fclassif
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: fclassif
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: RandForReg
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: RandForReg
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: RandForReg
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: RandForReg
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 15:27:45
+FS: RandForReg
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: DC_ECOC F1
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:13
+FS: variance_threshold
+Dataset： ecoli
+ECOC: DC_ECOC F2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:14
+FS: variance_threshold
+Dataset： ecoli
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:14
+FS: variance_threshold
+Dataset： ecoli
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:14
+FS: variance_threshold
+Dataset： ecoli
+ECOC: DC_ECOC N3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:47
+FS: variance_threshold
+Dataset： car
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:47
+FS: variance_threshold
+Dataset： car
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:47
+FS: variance_threshold
+Dataset： car
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-18 21:00:48
+FS: variance_threshold
+Dataset： car
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding

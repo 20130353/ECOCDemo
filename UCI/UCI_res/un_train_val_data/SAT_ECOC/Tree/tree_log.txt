@@ -1,0 +1,976 @@
+
+
+Tree classifier
+Time: 2018-12-18 21:30:57
+FS: tree
+Dataset： car
+ECOC: SAT_ECOC F1 F2 F3 evaluation=F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:24
+FS: tree
+Dataset： car
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:25
+FS: tree
+Dataset： car
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:26
+FS: tree
+Dataset： car
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:26
+FS: tree
+Dataset： car
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:27
+FS: tree
+Dataset： car
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:28
+FS: tree
+Dataset： car
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:29
+FS: tree
+Dataset： car
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:30
+FS: tree
+Dataset： car
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:30
+FS: tree
+Dataset： car
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:31
+FS: tree
+Dataset： car
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:32
+FS: tree
+Dataset： car
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:33
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： cleveland
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:34
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:35
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:35
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:35
+FS: tree
+Dataset： dermatology
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:35
+FS: tree
+Dataset： led7digit
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:35
+FS: tree
+Dataset： led7digit
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:36
+FS: tree
+Dataset： led7digit
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:37
+FS: tree
+Dataset： led7digit
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:37
+FS: tree
+Dataset： led7digit
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:38
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:38
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:38
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:39
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:39
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:40
+FS: tree
+Dataset： led7digit
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:40
+FS: tree
+Dataset： led24digit
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:40
+FS: tree
+Dataset： led24digit
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:41
+FS: tree
+Dataset： led24digit
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:42
+FS: tree
+Dataset： led24digit
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:42
+FS: tree
+Dataset： led24digit
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:43
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:43
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:44
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:44
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:45
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:45
+FS: tree
+Dataset： led24digit
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:31:46
+FS: tree
+Dataset： letter
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:35:27
+FS: tree
+Dataset： letter
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:41:35
+FS: tree
+Dataset： letter
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:44:58
+FS: tree
+Dataset： letter
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:48:34
+FS: tree
+Dataset： letter
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:52:48
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 21:56:30
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:00:11
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:03:52
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:07:34
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:11:15
+FS: tree
+Dataset： letter
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:14:55
+FS: tree
+Dataset： satimage
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:01
+FS: tree
+Dataset： satimage
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:07
+FS: tree
+Dataset： satimage
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:13
+FS: tree
+Dataset： satimage
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:19
+FS: tree
+Dataset： satimage
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:25
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:31
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:37
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:43
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:49
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:15:55
+FS: tree
+Dataset： satimage
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:01
+FS: tree
+Dataset： segment
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:02
+FS: tree
+Dataset： segment
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:04
+FS: tree
+Dataset： segment
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:05
+FS: tree
+Dataset： segment
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:06
+FS: tree
+Dataset： segment
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:07
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:08
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:09
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:10
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:11
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:12
+FS: tree
+Dataset： segment
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:12
+FS: tree
+Dataset： vehicle
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:13
+FS: tree
+Dataset： vehicle
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:13
+FS: tree
+Dataset： vehicle
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:13
+FS: tree
+Dataset： vehicle
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:14
+FS: tree
+Dataset： vehicle
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:14
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:14
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:15
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:15
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:15
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:15
+FS: tree
+Dataset： vehicle
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:16
+FS: tree
+Dataset： vowel
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:16
+FS: tree
+Dataset： vowel
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:17
+FS: tree
+Dataset： vowel
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:17
+FS: tree
+Dataset： vowel
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:18
+FS: tree
+Dataset： vowel
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:19
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:19
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:19
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:20
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:20
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:21
+FS: tree
+Dataset： vowel
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:21
+FS: tree
+Dataset： yeast
+ECOC: OVA_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:22
+FS: tree
+Dataset： yeast
+ECOC: OVO_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:23
+FS: tree
+Dataset： yeast
+ECOC: Dense_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:23
+FS: tree
+Dataset： yeast
+ECOC: Sparse_random_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:24
+FS: tree
+Dataset： yeast
+ECOC: D_ECOC
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:25
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC F1
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:26
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC F2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:26
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC F3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:27
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC N2
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:28
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC N3
+Using KNN-Decoding
+
+
+Tree classifier
+Time: 2018-12-18 22:16:28
+FS: tree
+Dataset： yeast
+ECOC: DC_ECOC Cluster
+Using KNN-Decoding

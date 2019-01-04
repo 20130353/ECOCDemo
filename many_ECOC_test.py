@@ -11,46 +11,35 @@ import types
 import time
 
 from ECOCDemo.Common.Evaluation_tool import Evaluation
-from ECOCDemo.ECOC.Classifier import ECOC_ONE,OVO_ECOC,OVA_ECOC,DC_ECOC,D_ECOC,Dense_random_ECOC,Sparse_random_ECOC
+from ECOCDemo.ECOC.Classifier import ECOC_ONE, OVO_ECOC, OVA_ECOC, DC_ECOC, D_ECOC, Dense_random_ECOC, \
+    Sparse_random_ECOC
 from ECOCDemo.ECOC.Classifier import Self_Adaption_ECOC
 from ECOCDemo.FS.DC_Feature_selection import *
 from ECOCDemo.FS.DC_Feature_selection import DC_FS, select_data_by_feature_index
 from ECOCDemo.Common import Read_Write_tool
 
 
-def ECOC_Process(train_data,train_label,test_data,test_label,ECOC_name,**param):
-
+def ECOC_Process(train_data, train_label, test_data, test_label, ECOC_name, **param):
     E = None
     if ECOC_name.find('DC_ECOC') >= 0:
-        dc_option = ['F1','F2','F3','N2','N3','N4','L3','Cluster']
-        for i,each in enumerate(dc_option):
+        dc_option = ['F1', 'F2', 'F3', 'N2', 'N3', 'N4', 'L3', 'Cluster']
+        for i, each in enumerate(dc_option):
             if each in ECOC_name:
                 E = eval('DC_ECOC()')
-                E.fit(train_data,train_label,dc_option=each)
+                E.fit(train_data, train_label, dc_option=each)
                 break
 
     elif ECOC_name.find('Self_Adaption_ECOC') >= 0:
-        ternary_option = []
-        Ternary = ['+', '-', '*', '/', 'and', 'or','info','DC']
+        Ternary = ['+', '-', '*', '/', 'and', 'or', 'info', 'DC']
         for i, each in enumerate(Ternary):
             if each in ECOC_name:
                 param['ternary_option'] = each
-                break
+                if each == 'DC':
+                    strs = ECOC_name.split('=')
+                    param['dc_option'] = strs[1]
 
-        if 'base_M' in param:
-            E = eval('Self_Adaption_ECOC()')
-            E.fit(train_data, train_label, **param)
-
-        else:
-            dc_option = ['F1', 'F2', 'F3', 'N2', 'N3', 'N4', 'L3', 'Cluster']
-            dc_option = []
-            for each in enumerate(dc_option):
-                if each in ECOC_name:
-                    dc_option.append([each])
-            param['dc_option'] = dc_option
-
-            E = eval('Self_Adaption_ECOC()')
-            E.fit(train_data, train_label, **param)
+                E = eval('Self_Adaption_ECOC()')
+                E.fit(train_data, train_label, **param)
 
     else:
         E = eval(ECOC_name + '()')
@@ -59,82 +48,59 @@ def ECOC_Process(train_data,train_label,test_data,test_label,ECOC_name,**param):
     logging.info(ECOC_name + ' Matrix:\n' + str(E.matrix))
     predicted_label = E.predict(test_data)
 
-    evaluation_option=['simple_acc','accuracy','sensitivity','specifity','precision','Fscore']
+    evaluation_option = ['simple_acc', 'accuracy', 'sensitivity', 'specifity', 'precision', 'Fscore']
     Eva = Evaluation(test_label, predicted_label)
     res = Eva.evaluation(option=evaluation_option)
-    res['classifier_num'] = len(E.matrix[0])
-    res['cls_acc'] = Eva.evaluate_classifier_accuracy(E.matrix, E.predicted_vector,test_label)
+    res['cls_acc'] = Eva.evaluate_classifier_accuracy(E.matrix, E.predicted_vector, test_label)
     res['diversity'] = Eva.evaluate_diversity(E.predicted_vector)
     return res
 
-def get_base_M(path,ecoc,dataname):
 
+def get_base_M(path, ecoc, dataname):
     dc_option = ['F1', 'F2', 'F3', 'N2', 'N3', 'N4', 'L3', 'Cluster']
 
     M = None
-    ecoc_parts = ecoc.split(' ')
-    for each in ecoc_parts:
-        if each in dc_option:
+    for each in dc_option:
+        if ecoc.find(each) >= 0:
             filepath = path + str(each) + '_' + str(dataname) + '.xls'
             if M == None:
                 M = [Read_Write_tool.read_matirx(filepath)]
             else:
                 M.append(Read_Write_tool.read_matirx(filepath))
-
     return M
 
 
 if __name__ == '__main__':
-    # current_time log_level function_name user_print_info
-    LOG_FORMAT = "%(message)s"
-
-    # set log filepath, log level and info format
-    logging.basicConfig(filename='F1_DC_log.txt', level=logging.DEBUG, format=LOG_FORMAT)
 
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'fclassif', 'RandForReg', 'linearsvc_tree']
 
-    microarray_dataname = ['Breast','Cancers','DLBCL','GCM','Leukemia1','Leukemia2'\
-                ,'Lung1','SRBCT']
+    microarray_dataname = ['Breast', 'Cancers', 'DLBCL', 'GCM', 'Leukemia1', 'Leukemia2', 'Lung1']
 
-    UCI_dataname = ['car', 'cleveland', 'dermatology','led7digit' \
-        , 'led24digit', 'letter', 'nursery', 'penbased', 'satimage', 'segment' \
-        , 'shuttle', 'vehicle', 'vowel', 'yeast', 'zoo']
+    ecoc_name = ['Self_Adaption_ECOC F1 F2 +', 'Self_Adaption_ECOC F1 F2 -' \
+        , 'Self_Adaption_ECOC F1 F2 *', 'Self_Adaption_ECOC F1 F2 /' \
+        , 'Self_Adaption_ECOC F1 F2 and', 'Self_Adaption_ECOC F1 F2 or', 'Self_Adaption_ECOC F1 F2 info']
 
-    ecoc_name = ['Self_Adaption_ECOC F1 F2 +','Self_Adaption_ECOC F1 F2 -' \
-                ,'Self_Adaption_ECOC F1 F2 *','Self_Adaption_ECOC F1 F2 /'\
-                ,'Self_Adaption_ECOC F1 F2 and','Self_Adaption_ECOC F1 F2 or','Self_Adaption_ECOC F1 F2 info']
+    ECOC_conbination = ['Self_Adaption_ECOC F1 F1', 'Self_Adaption_ECOC F2 F2', 'Self_Adaption_ECOC N3 N3' \
+        , 'Self_Adaption_ECOC F1 F2', 'Self_Adaption_ECOC F1 N3', 'Self_Adaption_ECOC F2 N3' \
+        , 'Self_Adaption_ECOC F1 F2 N3']
+    for x in range(len(ECOC_conbination)):
+        ECOC_conbination[x] = ECOC_conbination[x] + ' DC=F2'
 
-    ECOC_conbination = ['Self_Adaption_ECOC F1 F1 DC','Self_Adaption_ECOC F2 F2 DC','Self_Adaption_ECOC F3 F3 DC'\
-                ,'Self_Adaption_ECOC N2 N2 DC','Self_Adaption_ECOC N3 N3 DC','Self_Adaption_ECOC Cluster Cluster DC' \
-                ,'Self_Adaption_ECOC F1 F2 DC','Self_Adaption_ECOC F1 F3 DC','Self_Adaption_ECOC F1 N2 DC'\
-                ,'Self_Adaption_ECOC F1 N3 DC','Self_Adaption_ECOC F1 Cluster DC','Self_Adaption_ECOC F2 F3 DC'\
-                ,'Self_Adaption_ECOC F2 N2 DC', 'Self_Adaption_ECOC F2 N3 DC','Self_Adaption_ECOC F2 Cluster DC'\
-                ,'Self_Adaption_ECOC F3 N2 DC','Self_Adaption_ECOC F3 N3 DC','Self_Adaption_ECOC F3 Cluster DC'\
-                ,'Self_Adaption_ECOC N2 N3 DC','Self_Adaption_ECOC N2 Cluster DC','Self_Adaption_ECOC N3 Cluster DC' \
-                , 'Self_Adaption_ECOC F1 F2 F3 DC', 'Self_Adaption_ECOC F1 F2 N2 DC', 'Self_Adaption_ECOC F1 F2 N3 DC' \
-                , 'Self_Adaption_ECOC F1 F2 Cluster DC', 'Self_Adaption_ECOC F2 F3 N2 DC', 'Self_Adaption_ECOC F2 F3 N3 DC' \
-                , 'Self_Adaption_ECOC F2 F3 Cluster DC', 'Self_Adaption_ECOC F3 N2 N3 DC', 'Self_Adaption_ECOC F3 N2 Cluster DC' \
-                , 'Self_Adaption_ECOC F3 N3 Cluster DC']
+    other_ECOC = ['OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC' \
+        , 'D_ECOC', 'DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC N3']
 
-    ECOC_coding_numbers = ['Self_Adaption_ECOC F1 F1','Self_Adaption_ECOC F1 F1 F1'\
-                , 'Self_Adaption_ECOC F1 F1 F1 F1','Self_Adaption_ECOC F1 F1 F1 F1 F1']
+    data_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_data/FS_data/'
+    matrix_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_res/DC_matrix/'
+    res_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_res/SAT_DC/Tree/F2/'
 
-    other_ECOC = [ 'OVA_ECOC','OVO_ECOC','Dense_random_ECOC','Sparse_random_ECOC'\
-                ,'D_ECOC','DC_ECOC F1','DC_ECOC F2','DC_ECOC F3'\
-                ,'DC_ECOC N2','DC_ECOC N3','DC_ECOC Cluster']
-
-    data_folder_path = 'E:/workspace1/ECOCDemo/Microarray_data/FS_data/'
-    matrix_folder_path = 'E:/workspace1/ECOCDemo/Microarray_res/DC_matrix/'
-    res_folder_path = 'E:/workspace1/ECOCDemo/Microarray_res/SAT_DC/various_matrix_num/填充0/'
+    LOG_FORMAT = "%(message)s"
+    logging.basicConfig(filename=res_folder_path + 'conbination_log_F2.txt', level=logging.DEBUG, format=LOG_FORMAT)
 
     selected_dataname = microarray_dataname
-    selected_ecoc_name = ECOC_coding_numbers
-    selected_fs_name = fs_name
+    selected_ecoc_name = ECOC_conbination
+    selected_fs_name = fs_name[2:5:2]
 
     for k in range(len(selected_fs_name)):
-
-        if selected_fs_name[k] != 'RandForReg':
-            continue
 
         # save evaluation varibles
         data_acc = []
@@ -143,7 +109,7 @@ if __name__ == '__main__':
         data_specifity = []
         data_sensitivity = []
         data_cls_acc = []
-        data_Fscore =[]
+        data_Fscore = []
 
         for i in range(len(selected_dataname)):
 
@@ -152,7 +118,7 @@ if __name__ == '__main__':
             train_data, train_label = Read_Write_tool.read_Microarray_Dataset(train_path)
             test_data, test_label = Read_Write_tool.read_Microarray_Dataset(test_path)
 
-            acc=[]
+            acc = []
             simacc = []
             precision = []
             specifity = []
@@ -167,15 +133,16 @@ if __name__ == '__main__':
                 print('Dataset： ' + selected_dataname[i])
                 print('ECOC: ' + selected_ecoc_name[j])
 
+                logging.info('Tree classifier accuracy')
                 logging.info('Time: ' + str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 logging.info('FS: ' + selected_fs_name[k])
                 logging.info('Dataset： ' + selected_dataname[i])
                 logging.info('ECOC: ' + selected_ecoc_name[j])
 
                 param = {}
-                if selected_ecoc_name[j].find('Self_Adaption_ECOC') >=0:
+                if selected_ecoc_name[j].find('Self_Adaption_ECOC') >= 0:
                     final_folder_matrix_path = matrix_folder_path + selected_fs_name[k] + '/'
-                    param['base_M'] = get_base_M(final_folder_matrix_path,selected_ecoc_name[j],selected_dataname[i])
+                    param['base_M'] = get_base_M(final_folder_matrix_path, selected_ecoc_name[j], selected_dataname[i])
 
                 res = ECOC_Process(train_data, train_label, test_data, test_label, selected_ecoc_name[j], **param)
                 if 'simple_acc' in res:
@@ -195,19 +162,14 @@ if __name__ == '__main__':
                     txtname = res_folder_path + 'diversity_' + selected_fs_name[k] + '.txt'
                     content = 'Data: ' + selected_dataname[i] + '\t' + ' ECOC: ' + selected_ecoc_name[j] \
                               + '\t ' + str(res['diversity'])
-                    Read_Write_tool.write_txt(txtname, content)
+                    Read_Write_tool.write_txt(txtname, 'tian chong 0!')
 
                 if 'cls_acc' in res:
                     txtname = res_folder_path + 'cls_acc_' + selected_fs_name[k] + '.txt'
-                    content = 'Data: ' + selected_dataname[i] + '\t' + ' ECOC: ' + selected_ecoc_name[j]\
+                    content = 'Data: ' + selected_dataname[i] + '\t' + ' ECOC: ' + selected_ecoc_name[j] \
                               + '\t ' + str(res['cls_acc'])
-                    Read_Write_tool.write_txt(txtname,content)
-
-                if 'classifier_num' in res:
-                    txtname = res_folder_path + 'cls_num_' + selected_fs_name[k] + '.txt'
-                    content = 'Data: ' + selected_dataname[i] + '\t' + ' ECOC: ' + selected_ecoc_name[j]\
-                              + '\t ' + str(res['classifier_num'])
-                    Read_Write_tool.write_txt(txtname,content)
+                    Read_Write_tool.write_txt(txtname, 'tian chong 0!')
+                    Read_Write_tool.write_txt(txtname, content)
 
             data_simacc.append(simacc)
             data_acc.append(acc)
@@ -219,9 +181,9 @@ if __name__ == '__main__':
         row_name = copy.deepcopy(selected_dataname)
         row_name.append('Avg')
         if np.all(data_simacc):
-            save_filepath = res_folder_path + 'simple_acc_'+ selected_fs_name[k] + '.xls'
-            data_simacc.append(np.mean(data_simacc,axis=0))
-            Read_Write_tool.write_file(save_filepath,data_simacc,selected_ecoc_name,row_name)
+            save_filepath = res_folder_path + 'simple_acc_' + selected_fs_name[k] + '.xls'
+            data_simacc.append(np.mean(data_simacc, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_simacc, selected_ecoc_name, row_name)
 
         if np.all(data_acc):
             save_filepath = res_folder_path + 'accuracy_' + selected_fs_name[k] + '.xls'

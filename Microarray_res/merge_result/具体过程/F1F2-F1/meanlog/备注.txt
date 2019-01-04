@@ -1,0 +1,2 @@
+ bottom_stand = np.mean(list(cplx.values())) - math.log2(np.std(list(cplx.values())))
+    cplx_stand = 2*math.log2(np.std(list(cplx.values()))) + bottom_stand

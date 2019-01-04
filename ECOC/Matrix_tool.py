@@ -17,6 +17,8 @@ from ECOCDemo.ECOC import Ternary_Operation
 from ECOCDemo.ECOC.Distance import euclidean_distance
 from ECOCDemo.Common.Evaluation_tool import Evaluation
 from ECOCDemo.DC import Get_Complexity
+import math
+
 
 def get_data_from_col(data, label, col, index):
     """
@@ -75,7 +77,7 @@ def exist_same_row(matrix):
     """
     row_count = matrix.shape[0]
     for i in range(row_count):
-        for j in range(i+1, row_count):
+        for j in range(i + 1, row_count):
             if np.all([matrix[i] == matrix[j]]) or np.all([matrix[i] == -matrix[j]]):
                 # print('matrix[i]:', matrix[i])
                 # print('matrix[j]:', matrix[j])
@@ -91,14 +93,35 @@ def exist_same_col(matrix):
     """
     col_count = matrix.shape[1]
     for i in range(col_count):
-        for j in range(i+1, col_count):
+        for j in range(i + 1, col_count):
             if np.all([matrix[:, i] == matrix[:, j]]) or np.all([matrix[:, i] == -matrix[:, j]]):
-                # print('matrix[:,i]:', matrix[:, i])
-                # print('i:', i)
-                # print('matrix[:,j]:', matrix[:, j])
-                # print('j:', j)
                 return True
     return False
+
+
+def is_same_col(col1, col2):
+    for each in zip(col1, col2):
+        if each[0] == each[1]:
+            return True
+    return False
+
+
+def shuffle_matrix(matrix):
+    temp_matrix_pool = copy.deepcopy(matrix)
+    try:
+        column_len = temp_matrix_pool.shape[1]
+    except IndexError:
+        return temp_matrix_pool
+    else:
+        rand_arr = np.random.permutation(column_len)
+        new_matrix_pool = None
+        for inx in rand_arr:
+            column = temp_matrix_pool[:, inx]
+            if new_matrix_pool is None:
+                new_matrix_pool = column
+            else:
+                new_matrix_pool = np.vstack([new_matrix_pool, column])
+        return new_matrix_pool.T
 
 
 def exist_two_class(matrix):
@@ -176,11 +199,29 @@ def have_same_col(col, matrix):
     :param matrix:coding matrix
     :return:true or false
     """
-    col = col.reshape((1, -1))
-    for i in range(matrix.shape[1]):
-        if np.all([col == matrix[:, i]]) or np.all([col == -matrix[:, i]]):
+
+
+    col = col.reshape((1, -1))[0]
+    try:
+        column_len = matrix.shape[1]
+    except IndexError:
+        for each in zip(col, matrix):
+            if each[0] != each[1]:
+                return False
+        return True
+    else:
+        for i in range(column_len):
+            i_column = matrix[:, i]
+            for each in zip(col, i_column):
+                if each[0] != each[1]:
+                    return False
             return True
-    return False
+
+
+def have_contrast_col(col,matrix):
+    new_col = np.array([-each for each in col])
+    return have_same_col(new_col,matrix)
+
 
 
 def create_col_from_partition(class_1_variety, class_2_variety, index):
@@ -209,116 +250,108 @@ def estimate_weight(error):
         error = 0.0000001
     if error == 1:
         error = 0.9999999
-    return 0.5*np.log((1-error)/error)
+    return 0.5 * np.log((1 - error) / error)
 
-def select_column(M,data,label,label_length):
+
+def select_column(M, data, label, label_length):
     """
     this function is unknown
     :param M:
     :return:
     """
+    select_M = None
+    print_info = ''
 
-    # logging.info("before select_column:\r\n" + str(M))
-
-    #calculate the column number of matrix
+    # calculate the column number of matrix
     index = {l: i for i, l in enumerate(np.unique(label))}
     cplx = {}
-    for i,each in enumerate(np.unique(label)):
-        cls_data,cls_label = get_data_subset(data,label,each)
-        cplx[each] = Get_Complexity.get_complexity_D2(cls_data,cls_label,k=5)
-    bottom_stand = np.mean(list(cplx.values()))
-    cplx_stand = np.mean(list(cplx.values())) * 2
-
-    logging.info("class cplx:\r\n" + str(cplx))
-    logging.info("var:%-10f mean:%-10f" %(np.var(list(cplx.values())), np.mean(list(cplx.values()))))
-    logging.info("botttom th:%-10f top th:%-10f" %(bottom_stand, cplx_stand))
-
+    for i, each in enumerate(np.unique(label)):
+        cls_data, cls_label = get_data_subset(data, label, each)
+        cplx[each] = Get_Complexity(cls_data, cls_label, k=5)
+    bottom_stand = np.mean(list(cplx.values())) - math.log2(np.std(list(cplx.values())))
+    cplx_stand = np.mean(list(cplx.values())) + math.log2(np.std(list(cplx.values())))
     cls_num = {}
     for i, each in enumerate(np.unique(label)):
-        if cplx[each] > bottom_stand:
-            cls_num[each] = 1
-        if cplx[each] > cplx_stand:
+        if cplx[each] >= cplx_stand:
             cls_num[each] = 2
-    column_num = label_length + np.sum(list(cls_num.values()))
+        elif cplx[each] >= bottom_stand:
+            cls_num[each] = 1
+    needed_num = np.sum(list(cls_num.values()))
+    column_num = label_length + needed_num
 
-    logging.info("column num:%d" %np.sum(list(cls_num.values())))
-    #column length is right, return M
+    # 1. equal
     if len(M[0]) == column_num:
-        return M
+        select_M = M
 
-    #1.column length is less, polish M
-    if len(M[0]) < column_num:
-        cplx = sorted(cplx.items(),key=operator.itemgetter(1)) #small to big
-
-        for i in range(int(column_num) -  len(M[0])):#add column_num-M column
-            if column_num == len(M[0]):
-                break
-            if i < len(cplx):
-                inx1 = index[cplx[i][0]]
-                inx2 = index[cplx[-(i+1)][0]]
-                if inx1 == inx2:
-                    inx2 = index[cplx[-1][0]] #odd,mid+end
+    # 2. add more columns
+    elif len(M[0]) < column_num:
+        cplx = sorted(cplx.items(), key=lambda x: x[1])  # small to big
+        class_inx = [each[0] for each in cplx]
+        i = -1
+        while len(M[0]) < column_num and i <= len(class_inx):
+            left = i + 1
+            right = len(class_inx) - 1
+            while len(M[0]) < column_num and left <= right and right >= 0:
+                inx1 = index[class_inx[left]]
+                inx2 = index[class_inx[right]]
                 new_col = np.zeros((len(index), 1))
                 new_col[inx1] = 1
                 new_col[inx2] = -1
                 M = np.hstack((M, new_col))
-        return M
+                left += 1
+                right -= 1
+            i += 1
+        select_M = M
 
-    # 2.minus extra column
+    # 3. polish M
     else:
-        # find a column with all class
-        used_column = []
-        M_backup = copy.deepcopy(M)
+        zero_num = {}  # dict{column_inx,cplx_value}
         for i in range(len(M[0])):
-            i_column = [row[i] for row in M]
-            if np.all(i_column) == True:
-                GPM = i_column
-                column_to_divide = [i_column]
-                M_backup = np.delete(M_backup, i, axis=1)
-                break
+            zero_num[i] = [row[i] for row in M].count(0)
+        zero_num = sorted(zero_num.items(), key=lambda x: x[1], reverse=True)  # big to small
+        GPM = None
 
-        while column_to_divide:
-            column = column_to_divide.pop(0)
-
-            pos_cls = [i for i,each in enumerate(column) if each == 1]
-            neg_cls = [i for i,each in enumerate(column) if each == -1]
-
-            del_inx = []
-            for i in range(len(M_backup[0])):
-                i_column = [row[i] for row in M_backup]
-                if check_sub_tree(i_column,pos_cls) or check_sub_tree(i_column,neg_cls):
-                    column_to_divide.append(copy.deepcopy(i_column))
-                    GPM = np.vstack((GPM,i_column))
-                    del_inx.append(i)
-                    if len(del_inx) == 2:
-                        break
-
-            for inx, each in enumerate(del_inx):
-                M_backup = np.delete(M_backup, each - inx, axis=1)
-
-        #find a column with many 0 or without 0
-        #calculate the num of zero
-        zero_num = {}
-        for i in range(len(M[0])):
-            i_column = [row[i] for row in M]
-            zero_num[i] = i_column.count(0) #dict{column_inx,cplx_value}
-
-        zero_num = sorted(zero_num.items(), key=operator.itemgetter(1),reverse=True)  #big to small
-
-        for each in zero_num:
-            if column_num == len(GPM[0]):
-                break
-            key = each[0]
+        i, vis = 0, [0 for _ in range(len(M[0]))]
+        while i < len(M[0]) and (GPM is None or len(GPM) < column_num):
+            key = zero_num[i][0]
             i_column = [row[key] for row in M]
-            if is_repeat(np.transpose(GPM),i_column) == False and len(GPM) < column_num:
-                if is_comtain_cplx_cls(i_column,cls_num.keys(),label):#优先选择0多的并且包含复杂类的列
+            if is_comtain_cplx_cls(i_column, cls_num.keys(), label):  # 优先选择0多的并且包含复杂类的列
+                vis[i] = 1
+                if GPM is None:
+                    GPM = i_column
+                else:
                     GPM = np.vstack((GPM, i_column))
+            i += 1
+        if len(GPM) < column_num:
+            for i in range(len(M[0])):
+                if vis[i] == 0 and ((GPM is not None and len(GPM) < column_num) or GPM is None):
+                    vis[i] = 1
+                    key = zero_num[i][0]
+                    i_column = [row[key] for row in M]
+                    if GPM is None:
+                        GPM = i_column
+                    else:
+                        GPM = np.vstack((GPM, i_column))
+        select_M = GPM.T
 
-        GPM = np.transpose(GPM)
-        return GPM
+    print('=============   select_column    =========================')
+    print('class complexity:')
+    for key, value in cls_num.items():
+        print('name: %s\tnum: %d' % (key, value))
+    print('bottom_stand: %s \t upper_stand: %s' % (str(bottom_stand), str(cplx_stand)))
+    print('class_num: %d \t needed_num: %d \t optimal_num: %d' % (label_length, needed_num, column_num))
 
-def is_comtain_cplx_cls(column,cplx_cls,label):
-    index = {l:i for i, l in enumerate(np.unique(label))}
+    logging.info('=============   select_column    =========================')
+    logging.info('class complexity:')
+    for key, value in cls_num.items():
+        logging.info('name: %s\tnum: %d' % (key, value))
+    logging.info('bottom_stand: %s \t upper_stand: %s' % (str(bottom_stand), str(cplx_stand)))
+    logging.info('class_num: %d \t needed_num: %d \t optimal_num: %d' % (label_length, needed_num, column_num))
+    return select_M
+
+
+def is_comtain_cplx_cls(column, cplx_cls, label):
+    index = {l: i for i, l in enumerate(np.unique(label))}
     cplx_cls_index = []
     for each in cplx_cls:
         cplx_cls_index.append(index[each])
@@ -327,59 +360,63 @@ def is_comtain_cplx_cls(column,cplx_cls,label):
             return False
     return True
 
-def is_repeat(M,column):
+
+def is_repeat(M, column):
     for i in range(len(M[0])):
         i_column = [row[i] for row in M]
-        if operator.eq(i_column,column):
+        if operator.eq(i_column, column):
             return True
     return False
 
-def check_sub_tree(column,cls):
+
+def check_sub_tree(column, cls):
     for i, each in enumerate(column):
         if i in cls and each == 0:
             return False
-        elif i not in cls and each != 0:# not contain the cls
+        elif i not in cls and each != 0:  # not contain the cls
             return False
 
     return True
 
-def left_right_create_parent(left,right,option,data,label):
-    if option == '+':
+
+def left_right_create_parent(left, right, data, label, create_method, evaluation_option, matrix):
+    if create_method == '+':
         ternary_fun_name = 'ternary_add'
-    elif option == '-':
+    elif create_method == '-':
         ternary_fun_name = 'ternary_subtraction'
-    elif option == '*':
+    elif create_method == '*':
         ternary_fun_name = 'ternary_multiplication'
-    elif option == '/':
+    elif create_method == '/':
         ternary_fun_name = 'ternary_divide'
-    elif option == 'and':
+    elif create_method == 'and':
         ternary_fun_name = 'ternary_and'
-    elif option == 'or':
+    elif create_method == 'or':
         ternary_fun_name = 'ternary_or'
-    elif option == 'info':
+    elif create_method == 'info':
         ternary_fun_name = 'ternary_info'
-    elif option == 'DC':
+    elif create_method == 'DC':
         ternary_fun_name = 'ternary_DC'
     else:
         ValueError('ERROR:wrong ternary option!')
-
     ternary_fun = getattr(Ternary_Operation, ternary_fun_name)
-    parent_node = ternary_fun(left, right, data=data, label=label)
+    parent_node = ternary_fun(left, right, data=data, label=label, evaluation_option=evaluation_option, matrix=matrix)
     return parent_node
 
 
 def get_2column(M):
     left_node = [[row[0]] for row in M]
     right_node = [[row[1]] for row in M]
-    M = np.delete(M,[0,1],axis=1)
+    M = np.delete(M, [0, 1], axis=1)
     return left_node, right_node, M
 
-def insert_2column(M,left_node,right_node):
+
+def insert_2column(M, left_node, right_node):
     if M is None:
         M = copy.deepcopy(np.hstack((left_node, right_node)))
     else:
         M = np.hstack((M, left_node, right_node))
     return M
+
 
 def remove_unfit(M):
     delinx = []
@@ -387,17 +424,18 @@ def remove_unfit(M):
         column = [row[i] for row in M]
         if 1 not in column or -1 not in column:
             delinx.append(i)
-    for inx,each in enumerate(delinx):
-        M = np.delete(M,each-inx,axis=1)
+    for inx, each in enumerate(delinx):
+        M = np.delete(M, each - inx, axis=1)
 
     return M
+
 
 def remove_reverse(M):
     # logging.info("before remove_reverse:\r\n" + str(M))
     delete_row_index = []
     for i in range(len(M[0])):
-        for j in range(i+1,len(M)):
-            if operator.eq(list(M[i]),list(-M[j])):
+        for j in range(i + 1, len(M)):
+            if operator.eq(list(M[i]), list(-M[j])):
                 delete_row_index.append(j)
 
     for inx, each in enumerate(delete_row_index):
@@ -405,11 +443,11 @@ def remove_reverse(M):
 
     delete_column_index = []
     for i in range(len(M[0])):
-        for j in range(i+1,len(M[0])):
+        for j in range(i + 1, len(M[0])):
             i_column = [row[i] for row in M]
             j_column = [row[j] for row in M]
 
-            if operator.eq(i_column,list(-np.array(j_column))):
+            if operator.eq(i_column, list(-np.array(j_column))):
                 delete_column_index.append(j)
     delete_column_index = np.unique(delete_column_index)
     for inx, each in enumerate(delete_column_index):
@@ -419,20 +457,21 @@ def remove_reverse(M):
     return M
 
 
-def remove_duplicate_row(M):#non sense
+def remove_duplicate_row(M):  # non sense
     for i in range(len(M[0])):
         i_row = M[i]
-        for j in range(i+1, len(M)):
+        for j in range(i + 1, len(M)):
             j_row = M[j]
             if i_row == j_row:
-                M = np.delete(M,j)
+                M = np.delete(M, j)
     return M
+
 
 def remove_duplicate_column(M):
     del_inx = []
     for i in range(len(M[0])):
         i_column = [row[i] for row in M]
-        for j in range(i+1, len(M[0])):
+        for j in range(i + 1, len(M[0])):
             j_column = [row[j] for row in M]
             if i_column == j_column:
                 del_inx.append(j)
@@ -441,20 +480,20 @@ def remove_duplicate_column(M):
         M = np.delete(M, each - inx, axis=1)
     return M
 
-def change_subtree(target,source):
 
-    #produce random changed col
-    tar_col = random(0,len(target[0]))
-    source_col = random(0,len(source[0]))
+def change_subtree(target, source):
+    # produce random changed col
+    tar_col = random(0, len(target[0]))
+    source_col = random(0, len(source[0]))
 
-    #define changed class
+    # define changed class
     tar_class = []
-    for i,row in enumerate(target):
+    for i, row in enumerate(target):
         if row[tar_col] != 0:
             tar_class.append(i)
 
     source_class = []
-    for i,row in enumerate(source):
+    for i, row in enumerate(source):
         if row[source_col] != 0:
             tar_class.append(i)
 
@@ -463,18 +502,18 @@ def change_subtree(target,source):
     for i in range(len(target[0])):
         col = [row[i] for row in target]
         for j in tar_class:
-            if col[j] != 0: #left class
+            if col[j] != 0:  # left class
                 target_save_col.append(i)
 
     source_save_col = []
     for i in range(len(source[0])):
         col = [row[i] for row in source]
         for j in source_class:
-            if col[j] != 0: # changed class
+            if col[j] != 0:  # changed class
                 source_save_col.append(i)
 
     new_M = None
-    #merge save column
+    # merge save column
     for i in range(target[0]):
         if i in target_save_col:
             col = [row[i] for row in target]
@@ -490,19 +529,20 @@ def change_subtree(target,source):
 
     return target
 
-def split_traindata(data,label):
+
+def split_traindata(data, label):
     # train_data, train_label, val_data, val_label
     length = len(data)
-    data_1 = data[:round(length/3 * 2)]
+    data_1 = data[:round(length / 3 * 2)]
     label_1 = label[:round(length / 3 * 2)]
 
     data_2 = data[round(length / 3 * 2):]
     label_2 = label[:round(length / 3 * 2):]
 
-    return data_1,label_1,data_2,label_2
+    return data_1, label_1, data_2, label_2
 
-def res_matrix(m,index,train_data,train_label,test_data,test_label,estimator,distance_measure):
 
+def res_matrix(m, index, train_data, train_label, test_data, test_label, estimator, distance_measure):
     predictors = []
     for j in range(m.shape[1]):
         dat, cla = get_data_from_col(train_data, train_label, m[:, j], index)
@@ -529,14 +569,15 @@ def res_matrix(m,index,train_data,train_label,test_data,test_label,estimator,dis
 
     return accuracy
 
-def change_unfit_DC(M,data,label,dc_option):
+
+def change_unfit_DC(M, data, label, dc_option):
     index = {l: i for i, l in enumerate(np.unique(label))}  # name:index
     for i in range(len(M[0])):
-        column = list(M[:,i])
-        if (1 not in column or -1 not in column) and column.count(0)  != len(column):#non all 0
-            if 1 not in column:#no positive class
+        column = list(M[:, i])
+        if (1 not in column or -1 not in column) and column.count(0) != len(column):  # non all 0
+            if 1 not in column:  # no positive class
                 reg = -1
-            elif -1 not in column:#no negative
+            elif -1 not in column:  # no negative
                 reg = 1
 
             class_to_change = []
@@ -555,6 +596,20 @@ def change_unfit_DC(M,data,label,dc_option):
             if M.shape[1] == 1:
                 M[class_to_change_index] = -reg
             else:
-                M[class_to_change_index,i]  = -reg
+                M[class_to_change_index, i] = -reg
     return M
 
+
+def predict(predictors, matrix, index, test_data, distance_measure):
+    if len(predictors) == 0:
+        logging.debug('The Model has not been fitted!')
+    if len(test_data.shape) == 1:
+        test_data = np.reshape(test_data, [1, -1])
+
+    pre_label = []
+    for i in test_data:
+        predicted_vector = np.array([each.predict(np.array([i]))[0] for each in predictors])
+        value = closet_vector(predicted_vector, matrix, distance_measure)
+        pre_label.append(get_key(index, value))
+
+    return pre_label

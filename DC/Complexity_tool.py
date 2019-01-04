@@ -180,7 +180,7 @@ def get_Kneighbors(trainset,sample,k=3):
     """
     distances = []
     for i,each in enumerate(trainset):
-        if operator.eq(list(sample),list(each)) != 0:
+        if operator.eq(list(sample),list(each)) == 0:#not equal
             dis = get_point_point_dis(sample,each)
             distances.append((i,dis))
 

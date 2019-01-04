@@ -14,6 +14,8 @@ from ECOCDemo.Common.Read_Write_tool import write_FS_data
 from ECOCDemo.FS.DC_Feature_selection import FS_selection
 import os
 
+from sklearn.preprocessing import MinMaxScaler
+
 if __name__ == '__main__':
     # current_time log_level function_name user_print_info
     LOG_FORMAT = "%(message)s"
@@ -23,18 +25,20 @@ if __name__ == '__main__':
 
     microarray_dataname = ['Breast','Cancers','DLBCL','GCM','Leukemia1','Leukemia2'\
                 ,'Lung1','SRBCT']
-    UCI_dataname = ['car','cleveland','dermatology','ecoli','isolet','led7digit'\
-                    ,'led24digit','letter','nursery','penbased','satimage','segment'\
-                    ,'shuttle','vehicle','vowel','yeast','zoo']
 
-    fs_name = ['linear_svc','tree','fclassif','variance_threshold','RandForReg'\
-                ,'select_kbest','rfe','rfecv','RandLasso','pearsonr']
+    # UCI_dataname = ['cleveland', 'dermatology', 'led7digit', 'led24digit', 'letter', 'satimage', 'segment',
+    #                 'vehicle', 'vowel', 'yeast']
 
-    data_folder_path = 'E:/workspace/pycharm/UCI/treated_data/'
-    res_folder_path =  'E:/workspace/pycharm/UCI/FS_data/'
+    UCI_dataname = ['car', 'ecoli', 'flare', 'isolet', 'nursery', 'penbased', 'zoo']
 
-    selected_dataname = microarray_dataname
-    selected_fsname = fs_name[:5]
+    fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
+
+    module_path = os.path.dirname(__file__)
+    data_folder_path = module_path + '/UCI/treated_data/'
+    res_folder_path =  module_path + '/UCI/max_min_FS_data_1/'
+
+    selected_dataname = UCI_dataname
+    selected_fsname = fs_name
 
     for i in range(len(selected_fsname)):
 
@@ -48,12 +52,16 @@ if __name__ == '__main__':
 
             # train_path = data_folder_path + selected_dataname[j] + '_train.csv'
             # test_path = data_folder_path + selected_dataname[j] + '_test.csv'
-            # train_data, train_label = read_Microarray_Dataset(train_path)
-            # test_data, test_label = read_Microarray_Dataset(test_path)
+            # train_data, train_label = read_UCI_Dataset(train_path)
+            # test_data, test_label = read_UCI_Dataset(test_path)
 
             data_path = data_folder_path + selected_dataname[j] + '.csv'
             data,label = read_UCI_Dataset(data_path)
             train_data,test_data,train_label,test_label = train_test_split(data,label)
+
+            scaler = MinMaxScaler().fit(train_data)
+            train_data = scaler.transform(train_data)
+            test_data = scaler.transform(test_data)
 
             train_data, train_label, test_data, test_label = \
                                 FS_selection(train_data, train_label, test_data, test_label, selected_fsname[i])
@@ -61,7 +69,8 @@ if __name__ == '__main__':
             logging.info(selected_dataname[j] + "\t FS size: " + str(len(train_data[0])))
 
             train_file_path = fin_folder_path + '/' + selected_dataname[j] +'_train.csv'
-            write_FS_data(train_file_path,train_data,train_label)
+            write_FS_data(train_file_path, train_data, train_label)
+
 
             test_file_path = fin_folder_path + '/' + selected_dataname[j] + '_test.csv'
             write_FS_data(test_file_path, test_data, test_label)

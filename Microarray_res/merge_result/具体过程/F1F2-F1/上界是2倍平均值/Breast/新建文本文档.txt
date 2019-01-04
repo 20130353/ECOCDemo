@@ -1,0 +1,295 @@
+classifier：SVM
+D:\Anaconda3\python.exe E:/workspace-python/ECOCDemo/create_experiment_data.py
+Time: 2018-07-16 16:29:14
+FS: RandForReg
+Dataset： Breast
+ECOC: Self_Adaption_ECOC F1 F2 DC=F1
+base_M:
+
+[[-1.  0. -1.  1.]
+ [ 1.  1.  0.  0.]
+ [-1.  0. -1. -1.]
+ [-1.  0.  1.  0.]
+ [ 1. -1.  0.  0.]]
+[[-1.  0. -1.  1.]
+ [-1.  0.  1.  0.]
+ [-1.  0. -1. -1.]
+ [ 1.  1.  0.  0.]
+ [ 1. -1.  0.  0.]]
+creat_matrix start...................
+before duplicate column M size is:8
+[[-1.  0. -1.  1. -1.  0. -1.  1.]
+ [ 1.  1.  0.  0. -1.  0.  1.  0.]
+ [-1.  0. -1. -1. -1.  0. -1. -1.]
+ [-1.  0.  1.  0.  1.  1.  0.  0.]
+ [ 1. -1.  0.  0.  1. -1.  0.  0.]]
+after duplicated column M size is: 7
+[[-1.  0. -1.  1. -1.  0. -1.]
+ [ 1.  1.  0.  0. -1.  0.  1.]
+ [-1.  0. -1. -1. -1.  0. -1.]
+ [-1.  0.  1.  0.  1.  1.  0.]
+ [ 1. -1.  0.  0.  1. -1.  0.]]
+class cplx:
+{'ERBB2': 2.3010600527296637e-09, 'basal': 0.06913778471831147, 'cell_lines': 1023089309.1838517, 'lumina': 0.0334663241254558, 'normal': 3.4356592171163935e-06}
+bottom_stand is:204617861.85729188
+cplx_stand is:409235723.71458375
+class number is:5
+nedd add columns is:2
+optimal matrix size is7
+M=column_num
+select columns are:7
+[[-1.  0. -1.  1. -1.  0. -1.]
+ [ 1.  1.  0.  0. -1.  0.  1.]
+ [-1.  0. -1. -1. -1.  0. -1.]
+ [-1.  0.  1.  0.  1.  1.  0.]
+ [ 1. -1.  0.  0.  1. -1.  0.]]
+ternary_res
+
+{'Ad': array([[-1],
+       [-1],
+       [-1],
+       [-1],
+       [ 0]]), 'Sub': array([[-1],
+       [ 0],
+       [-1],
+       [-1],
+       [-1]]), 'Mu': array([[ 0],
+       [ 1],
+       [ 0],
+       [ 0],
+       [-1]]), 'D': array([[ 0],
+       [ 1],
+       [ 0],
+       [ 0],
+       [-1]]), 'A': array([[-1],
+       [ 1],
+       [-1],
+       [-1],
+       [-1]]), 'O': array([[0],
+       [1],
+       [0],
+       [0],
+       [1]])}
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+cplx is:
+{'Mu': 28.320785018662214, 'D': 28.320785018662214, 'A': 2.6475789983559905}
+win column is:[[-1]
+ [ 1]
+ [-1]
+ [-1]
+ [-1]]
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left 1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ternary_res
+
+{'Ad': array([[0],
+       [0],
+       [1],
+       [1],
+       [0]]), 'Sub': array([[1],
+       [0],
+       [0],
+       [1],
+       [0]]), 'Mu': array([[-1],
+       [ 0],
+       [ 1],
+       [ 0],
+       [ 0]]), 'D': array([[-1],
+       [ 0],
+       [ 1],
+       [ 0],
+       [ 0]]), 'A': array([[-1],
+       [ 0],
+       [-1],
+       [ 0],
+       [ 0]]), 'O': array([[ 1],
+       [ 0],
+       [-1],
+       [ 1],
+       [ 0]])}
+cplx is:
+{'Mu': 83.50642428725423, 'D': 83.50642428725423, 'O': 0.5109847735776092}
+win column is:[[ 1]
+ [ 0]
+ [-1]
+ [ 1]
+ [ 0]]
+ternary_res
+
+{'Ad': array([[-1],
+       [-1],
+       [-1],
+       [-1],
+       [ 0]]), 'Sub': array([[-1],
+       [-1],
+       [-1],
+       [ 0],
+       [-1]]), 'Mu': array([[ 0],
+       [ 0],
+       [ 0],
+       [ 1],
+       [-1]]), 'D': array([[ 0],
+       [ 0],
+       [ 0],
+       [ 1],
+       [-1]]), 'A': array([[-1],
+       [-1],
+       [-1],
+       [ 1],
+       [-1]]), 'O': array([[0],
+       [0],
+       [0],
+       [1],
+       [1]])}
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+cplx is:
+{'Mu': 52.45267907951832, 'D': 52.45267907951832, 'A': 7.414944688884172}
+win column is:[[-1]
+ [-1]
+ [-1]
+ [ 1]
+ [-1]]
+ternary_res
+
+{'Ad': array([[ 1],
+       [-1],
+       [ 1],
+       [-1],
+       [-1]]), 'Sub': array([[0],
+       [0],
+       [0],
+       [1],
+       [1]]), 'Mu': array([[1],
+       [1],
+       [1],
+       [0],
+       [0]]), 'D': array([[1],
+       [1],
+       [1],
+       [0],
+       [0]]), 'A': array([[-1],
+       [ 1],
+       [-1],
+       [-1],
+       [-1]]), 'O': array([[-1],
+       [ 1],
+       [-1],
+       [ 0],
+       [ 0]])}
+cplx is:
+{'Ad': 3.874359817418366, 'A': 0.6285857649991461, 'O': 0.6285857649991461}
+win column is:[[-1]
+ [ 1]
+ [-1]
+ [-1]
+ [-1]]
+ternary_res
+
+{'Ad': array([[ 0],
+       [-1],
+       [ 1],
+       [-1],
+       [-1]]), 'Sub': array([[-1],
+       [ 1],
+       [ 0],
+       [ 0],
+       [ 1]]), 'Mu': array([[-1],
+       [ 0],
+       [ 1],
+       [ 1],
+       [ 0]]), 'D': array([[-1],
+       [ 0],
+       [ 1],
+       [ 1],
+       [ 0]]), 'A': array([[-1],
+       [-1],
+       [-1],
+       [ 1],
+       [-1]]), 'O': array([[ 1],
+       [ 0],
+       [-1],
+       [ 1],
+       [ 0]])}
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left 1, right 0, left and right node is wrong!
+ERROR:root:DIV_ERROR: The denominator of Ternary Divide is zero!
+ERROR:root:DIV_ERROR: left -1, right 0, left and right node is wrong!
+cplx is:
+{'Ad': 60.43586571182179, 'Sub': 1.485844880184093, 'Mu': 0.3021080111705046, 'D': 0.3021080111705046, 'A': 0.05131629120940105, 'O': 0.0}
+win column is:[[ 1]
+ [ 0]
+ [-1]
+ [ 1]
+ [ 0]]
+ternary_res
+
+{'Ad': array([[ 0],
+       [ 1],
+       [ 1],
+       [ 0],
+       [-1]]), 'Sub': array([[ 1],
+       [ 1],
+       [ 0],
+       [ 1],
+       [-1]]), 'Mu': array([[-1],
+       [ 0],
+       [ 1],
+       [-1],
+       [ 0]]), 'D': array([[-1],
+       [ 0],
+       [ 1],
+       [-1],
+       [ 0]]), 'A': array([[-1],
+       [ 0],
+       [-1],
+       [-1],
+       [-1]]), 'O': array([[ 1],
+       [ 1],
+       [-1],
+       [ 1],
+       [ 0]])}
+cplx is:
+{'Ad': 18.365494005854433, 'Sub': 4.950402254136058, 'Mu': 0.6270674966583847, 'D': 0.6270674966583847, 'O': 0.08097271467139734}
+win column is:[[ 1]
+ [ 1]
+ [-1]
+ [ 1]
+ [ 0]]
+1.create matrix 13
+[[-1.  0. -1.  1. -1.  0. -1. -1.  1. -1. -1.  1.  1.]
+ [ 1.  1.  0.  0. -1.  0.  1.  1.  0. -1.  1.  0.  1.]
+ [-1.  0. -1. -1. -1.  0. -1. -1. -1. -1. -1. -1. -1.]
+ [-1.  0.  1.  0.  1.  1.  0. -1.  1.  1. -1.  1.  1.]
+ [ 1. -1.  0.  0.  1. -1.  0. -1.  0. -1. -1.  0.  0.]]
+2.remove reverse matrix 13
+[[-1.  0. -1.  1. -1.  0. -1. -1.  1. -1. -1.  1.  1.]
+ [ 1.  1.  0.  0. -1.  0.  1.  1.  0. -1.  1.  0.  1.]
+ [-1.  0. -1. -1. -1.  0. -1. -1. -1. -1. -1. -1. -1.]
+ [-1.  0.  1.  0.  1.  1.  0. -1.  1.  1. -1.  1.  1.]
+ [ 1. -1.  0.  0.  1. -1.  0. -1.  0. -1. -1.  0.  0.]]
+3.remove duplicate matrix 11
+[[-1.  0. -1.  1. -1.  0. -1. -1.  1. -1.  1.]
+ [ 1.  1.  0.  0. -1.  0.  1.  1.  0. -1.  1.]
+ [-1.  0. -1. -1. -1.  0. -1. -1. -1. -1. -1.]
+ [-1.  0.  1.  0.  1.  1.  0. -1.  1.  1.  1.]
+ [ 1. -1.  0.  0.  1. -1.  0. -1.  0. -1.  0.]]
+4.remove unfit matrix 11
+[[-1.  0. -1.  1. -1.  0. -1. -1.  1. -1.  1.]
+ [ 1.  1.  0.  0. -1.  0.  1.  1.  0. -1.  1.]
+ [-1.  0. -1. -1. -1.  0. -1. -1. -1. -1. -1.]
+ [-1.  0.  1.  0.  1.  1.  0. -1.  1.  1.  1.]
+ [ 1. -1.  0.  0.  1. -1.  0. -1.  0. -1.  0.]]
+
+Process finished with exit code 0

@@ -19,10 +19,15 @@ from abc import ABCMeta
 from itertools import combinations
 import logging
 import copy
+import math
 
+from sklearn.metrics import confusion_matrix
 import numpy as np
 from scipy.special import comb
 from sklearn import svm
+from sklearn.naive_bayes import GaussianNB
+from sklearn import tree
+# import lightgbm as lgb
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
@@ -35,8 +40,9 @@ from ECOCDemo.ECOC.SFFS import sffs
 from ECOCDemo.ECOC import Greedy_Search
 from ECOCDemo.Common.Evaluation_tool import Evaluation
 
+__all__ = ['Self_Adaption_ECOC', 'OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC', 'D_ECOC',
+           'AGG_ECOC', 'CL_ECOC', 'DC_ECOC']
 
-__all__ = ['Self_Adaption_ECOC','OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC', 'D_ECOC', 'AGG_ECOC', 'CL_ECOC','DC_ECOC']
 
 # inner class should be marked as __class
 class __BaseECOC(object):
@@ -100,16 +106,23 @@ class __BaseECOC(object):
         if len(data.shape) == 1:
             data = np.reshape(data, [1, -1])
         for i in data:
-            #find k neighbors from train data
-            knn_model =  neighbors.KNeighborsClassifier(algorithm='ball_tree',n_neighbors=3).fit(self.train_data,self.train_label)
+            # find k neighbors from train data
+            knn_model = neighbors.KNeighborsClassifier(algorithm='ball_tree', n_neighbors=3).fit(self.train_data,
+                                                                                                 self.train_label)
             knn_pre_label = knn_model.predict([i])
-            predicted_vector = self._use_predictors(i)#one row
-            index = {l:i for i,l in enumerate(np.unique(self.train_label))}
+            predicted_vector = self._use_predictors(i)  # one row
+            index = {l: i for i, l in enumerate(np.unique(self.train_label))}
             knn_pre_index = index[knn_pre_label[0]]
-            #make it 0 when the knn predicted class is 0
-            for j in range(len(self.matrix[0])):
-                if self.matrix[knn_pre_index][j] == 0:
-                    predicted_vector[j] = 0
+            # make it 0 when the knn predicted class is 0
+            try:
+                column_len = len(self.matrix[0])
+            except TypeError:
+                if self.matrix[knn_pre_index] == 0:
+                    predicted_vector[0] = 0
+            else:
+                for j in range(column_len):
+                    if self.matrix[knn_pre_index][j] == 0:
+                        predicted_vector[j] = 0
 
             self.predicted_vector.append(list(predicted_vector))
             value = MT.closet_vector(predicted_vector, self.matrix, self.distance_measure)
@@ -275,7 +288,8 @@ class AGG_ECOC(__BaseECOC):
                 for j in range(i + 1, len(labels_to_agg_list)):
                     class_1_data, class_1_label = MT.get_data_subset(data, label, labels_to_agg_list[i])
                     class_2_data, class_2_label = MT.get_data_subset(data, label, labels_to_agg_list[j])
-                    score = Criterion.agg_score(class_1_data, class_1_label, class_2_data, class_2_label, score=Criterion.max_distance_score)
+                    score = Criterion.agg_score(class_1_data, class_1_label, class_2_data, class_2_label,
+                                                score=Criterion.max_distance_score)
                     if score < score_result:
                         score_result = score
                         class_1_variety = labels_to_agg_list[i]
@@ -311,7 +325,8 @@ class CL_ECOC(__BaseECOC):
         while len(labels_to_divide) > 0:
             label_set = labels_to_divide.pop(0)
             datas, labels = MT.get_data_subset(data, label, label_set)
-            class_1_variety_result, class_2_variety_result = sffs(datas, labels, score=Criterion.max_center_distance_score)
+            class_1_variety_result, class_2_variety_result = sffs(datas, labels,
+                                                                  score=Criterion.max_center_distance_score)
             class_1_data_result, class_1_label_result = MT.get_data_subset(data, label, class_1_variety_result)
             class_2_data_result, class_2_label_result = MT.get_data_subset(data, label, class_2_variety_result)
             class_1_center_result = np.average(class_1_data_result, axis=0)
@@ -433,9 +448,11 @@ class ECOC_ONE(__BaseECOC):
         return matrix, index, predictors, predictor_weights
 
     def fit(self, data, label):
-        self.train_data, self.validate_data, self.train_label, self.validation_y = train_test_split(data, label,test_size=0.25)
+        self.train_data, self.validate_data, self.train_label, self.validation_y = train_test_split(data, label,
+                                                                                                    test_size=0.25)
         self.matrix, self.index, self.predictors, self.predictor_weights = \
-            self.create_matrix(self.train_data, self.train_label, self.validate_data, self.validation_y, self.estimator, **self.param)
+            self.create_matrix(self.train_data, self.train_label, self.validate_data, self.validation_y, self.estimator,
+                               **self.param)
         feature_subset = MT.get_subset_feature_from_matrix(self.matrix, self.index)
         for i in range(self.iter_num):
             y_pred = self.predict(self.validate_data)
@@ -453,16 +470,19 @@ class ECOC_ONE(__BaseECOC):
                 est_weight_result = None
                 feature_subset_m = None
                 feature_subset_n = None
-                for m in range(len(feature_subset)-1):
-                    for n in range(m+1, len(feature_subset)):
+                for m in range(len(feature_subset) - 1):
+                    for n in range(m + 1, len(feature_subset)):
                         if ((label_y in feature_subset[m] and label_x in feature_subset[n])
-                                or (label_y in feature_subset[n] and label_x in feature_subset[m])) \
+                            or (label_y in feature_subset[n] and label_x in feature_subset[m])) \
                                 and (set(feature_subset[m]).intersection(set(feature_subset[n])) == set()):
                             col = MT.create_col_from_partition(feature_subset[m], feature_subset[n], self.index)
                             if not MT.have_same_col(col, self.matrix):
-                                train_data, train_cla = MT.get_data_from_col(self.train_data, self.train_label, col, self.index)
+                                train_data, train_cla = MT.get_data_from_col(self.train_data, self.train_label, col,
+                                                                             self.index)
                                 est = self.estimator(**self.param).fit(train_data, train_cla)
-                                validation_data, validation_cla = MT.get_data_from_col(self.validate_data, self.validation_y, col, self.index)
+                                validation_data, validation_cla = MT.get_data_from_col(self.validate_data,
+                                                                                       self.validation_y, col,
+                                                                                       self.index)
                                 if validation_data is None:
                                     score = 0.8
                                 else:
@@ -471,7 +491,7 @@ class ECOC_ONE(__BaseECOC):
                                     score_result = score
                                     col_result = col
                                     est_result = est
-                                    est_weight_result = MT.estimate_weight(1-score_result)
+                                    est_weight_result = MT.estimate_weight(1 - score_result)
                                     feature_subset_m = m
                                     feature_subset_n = n
                 if col_result is None:
@@ -499,20 +519,20 @@ class ECOC_ONE(__BaseECOC):
             predict_res = self._use_predictors(i)
 
             if self.predicted_vector == []:
-               self.predicted_vector = copy.deepcopy(predict_res)
+                self.predicted_vector = copy.deepcopy(predict_res)
             else:
-                self.predicted_vector = np.row_stack((self.predicted_vector,predict_res))
+                self.predicted_vector = np.row_stack((self.predicted_vector, predict_res))
 
             value = MT.closet_vector(predict_res, self.matrix, y_euclidean_distance, np.array(self.predictor_weights))
             res.append(MT.get_key(self.index, value))
 
-
         vector = []
         for i in range(self.matrix.shape[1]):
-            vector.append(list(self.predicted_vector[:,i]))
+            vector.append(list(self.predicted_vector[:, i]))
         self.predicted_vector = copy.deepcopy(vector)
 
         return np.array(res)
+
 
 class DC_ECOC(__BaseECOC):
     """
@@ -520,18 +540,28 @@ class DC_ECOC(__BaseECOC):
     code by sunmengxin
     """
 
+    def __init__(self, dc_option='F1', base_M=None, distance_measure=euclidean_distance, base_estimator=svm.SVC):
+        """
+        :param:dc_option,used for select dc measure to split two groups
+                default is 'F1'
+
+        :param base_M: pre_defined matrix
+
+
+        :param distance_measure: a callable object to define the way to calculate the distance between predicted vector
+                                    and true vector
+
+        :param base_estimator: a class with fit and predict method, which define the base classifier for ECOC
+
+        """
+
+        super(DC_ECOC, self).__init__(distance_measure, base_estimator)
+        self.matrix = base_M
+        self.dc_option = dc_option
+
     def create_matrix(self, data, label, dc_option):
         labels_to_divide = [np.unique(label)]
         index = {l: i for i, l in enumerate(np.unique(label))}
-        # if dc_option == 'F1':
-        #     matrix = [[-1,0,1,0],[-1,0,-1,1],[1,-1,0,0],[-1,0,-1,-1],[1,1,0,0]]
-        #     return matrix,index
-        # elif dc_option == 'F2':
-        #     matrix = [[-1,0,-1,-1],[-1,0,-1,1],[-1,0,1,0],[1,1,0,0],[1,-1,0,0]]
-        #     return matrix,index
-        # elif dc_option == 'F3':
-        #     matrix = [[1,1,0,0],[-1,0,-1,1],[-1,0,1,0],[-1,0,-1,-1],[1,-1,0,0]]
-        #     return matrix,index
 
         matrix = None
         while len(labels_to_divide) > 0:
@@ -541,7 +571,7 @@ class DC_ECOC(__BaseECOC):
             datas, labels = MT.get_data_subset(data, label, label_set)
 
             # DC search
-            class_1, class_2 = Greedy_Search.greedy_search(datas,labels,dc_option = dc_option)
+            class_1, class_2 = Greedy_Search.greedy_search(datas, labels, dc_option=dc_option)
             new_col = np.zeros((len(index), 1))
             for i in class_1:
                 new_col[index[i]] = 1
@@ -567,103 +597,315 @@ class DC_ECOC(__BaseECOC):
         """
         self.train_data = data
         self.train_label = label
-        self.predictors = []
-        if 'dc_option' in estimator_param:
-            self.matrix, self.index = self.create_matrix(data, label, estimator_param['dc_option'])
-            estimator_param.pop('dc_option')
+        if self.matrix is not None:
+            self.index = {l: i for i, l in enumerate(np.unique(label))}
         else:
-            self.matrix, self.index = self.create_matrix(data, label, dc_option='F1')
+            self.matrix, self.index = self.create_matrix(data, label, self.dc_option)
         for i in range(self.matrix.shape[1]):
             dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
             estimator = self.estimator(**estimator_param).fit(dat, cla)
             self.predictors.append(estimator)
 
-class Self_Adaption_ECOC(__BaseECOC):
-    """
-    self adaption ECOC:many DC ecoc merge and form new ECOC by ternary conpution
-    """
 
-    def create_matrix(self, data, label,**param):
-        labels_to_divide = [np.unique(label)]
-        index = {l: i for i, l in enumerate(np.unique(label))}
+# 注释日期： 2018.12.28
+# 注释内容：因为要修改confusion matrix来保证效果，所以封存这份代码
+# class Self_Adaption_ECOC(__BaseECOC):
+#     """
+#     self adaption ECOC:many DC ecoc merge and form new ECOC by ternary conpution
+#     """
+#
+#     def __init__(self, base_M=None, create_method='DC', evaluation_option='F1', distance_measure=euclidean_distance,
+#                  base_estimator=svm.SVC):
+#         """
+#
+#         :param base_M: candidated columns for select
+#                         default is None
+#
+#         :param create_method: the way to create new column;
+#                 candidates: '+','-','*','/','DC'
+#                 default is 'DC'
+#
+#
+#         :param evaluation_option: the evaluation function for making decision of the bset column of various columns which are created by the ternary_option
+#                                     default is F1 measure
+#
+#         :param distance_measure: a callable object to define the way to calculate the distance between predicted vector
+#                                     and true vector
+#
+#         :param base_estimator: a class with fit and predict method, which define the base classifier for ECOC
+#
+#         """
+#
+#         super(Self_Adaption_ECOC, self).__init__()
+#         self.base_M = base_M
+#         self.create_method = create_method
+#         self.evaluation_option = evaluation_option
+#
+#     def create_matrix(self, data, label):
+#
+#         index = {l: i for i, l in enumerate(np.unique(label))}
+#
+#         if self.base_M is None:
+#             raise ValueError('ERROR: Self_Adaption_ECOCs base matrix is None!')
+#         # copy
+#         # Step1. select fitable columns
+#         selected_M = MT.select_column(self.base_M, data, label, len(index))
+#         copy_selected_M = copy.deepcopy(selected_M)
+#
+#         # Step2. create new columns
+#         GPM = copy.deepcopy(selected_M)
+#         while (selected_M.shape[1] != 0):
+#             if selected_M.shape[1] == 1:
+#                 GPM = np.c_[GPM, selected_M]
+#                 break
+#
+#             elif selected_M.shape[1] == 2 or selected_M.shape[1] == 3:
+#                 left_node, right_node, selected_M = MT.get_2column(selected_M)
+#                 parent_node = MT.left_right_create_parent(left_node, right_node, data, label, self.create_method,
+#                                                           self.evaluation_option)
+#                 selected_M = np.hstack((selected_M, parent_node))
+#
+#                 GPM = MT.insert_2column(GPM, left_node, right_node)
+#
+#             elif selected_M.shape[1] >= 4:
+#                 left_left_node, left_right_node, selected_M = MT.get_2column(
+#                     selected_M)  # get left column, right column, new matrix
+#                 left_parent_node = MT.left_right_create_parent(left_left_node, left_right_node, data, label,
+#                                                                self.create_method,
+#                                                                self.evaluation_option)
+#                 GPM = MT.insert_2column(GPM, left_left_node, left_right_node)
+#
+#                 right_left_node, right_right_node, selected_M = MT.get_2column(selected_M)
+#                 right_parent_node = MT.left_right_create_parent(right_left_node, right_right_node, data, label,
+#                                                                 self.create_method,
+#                                                                 self.evaluation_option)
+#                 GPM = MT.insert_2column(GPM, right_left_node, right_right_node)
+#
+#                 selected_M = np.hstack((selected_M, left_parent_node, right_parent_node))
+#
+#         no_reversed_M = MT.remove_reverse(GPM)  # delete reverse column and row
+#         no_dpt_M = MT.remove_duplicate_column(no_reversed_M)  # delete identical column
+#         no_unfit_M = MT.remove_unfit(no_dpt_M)  # delete column that does not contain +1 and -1
+#
+#         print('=============   create_matrix    =========================')
+#         print('select_matrix_num:%d,no_reversed_M_num:%d,no_duplicate_M_num:%d,no_unfit_num:%d' % (
+#             len(selected_M[0]), len(no_reversed_M), len(no_dpt_M), len(no_unfit_M)))
+#         print('select_matrix:\n', copy_selected_M)
+#         print('no_reversed_matrix:\n', no_reversed_M)
+#         print('no_duplicate_matrix:\n', no_dpt_M)
+#         print('no_unfit:\n', no_dpt_M)
+#
+#         logging.info('=============   create_matrix    =========================')
+#         logging.info('select_matrix_num:%d,no_reversed_M_num:%d,no_duplicate_M_num:%d,no_unfit_num:%d' % (
+#             len(selected_M[0]), len(no_reversed_M), len(no_dpt_M), len(no_unfit_M)))
+#         logging.info('select_matrix:')
+#         logging.info(copy_selected_M)
+#         logging.info('no_reversed_matrix:')
+#         logging.info(no_reversed_M)
+#         logging.info('no_duplicate_matrix:')
+#         logging.info(no_dpt_M)
+#         logging.info('no_unfit:')
+#         logging.info( no_unfit_M)
+#         return no_unfit_M, index
+#
+#     def fit(self, data, label, **param):
+#         """
+#         a method to train base estimator based on given data and label
+#         :param data: data used to train base estimator
+#         :param label: label corresponding to the data
+#         :param estimator_param: some param used by matrix and base estimator
+#         :return: None
+#         """
+#         self.train_data = data
+#         self.train_label = label
+#         self.predictors = []
+#         self.matrix, self.index = self.create_matrix(data, label)
+#
+#         for i in range(self.matrix.shape[1]):
+#             dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
+#             if 'estimator_param' in param:
+#                 estimator = self.estimator(**param['estimator_param']).fit(dat, cla)
+#             else:
+#                 estimator = self.estimator().fit(dat, cla)
+#
+#
 
-        M = None
-        if 'base_M' not in param:
-            DCECOC = DC_ECOC()
-            if 'dc_option' in param:
-                for each in param['dc_option']:
-                    m,index = DCECOC.create_matrix(data, label, dc_option=each)
-                    if M is None:
-                        M = copy.deepcopy(m)
-                    else:
-                        M = np.hstack((M, m))
-            else:
-                logging.warning('use default DC: F1')
-                M = DCECOC.create_matrix(data, label)
+class Temp_Class(__BaseECOC):
+
+    def __init__(self, matrix, distance_measure=euclidean_distance, base_estimator=svm.SVC):
+        """
+        :param distance_measure: a callable object to define the way to calculate the distance between predicted vector
+                                    and true vector
+        :param base_estimator: a class with fit and predict method, which define the base classifier for ECOC
+        """
+        super(Temp_Class, self).__init__(distance_measure, base_estimator)
+        self.matrix = matrix
+
+    def fit(self, data, label, **estimator_param):
+        """
+        a method to train base estimator based on given data and label
+        :param data: data used to train base estimator
+        :param label: label corresponding to the data
+        :param estimator_param: some param used by base estimator
+        :return: None
+        """
+        self.predictors = []
+        self.train_data = data
+        self.train_label = label
+        self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
+
+        try:
+            column_len = self.matrix.shape[1]
+        except IndexError:
+            dat, cla = MT.get_data_from_col(data, label, self.matrix, self.index)
+            estimator = self.estimator(**estimator_param).fit(dat, cla)
+            self.predictors.append(estimator)
         else:
-            for each in param['base_M']:
-                if M is None:
-                    M = copy.deepcopy(each)
-                else:
-                    M = np.hstack((M, each))
+            for i in range(column_len):
+                dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
+                estimator = self.estimator(**estimator_param).fit(dat, cla)
+                self.predictors.append(estimator)
 
-        if M is None:
-            logging.debug('ERROR:Matrix is None')
-            raise ValueError('ERROR:Matrix is None')
 
-        # M = MT.remove_reverse(M)
-        # M = MT.remove_duplicate_column(M) #simplify the process
-        M = MT.select_column(M,data,label,len(index))
+class Self_Adaption_ECOC(__BaseECOC):
 
-        if 'ternary_option' not in param:
-            param['ternary_option'] = '+'
+    def __init__(self, dc_option, base_M, create_method, distance_measure=euclidean_distance, base_estimator=svm.SVC):
 
-        logging.info("merged matrix:\r\n" + str(M))
-        GPM = None
-        while(len(M[0]) != 0):
-            if len(M[0]) == 1:
-                if GPM is None:
-                    GPM = copy.copy(np.hstack((M)))
-                else:
-                    GPM = np.hstack((GPM, M))
-                M = np.delete(M,0,axis=1)
+        super(Self_Adaption_ECOC, self).__init__(distance_measure, base_estimator)
+        self.dc_option = 'F1'
+        self.base_M = base_M
+        self.create_method = create_method
+
+    def create_matrix(self):
+        matrix_pool = copy.deepcopy(self.base_M)
+        rand_column = random.randint(0, matrix_pool.shape[1] - 1)
+        res_matrix = self.base_M[:, rand_column]
+
+        logging.info('base_M is')
+        logging.info(self.base_M)
+
+        count = 0
+        while True:
+            count += 1
+            logging.info('\n\n============== iter  %d ================' % count)
+            logging.info('current matrix is ')
+            logging.info(res_matrix)
+
+            temp_class = Temp_Class(res_matrix)
+            temp_class.fit(self.train_data, self.train_label)
+            pred_label = temp_class.predict(self.val_data)
+            cfus_matrix = confusion_matrix(self.val_label, pred_label)
+
+            logging.info('predict label')
+            logging.info(pred_label)
+
+            logging.info('true label')
+            logging.info(self.val_label)
+
+            logging.info('confusion matrix')
+            logging.info(cfus_matrix)
+
+            cplx_class = {}.fromkeys(self.rows.keys())
+            total_cplx_class_num = 0
+            class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
+            average_class_acc = np.mean(class_acc)
+            threhold = average_class_acc - average_class_acc * 0.1
+            for i in range(len(class_acc)):
+                if class_acc[i] <= threhold:
+                    cplx_class[i] = True
+                    total_cplx_class_num += 1
+
+            logging.info('cplx_class')
+            logging.info(cplx_class)
+
+            # =======    算法停止条件           ============================================================
+            # 如果每个累的分类情况都实现50%的正确率就结束
+            if total_cplx_class_num == 0:
+                logging.info('total_cplx_class_num == 0 break')
+                break
+            # 如果每个类的分类正确率大于0.8
+            if sum(class_acc) <= 0.2:
+                logging.info('sum(class_acc) <= 0.2')
                 break
 
-            elif len(M[0]) == 2 or len(M[0]) == 3:
-                left_node,right_node,M = MT.get_2column(M)
-                parent_node = MT.left_right_create_parent(left_node, right_node,param['ternary_option'],data,label)
-                M = np.hstack((M,parent_node))
+            # 如果达到normal的数量
+            try:
+                column_len = res_matrix.shape[1]
+            except IndexError:
+                column_len = 1
+            if column_len >= 10 * math.log(len(self.index)):
+                logging.info('column_len >= 10*math.log(len(self.index))')
+                break
+            # =======    算法停止条件           ============================================================
 
-                GPM = MT.insert_2column(GPM, left_node,right_node)
+            # find first column
+            prob = 0.5
+            matrix_pool = MT.shuffle_matrix(matrix_pool)
+            select_cloumn_i = None
+            while True:
+                for i in range(matrix_pool.shape[1]):
+                    i_column = matrix_pool[:, i]
+                    contain_num = 0
+                    for j in range(len(i_column)):
+                        if i_column[j] != 0 and cplx_class[j] == True:
+                            contain_num += 1
+                            cplx_class[j] = False
+                    if contain_num > total_cplx_class_num * prob:
+                        select_cloumn_i = i_column
+                        break
+                if select_cloumn_i is not None:
+                    break
+                else:
+                    prob -= 0.05
 
-            elif len(M[0]) >= 4:
-                left_left_node,left_right_node, M = MT.get_2column(M)
-                left_parent_node = MT.left_right_create_parent(left_left_node, left_right_node,param['ternary_option'],data,label)
-                GPM = MT.insert_2column(GPM, left_left_node, left_right_node)
+            # find second column
+            prob = 0.5
+            matrix_pool = MT.shuffle_matrix(matrix_pool)
+            select_cloumn_j = None
+            while True:
+                for i in range(matrix_pool.shape[1]):
+                    i_column = matrix_pool[:, i]
+                    contain_num = 0
+                    for j in range(len(i_column)):
+                        if i_column[j] != 0 and cplx_class[j] == True:
+                            contain_num += 1
+                    if contain_num > total_cplx_class_num * prob and MT.is_same_col(i_column, select_cloumn_i):
+                        select_cloumn_j = i_column
+                        break
+                if select_cloumn_j is not None:
+                    break
+                else:
+                    prob -= 0.05
 
-                right_left_node, right_right_node, M = MT.get_2column(M)
-                right_parent_node = MT.left_right_create_parent(right_left_node, right_right_node,param['ternary_option'],data,label)
-                GPM = MT.insert_2column(GPM, right_left_node, right_right_node)
+            logging.info('select_i_column')
+            logging.info(select_cloumn_i)
 
-                M = np.hstack((M,left_parent_node,right_parent_node))
+            logging.info('select_j_column')
+            logging.info(select_cloumn_j)
 
-            #M = MT.change_unfit_DC(M,data,label,dc_option='D2')
-        logging.info('1.create matrix ' + str(len(GPM[0])) + '\n' +str(GPM))
+            if select_cloumn_i is None:
+                raise ValueError('ERROR: SAT_ECOC select_column i is None')
 
-        GPM = MT.remove_reverse(GPM) # delete reverse column and row
-        logging.info('2.remove reverse matrix '+ str(len(GPM[0])) + '\n'  + str(GPM))
+            if select_cloumn_j is None:
+                raise ValueError('ERROR: SAT_ECOC select_column j is None')
 
-        GPM = MT.remove_duplicate_column(GPM) # delete identical column
-        logging.info('3.remove duplicate matrix '+ str(len(GPM[0])) + '\n'  +  str(GPM))
+            new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
+                                                     self.train_label, self.create_method, self.dc_option, res_matrix)
 
-        # GPM,new_index = MT.remove_duplicate_row(GPM,index) # delete identical row  ------may need!!
-        GPM = MT.remove_unfit(GPM) # delete column that does not contain +1 and -1
-        logging.info('4.remove unfit matrix '+ str(len(GPM[0])) + '\n'  +  str(GPM))
+            logging.info('new_column')
+            logging.info(new_column)
 
-        return GPM, index
+            if new_column is not None:
+                try:
+                    res_matrix = np.hstack([res_matrix, new_column])
+                except ValueError:
+                    res_matrix = np.hstack([[[each] for each in res_matrix], new_column])
 
+                matrix_pool = np.hstack([matrix_pool, new_column])
 
-    def fit(self, data, label, **param):
+        return res_matrix
+
+    def fit(self, train_data, train_label, val_data, val_label, **param):
         """
         a method to train base estimator based on given data and label
         :param data: data used to train base estimator
@@ -671,18 +913,33 @@ class Self_Adaption_ECOC(__BaseECOC):
         :param estimator_param: some param used by matrix and base estimator
         :return: None
         """
-        self.train_data = data
-        self.train_label = label
         self.predictors = []
-        self.matrix, self.index = self.create_matrix(data,label,**param)
+        self.train_data = train_data
+        self.train_label = train_label
+        self.val_data = val_data
+        self.val_label = val_label
+        self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
+        self.rows = {i: l for i, l in enumerate(np.unique(self.train_label))}
 
-        for i in range(self.matrix.shape[1]):
-            dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
+        self.matrix = self.create_matrix()
+
+        try:
+            column_len = self.matrix.shape[1]
+        except IndexError:
+            dat, cla = MT.get_data_from_col(self.train_data, self.train_label, self.matrix, self.index)
             if 'estimator_param' in param:
                 estimator = self.estimator(**param['estimator_param']).fit(dat, cla)
             else:
                 estimator = self.estimator().fit(dat, cla)
             self.predictors.append(estimator)
+        else:
+            for i in range(column_len):
+                dat, cla = MT.get_data_from_col(self.train_data, self.train_label, self.matrix[:, i], self.index)
+                if 'estimator_param' in param:
+                    estimator = self.estimator(**param['estimator_param']).fit(dat, cla)
+                else:
+                    estimator = self.estimator().fit(dat, cla)
+                self.predictors.append(estimator)
 
 
 class CSFT_ECOC(__BaseECOC):
@@ -690,7 +947,7 @@ class CSFT_ECOC(__BaseECOC):
     change subtree of DC ECOC matrix
     """
 
-    def create_matrix(self, data, label,**param):
+    def create_matrix(self, data, label, **param):
         labels_to_divide = [np.unique(label)]
         index = {l: i for i, l in enumerate(np.unique(label))}
 
@@ -698,7 +955,7 @@ class CSFT_ECOC(__BaseECOC):
         DCECOC = DC_ECOC()
         if 'dc_option' in param:
             for each in param['dc_option']:
-                m,index = DCECOC.create_matrix(data, label, dc_option=each)
+                m, index = DCECOC.create_matrix(data, label, dc_option=each)
                 if M is None:
                     M = [m]
                 else:
@@ -708,22 +965,25 @@ class CSFT_ECOC(__BaseECOC):
             logging.debug('ERROR: undefine the type of DCECOC')
             return
 
-        train_data,train_label,val_data,val_label = MT.split_traindata(data,label) #split data into train and validation
+        train_data, train_label, val_data, val_label = MT.split_traindata(data,
+                                                                          label)  # split data into train and validation
 
         # select the most effective matrix
-        res = np.zeros(1,len(M))
+        res = np.zeros(1, len(M))
         for i in range(len(M)):
             m = M[i]
-            res[i] = MT.res_matrix(m,index,train_data,train_label,val_data,val_label,self.estimator,self.distance_measure)
+            res[i] = MT.res_matrix(m, index, train_data, train_label, val_data, val_label, self.estimator,
+                                   self.distance_measure)
         best_M = M[res.index(max(res))]
 
         most_time = 10
         res = 1
-        while(most_time and res < 0.8):
+        while (most_time and res < 0.8):
 
             sel_m = random.random(len(M))
-            new_M,new_index = MT.change_subtree(best_M,M[sel_m])
-            new_res = MT.res_matrix(new_M,new_index,train_data,train_label,val_data,val_label,self.estimator,self.distance_measure)
+            new_M, new_index = MT.change_subtree(best_M, M[sel_m])
+            new_res = MT.res_matrix(new_M, new_index, train_data, train_label, val_data, val_label, self.estimator,
+                                    self.distance_measure)
             if new_res > res:
                 best_M = new_M
                 res = new_res
@@ -731,7 +991,6 @@ class CSFT_ECOC(__BaseECOC):
             most_time = most_time + 1
 
         return M, index
-
 
     def fit(self, data, label, **estimator_param):
         """

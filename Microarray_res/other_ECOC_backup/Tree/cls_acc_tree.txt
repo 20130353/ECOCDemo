@@ -1,0 +1,129 @@
+
+no tian chong 0!
+Data: Breast	 ECOC: OVA_ECOC	 [0.867, 0.8, 1.0, 0.8, 0.833]
+no tian chong 0!
+Data: Breast	 ECOC: OVO_ECOC	 [1.0, 0.9, 1.0, 0.625, 1.0, 1.0, 0.625, 1.0, 1.0, 0.882]
+no tian chong 0!
+Data: Breast	 ECOC: Dense_random_ECOC	 [0.767, 0.867, 0.8, 1.0, 0.967, 0.533]
+no tian chong 0!
+Data: Breast	 ECOC: Sparse_random_ECOC	 [0.882, 0.8, 0.889, 0.909, 0.833, 0.958, 0.667, 1.0, 0.727, 0.909]
+no tian chong 0!
+Data: Breast	 ECOC: D_ECOC	 [0.833, 1.0, 0.95, 0.882]
+no tian chong 0!
+Data: Breast	 ECOC: DC_ECOC F1	 [0.533, 1.0, 1.0, 0.9]
+no tian chong 0!
+Data: Breast	 ECOC: DC_ECOC F2	 [0.833, 0.882, 0.769, 1.0]
+no tian chong 0!
+Data: Breast	 ECOC: DC_ECOC N3	 [0.867, 0.7, 0.6, 0.75]
+no tian chong 0!
+Data: Cancers	 ECOC: OVA_ECOC	 [0.878, 0.905, 0.946, 0.824, 0.905, 0.932, 0.919, 0.986, 0.986]
+no tian chong 0!
+Data: Cancers	 ECOC: OVO_ECOC	 [0.846, 0.467, 0.8, 0.933, 0.737, 0.75, 0.969, 0.9, 0.462, 0.615, 0.846, 0.941, 0.833, 0.933, 0.964, 0.5, 0.0, 0.667, 0.857, 0.895, 0.765, 0.5, 1.0, 0.571, 0.526, 0.882, 1.0, 1.0, 0.842, 0.529, 0.818, 0.739, 0.952, 0.958, 1.0, 0.706]
+no tian chong 0!
+Data: Cancers	 ECOC: Dense_random_ECOC	 [0.784, 0.851, 0.811, 0.595, 0.689, 0.743, 0.811, 0.568, 0.973]
+no tian chong 0!
+Data: Cancers	 ECOC: Sparse_random_ECOC	 [0.761, 0.683, 0.842, 0.941, 0.769, 0.945, 0.745, 0.784, 0.784, 0.595, 0.772, 0.95, 0.755, 0.781]
+no tian chong 0!
+Data: Cancers	 ECOC: D_ECOC	 [0.662, 0.656, 0.69, 0.846, 0.897, 0.833, 0.824, 0.818]
+no tian chong 0!
+Data: Cancers	 ECOC: DC_ECOC F1	 [0.541, 0.75, 0.848, 0.5, 0.667, 1.0, 0.955, 0.844]
+no tian chong 0!
+Data: Cancers	 ECOC: DC_ECOC F2	 [0.743, 0.731, 0.771, 0.667, 1.0, 0.867, 0.556, 0.846]
+no tian chong 0!
+Data: Cancers	 ECOC: DC_ECOC N3	 [0.73, 0.75, 0.714, 0.867, 0.882, 0.833, 0.958, 0.348]
+no tian chong 0!
+Data: DLBCL	 ECOC: OVA_ECOC	 [0.923, 0.923, 0.769, 0.885]
+no tian chong 0!
+Data: DLBCL	 ECOC: OVO_ECOC	 [0.714, 0.947, 0.833, 0.95, 0.571, 1.0]
+no tian chong 0!
+Data: DLBCL	 ECOC: Dense_random_ECOC	 [0.846, 0.923, 0.885, 0.923, 0.885, 0.923]
+no tian chong 0!
+Data: DLBCL	 ECOC: Sparse_random_ECOC	 [0.9, 0.6, 0.913, 1.0, 0.895, 0.947, 0.909, 0.857, 0.957]
+no tian chong 0!
+Data: DLBCL	 ECOC: D_ECOC	 [0.885, 1.0, 0.714]
+no tian chong 0!
+Data: DLBCL	 ECOC: DC_ECOC F1	 [0.923, 1.0, 0.95]
+no tian chong 0!
+Data: DLBCL	 ECOC: DC_ECOC F2	 [0.923, 1.0, 0.833]
+no tian chong 0!
+Data: DLBCL	 ECOC: DC_ECOC N3	 [0.923, 0.95, 0.833]
+no tian chong 0!
+Data: GCM	 ECOC: OVA_ECOC	 [0.935, 0.913, 0.978, 0.978, 0.978, 0.935, 0.978, 1.0, 0.978, 0.87, 0.674, 0.978, 0.804, 0.848]
+no tian chong 0!
+Data: GCM	 ECOC: OVO_ECOC	 [0.333, 0.857, 1.0, 1.0, 0.833, 1.0, 0.6, 0.833, 0.333, 0.5, 0.6, 0.333, 0.6, 0.857, 0.833, 1.0, 0.667, 0.889, 0.8, 0.667, 0.5, 0.333, 0.8, 0.833, 0.6, 1.0, 1.0, 0.857, 0.9, 1.0, 1.0, 0.857, 1.0, 0.833, 0.857, 1.0, 1.0, 0.833, 0.778, 1.0, 1.0, 1.0, 0.667, 1.0, 0.833, 0.8, 1.0, 1.0, 1.0, 0.889, 0.778, 0.889, 0.75, 1.0, 0.875, 0.778, 1.0, 0.333, 0.833, 0.833, 0.8, 1.0, 0.6, 0.875, 0.889, 0.889, 0.778, 0.75, 0.889, 0.875, 1.0, 0.6, 1.0, 0.75, 0.4, 0.75, 0.667, 0.667, 0.8, 0.833, 0.8, 0.833, 0.4, 0.833, 0.8, 0.8, 0.333, 0.4, 0.4, 0.25, 0.6]
+no tian chong 0!
+Data: GCM	 ECOC: Dense_random_ECOC	 [0.717, 0.674, 0.696, 0.761, 0.609, 0.674, 0.717, 0.674, 0.804, 0.739, 0.739]
+no tian chong 0!
+Data: GCM	 ECOC: Sparse_random_ECOC	 [0.4, 0.783, 0.727, 0.6, 0.633, 0.719, 0.6, 0.656, 0.844, 0.857, 0.778, 0.9, 0.923, 0.667, 0.286, 0.323, 0.889]
+no tian chong 0!
+Data: GCM	 ECOC: D_ECOC	 [0.804, 0.333, 0.875, 0.833, 0.853, 1.0, 0.759, 0.636, 1.0, 0.8, 0.667, 0.75, 0.667]
+no tian chong 0!
+Data: GCM	 ECOC: DC_ECOC F1	 [0.609, 0.727, 0.75, 0.75, 0.6, 0.833, 0.667, 0.667, 0.8, 1.0, 1.0, 0.4, 0.857]
+no tian chong 0!
+Data: GCM	 ECOC: DC_ECOC F2	 [0.522, 0.696, 0.696, 0.75, 0.636, 0.75, 0.733, 0.889, 0.5, 0.857, 1.0, 0.833, 0.667]
+no tian chong 0!
+Data: GCM	 ECOC: DC_ECOC N3	 [0.696, 0.75, 0.727, 0.778, 0.533, 0.625, 0.929, 0.571, 0.833, 0.667, 0.4, 1.0, 1.0]
+no tian chong 0!
+Data: Leukemia1	 ECOC: OVA_ECOC	 [0.765, 0.882, 0.882]
+no tian chong 0!
+Data: Leukemia1	 ECOC: OVO_ECOC	 [0.97, 0.8, 0.85]
+no tian chong 0!
+Data: Leukemia1	 ECOC: Dense_random_ECOC	 [0.912, 0.882, 0.765]
+no tian chong 0!
+Data: Leukemia1	 ECOC: Sparse_random_ECOC	 [0.8, 0.97, 0.8, 0.853]
+no tian chong 0!
+Data: Leukemia1	 ECOC: D_ECOC	 [0.941, 0.85]
+no tian chong 0!
+Data: Leukemia1	 ECOC: DC_ECOC F1	 [0.824, 0.867]
+no tian chong 0!
+Data: Leukemia1	 ECOC: DC_ECOC F2	 [0.912, 0.867]
+no tian chong 0!
+Data: Leukemia1	 ECOC: DC_ECOC N3	 [0.912, 0.8]
+no tian chong 0!
+Data: Leukemia2	 ECOC: OVA_ECOC	 [1.0, 0.938, 0.946, 0.973, 0.893, 0.955, 0.688]
+no tian chong 0!
+Data: Leukemia2	 ECOC: OVO_ECOC	 [0.976, 0.952, 1.0, 1.0, 0.286, 0.976, 0.939, 1.0, 0.959, 0.879, 0.833, 1.0, 0.893, 0.667, 0.909, 0.968, 1.0, 0.972, 0.929, 0.755, 0.879]
+no tian chong 0!
+Data: Leukemia2	 ECOC: Dense_random_ECOC	 [0.92, 0.893, 0.83, 0.786, 0.875, 0.839, 0.938, 0.848]
+no tian chong 0!
+Data: Leukemia2	 ECOC: Sparse_random_ECOC	 [0.939, 1.0, 1.0, 0.896, 1.0, 0.889, 0.912, 1.0, 0.86, 0.778, 0.949, 0.794]
+no tian chong 0!
+Data: Leukemia2	 ECOC: D_ECOC	 [0.955, 0.952, 0.802, 0.939, 0.983, 0.735]
+no tian chong 0!
+Data: Leukemia2	 ECOC: DC_ECOC F1	 [0.83, 0.942, 0.953, 0.976, 1.0, 0.786]
+no tian chong 0!
+Data: Leukemia2	 ECOC: DC_ECOC F2	 [0.821, 0.859, 0.792, 0.976, 0.667, 0.972]
+no tian chong 0!
+Data: Leukemia2	 ECOC: DC_ECOC N3	 [0.848, 0.958, 0.922, 0.286, 0.776, 0.733]
+no tian chong 0!
+Data: Lung1	 ECOC: OVA_ECOC	 [0.75, 0.781, 0.969]
+no tian chong 0!
+Data: Lung1	 ECOC: OVO_ECOC	 [0.759, 0.923, 0.889]
+no tian chong 0!
+Data: Lung1	 ECOC: Dense_random_ECOC	 [0.781, 0.781, 0.969]
+no tian chong 0!
+Data: Lung1	 ECOC: Sparse_random_ECOC	 [0.923, 0.889, 0.656, 0.781]
+no tian chong 0!
+Data: Lung1	 ECOC: D_ECOC	 [0.719, 0.778]
+no tian chong 0!
+Data: Lung1	 ECOC: DC_ECOC F1	 [0.719, 0.778]
+no tian chong 0!
+Data: Lung1	 ECOC: DC_ECOC F2	 [0.844, 0.889]
+no tian chong 0!
+Data: Lung1	 ECOC: DC_ECOC N3	 [0.719, 0.889]
+no tian chong 0!
+Data: SRBCT	 ECOC: OVA_ECOC	 [1.0, 0.85, 0.8, 1.0]
+no tian chong 0!
+Data: SRBCT	 ECOC: OVO_ECOC	 [0.889, 1.0, 1.0, 0.917, 0.909, 0.909]
+no tian chong 0!
+Data: SRBCT	 ECOC: Dense_random_ECOC	 [0.7, 1.0, 0.65, 0.75, 0.85, 0.9]
+no tian chong 0!
+Data: SRBCT	 ECOC: Sparse_random_ECOC	 [0.667, 0.95, 0.786, 0.75, 0.667, 0.941, 1.0, 0.75, 0.647]
+no tian chong 0!
+Data: SRBCT	 ECOC: D_ECOC	 [0.6, 1.0, 0.909]
+no tian chong 0!
+Data: SRBCT	 ECOC: DC_ECOC F1	 [0.7, 1.0, 0.889]
+no tian chong 0!
+Data: SRBCT	 ECOC: DC_ECOC F2	 [0.7, 1.0, 0.909]
+no tian chong 0!
+Data: SRBCT	 ECOC: DC_ECOC N3	 [0.75, 0.909, 1.0]

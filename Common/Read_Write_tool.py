@@ -13,10 +13,8 @@ import numpy as np
 import logging
 import pandas as pd
 import re
-from sklearn.preprocessing import StandardScaler
-import os
 from imp import reload
-import ECOCDemo.Common.Transition_tool
+from ECOCDemo.Common import Transition_tool
 
 def form_style(arr):
 
@@ -102,7 +100,7 @@ def write_FS_data(path,data,label):
     bf = pd.DataFrame(data).T
 
     predictions = pd.concat([af, bf])
-    predictions.to_csv(path, index=False, header=False)
+    predictions.to_csv(path, index=False,header=False)
 
 def read_UCI_Dataset(path):
     """
@@ -129,8 +127,6 @@ def read_Microarray_Dataset(path):
     df_columns = np.array([pattern.match(col).group(1) for col in df.axes[1]])
     df_values = df.values
     data = df_values.T
-    scaler = StandardScaler()
-    data = scaler.fit_transform(data)
     label = df_columns
     return data, label
 

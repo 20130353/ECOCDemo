@@ -30,27 +30,16 @@ def ECOC_Process(train_data,train_label,test_data,test_label,ECOC_name,**param):
                 break
 
     elif ECOC_name.find('Self_Adaption_ECOC') >= 0:
-        ternary_option = []
         Ternary = ['+', '-', '*', '/', 'and', 'or','info','DC']
         for i, each in enumerate(Ternary):
             if each in ECOC_name:
                 param['ternary_option'] = each
-                break
+                if each == 'DC':
+                    strs = ECOC_name.split('=')
+                    param['dc_option'] = strs[1]
 
-        if 'base_M' in param:
-            E = eval('Self_Adaption_ECOC()')
-            E.fit(train_data, train_label, **param)
-
-        else:
-            dc_option = ['F1', 'F2', 'F3', 'N2', 'N3', 'N4', 'L3', 'Cluster']
-            dc_option = []
-            for each in enumerate(dc_option):
-                if each in ECOC_name:
-                    dc_option.append([each])
-            param['dc_option'] = dc_option
-
-            E = eval('Self_Adaption_ECOC()')
-            E.fit(train_data, train_label, **param)
+                E = eval('Self_Adaption_ECOC()')
+                E.fit(train_data, train_label, **param)
 
     else:
         E = eval(ECOC_name + '()')
@@ -82,44 +71,39 @@ def get_base_M(path,ecoc,dataname):
 
 
 if __name__ == '__main__':
-    # current_time log_level function_name user_print_info
-    LOG_FORMAT = "%(message)s"
-
-    # set log filepath, log level and info format
-    logging.basicConfig(filename='conbination_log.txt', level=logging.DEBUG, format=LOG_FORMAT)
 
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'fclassif', 'RandForReg', 'linearsvc_tree']
 
     microarray_dataname = ['Breast','Cancers','DLBCL','GCM','Leukemia1','Leukemia2'\
                 ,'Lung1','SRBCT']
 
-    UCI_dataname = ['car', 'cleveland', 'dermatology','led7digit' \
-        , 'led24digit', 'letter', 'nursery', 'penbased', 'satimage', 'segment' \
-        , 'shuttle', 'vehicle', 'vowel', 'yeast', 'zoo']
-
     ecoc_name = ['Self_Adaption_ECOC F1 F2 +','Self_Adaption_ECOC F1 F2 -' \
                 ,'Self_Adaption_ECOC F1 F2 *','Self_Adaption_ECOC F1 F2 /'\
                 ,'Self_Adaption_ECOC F1 F2 and','Self_Adaption_ECOC F1 F2 or','Self_Adaption_ECOC F1 F2 info']
 
-    ECOC_conbination = ['Self_Adaption_ECOC F1 F1 DC','Self_Adaption_ECOC F2 F2 DC','Self_Adaption_ECOC N3 N3 DC'\
-                ,'Self_Adaption_ECOC F1 F2 DC', 'Self_Adaption_ECOC F1 N3 DC','Self_Adaption_ECOC F2 N3 DC'\
-                ,'Self_Adaption_ECOC F1 F2 N3 DC']
+    ECOC_conbination = ['Self_Adaption_ECOC F1 F1','Self_Adaption_ECOC F2 F2','Self_Adaption_ECOC N3 N3'\
+                ,'Self_Adaption_ECOC F1 F2', 'Self_Adaption_ECOC F1 N3','Self_Adaption_ECOC F2 N3'\
+                ,'Self_Adaption_ECOC F1 F2 N3']
+    for x in range(len(ECOC_conbination)):
+        ECOC_conbination[x] = ECOC_conbination[x] + ' DC=N3'
+
+    ECOC_DC_option = ['Self_Adaption_ECOC F1 F2 DC=F1','Self_Adaption_ECOC F1 F2 DC=F2','Self_Adaption_ECOC F1 F2 DC=N3']
 
     other_ECOC = [ 'OVA_ECOC','OVO_ECOC','Dense_random_ECOC','Sparse_random_ECOC'\
                 ,'D_ECOC','DC_ECOC F1','DC_ECOC F2','DC_ECOC N3']
 
-    data_folder_path = 'E:/workspace1/ECOCDemo/Microarray_data/FS_data/'
-    matrix_folder_path = 'E:/workspace1/ECOCDemo/Microarray_res/DC_matrix/'
-    res_folder_path = 'E:/paper/paper_writing/ACML/data/SAT_ECOC/classifier_numbers/SAT_ECOC/'
+    data_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_data/FS_data/'
+    matrix_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_res/DC_matrix/'
+    res_folder_path = 'E:/workspace-python/ECOCDemo/Microarray_res/SAT_DC/SVM/'
 
-    selected_dataname = microarray_dataname[3::5]
-    selected_ecoc_name = ECOC_conbination
-    selected_fs_name = fs_name[4:]
+    LOG_FORMAT = "%(message)s"
+    logging.basicConfig(filename=res_folder_path + 'conbination_log.txt', level=logging.DEBUG, format=LOG_FORMAT)
+
+    selected_dataname = microarray_dataname
+    selected_ecoc_name = ECOC_DC_option
+    selected_fs_name = fs_name[2:5:2]
 
     for k in range(len(selected_fs_name)):
-        if selected_fs_name[k] != 'RandForReg':
-            break
-
         # save evaluation varibles
         data_acc = []
         data_simacc = []
@@ -151,7 +135,7 @@ if __name__ == '__main__':
                 print('Dataset： ' + selected_dataname[i])
                 print('ECOC: ' + selected_ecoc_name[j])
 
-                logging.info('F2 F2 classifier accuracy')
+                logging.info('Tree classifier accuracy')
                 logging.info('Time: ' + str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
                 logging.info('FS: ' + selected_fs_name[k])
                 logging.info('Dataset： ' + selected_dataname[i])
@@ -189,41 +173,41 @@ if __name__ == '__main__':
                     Read_Write_tool.write_txt(txtname, 'tian chong 0!')
                     Read_Write_tool.write_txt(txtname,content)
 
-        #     data_simacc.append(simacc)
-        #     data_acc.append(acc)
-        #     data_precision.append(precision)
-        #     data_specifity.append(specifity)
-        #     data_Fscore.append(Fscore)
-        #     data_sensitivity.append(sensitivity)
-        #
-        # row_name = copy.deepcopy(selected_dataname)
-        # row_name.append('Avg')
-        # if np.all(data_simacc):
-        #     save_filepath = res_folder_path + 'simple_acc_'+ selected_fs_name[k] + '.xls'
-        #     data_simacc.append(np.mean(data_simacc,axis=0))
-        #     Read_Write_tool.write_file(save_filepath,data_simacc,selected_ecoc_name,row_name)
-        #
-        # if np.all(data_acc):
-        #     save_filepath = res_folder_path + 'accuracy_' + selected_fs_name[k] + '.xls'
-        #     data_acc.append(np.mean(data_acc, axis=0))
-        #     Read_Write_tool.write_file(save_filepath, data_acc, selected_ecoc_name, row_name)
-        #
-        # if np.all(data_sensitivity):
-        #     save_filepath = res_folder_path + 'sensitivity_' + selected_fs_name[k] + '.xls'
-        #     data_sensitivity.append(np.mean(data_sensitivity, axis=0))
-        #     Read_Write_tool.write_file(save_filepath, data_sensitivity, selected_ecoc_name, row_name)
-        #
-        # if np.all(data_specifity):
-        #     save_filepath = res_folder_path + 'specifity_' + selected_fs_name[k] + '.xls'
-        #     data_specifity.append(np.mean(data_specifity, axis=0))
-        #     Read_Write_tool.write_file(save_filepath, data_specifity, selected_ecoc_name, row_name)
-        #
-        # if np.all(data_precision):
-        #     save_filepath = res_folder_path + 'precision_' + selected_fs_name[k] + '.xls'
-        #     data_precision.append(np.mean(data_precision, axis=0))
-        #     Read_Write_tool.write_file(save_filepath, data_precision, selected_ecoc_name, row_name)
-        #
-        # if np.all(data_Fscore):
-        #     save_filepath = res_folder_path + 'Fscore_' + selected_fs_name[k] + '.xls'
-        #     data_Fscore.append(np.mean(data_Fscore, axis=0))
-        #     Read_Write_tool.write_file(save_filepath, data_Fscore, selected_ecoc_name, row_name)
+            data_simacc.append(simacc)
+            data_acc.append(acc)
+            data_precision.append(precision)
+            data_specifity.append(specifity)
+            data_Fscore.append(Fscore)
+            data_sensitivity.append(sensitivity)
+
+        row_name = copy.deepcopy(selected_dataname)
+        row_name.append('Avg')
+        if np.all(data_simacc):
+            save_filepath = res_folder_path + 'simple_acc_'+ selected_fs_name[k] + '.xls'
+            data_simacc.append(np.mean(data_simacc,axis=0))
+            Read_Write_tool.write_file(save_filepath,data_simacc,selected_ecoc_name,row_name)
+
+        if np.all(data_acc):
+            save_filepath = res_folder_path + 'accuracy_' + selected_fs_name[k] + '.xls'
+            data_acc.append(np.mean(data_acc, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_acc, selected_ecoc_name, row_name)
+
+        if np.all(data_sensitivity):
+            save_filepath = res_folder_path + 'sensitivity_' + selected_fs_name[k] + '.xls'
+            data_sensitivity.append(np.mean(data_sensitivity, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_sensitivity, selected_ecoc_name, row_name)
+
+        if np.all(data_specifity):
+            save_filepath = res_folder_path + 'specifity_' + selected_fs_name[k] + '.xls'
+            data_specifity.append(np.mean(data_specifity, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_specifity, selected_ecoc_name, row_name)
+
+        if np.all(data_precision):
+            save_filepath = res_folder_path + 'precision_' + selected_fs_name[k] + '.xls'
+            data_precision.append(np.mean(data_precision, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_precision, selected_ecoc_name, row_name)
+
+        if np.all(data_Fscore):
+            save_filepath = res_folder_path + 'Fscore_' + selected_fs_name[k] + '.xls'
+            data_Fscore.append(np.mean(data_Fscore, axis=0))
+            Read_Write_tool.write_file(save_filepath, data_Fscore, selected_ecoc_name, row_name)

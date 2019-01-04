@@ -1,0 +1,1388 @@
+
+
+SVM classifier
+Time: 2018-12-17 12:25:07
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 3042.851852
+iteration:1        F3 3211.129630
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 2526.866667
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 2745.846154
+iteration:1        F3 2911.435897
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 2829.562500
+
+
+SVM classifier
+Time: 2018-12-17 12:25:10
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.925541
+iteration:1        N2 0.880665
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.833056
+iteration:1        N2 0.833056
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.878909
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.843350
+
+
+SVM classifier
+Time: 2018-12-17 12:28:09
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.092593
+iteration:1        Cluster 0.055556
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+
+
+SVM classifier
+Time: 2018-12-17 12:28:38
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5065.581395
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 4538.342105
+iteration:1        F3 4674.657895
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 4863.854167
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 3699.117647
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 3834.904762
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 3323.105263
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 4372.620690
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 4165.823529
+iteration:1        F3 4165.882353
+
+
+SVM classifier
+Time: 2018-12-17 12:28:48
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.884781
+iteration:1        N2 0.879834
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.810693
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.904238
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.707362
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.813507
+iteration:1        N2 0.813507
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.897038
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.889840
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.839861
+
+
+SVM classifier
+Time: 2018-12-17 12:40:59
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.034884
+iteration:1        Cluster 0.011628
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.061224
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.068966
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+
+
+SVM classifier
+Time: 2018-12-17 12:43:22
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 1165.340000
+iteration:1        F3 1294.340000
+iteration:2        F3 1318.380000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 921.357143
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 954.027778
+
+
+SVM classifier
+Time: 2018-12-17 12:43:23
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.793554
+iteration:1        N2 0.786111
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.788349
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.775328
+
+
+SVM classifier
+Time: 2018-12-17 12:44:34
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        Cluster 0.000000
+
+
+SVM classifier
+Time: 2018-12-17 12:44:42
+FS: variance_threshold
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 6796.819444
+iteration:1        F3 6821.812500
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 6606.196429
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 6604.465909
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5882.250000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 6270.875000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5665.541667
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5855.500000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5550.375000
+iteration:1        F3 5550.625000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5513.750000
+iteration:1        F3 5513.812500
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5263.437500
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5357.900000
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 4704.666667
+iteration:1        F3 4704.791667
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        F3 5512.812500
+
+
+SVM classifier
+Time: 2018-12-17 12:45:24
+FS: variance_threshold
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.893303
+iteration:1        N2 0.893014
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.919530
+iteration:1        N2 0.890133
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.879560
+iteration:1        N2 0.876041
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.933223
+iteration:1        N2 0.932864
+=*=*=*=*=* Greedy Search  *=*=*=*=*=*=*
+iteration:0        N2 0.873546
+DC option is wrong
+
+
+SVM classifier
+Time: 2018-12-17 13:49:58
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:58
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:58
+FS: variance_threshold
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:58
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:58
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:59
+FS: variance_threshold
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:59
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:59
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:59
+FS: variance_threshold
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:49:59
+FS: variance_threshold
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:00
+FS: variance_threshold
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:00
+FS: variance_threshold
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:01
+FS: variance_threshold
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:01
+FS: variance_threshold
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:01
+FS: variance_threshold
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:01
+FS: variance_threshold
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:02
+FS: variance_threshold
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:03
+FS: variance_threshold
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: variance_threshold
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: linear_svc
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: linear_svc
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: linear_svc
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: linear_svc
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:04
+FS: linear_svc
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:05
+FS: linear_svc
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:05
+FS: linear_svc
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:05
+FS: linear_svc
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:05
+FS: linear_svc
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:05
+FS: linear_svc
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:06
+FS: linear_svc
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:06
+FS: linear_svc
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:07
+FS: linear_svc
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:07
+FS: linear_svc
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:07
+FS: linear_svc
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:07
+FS: linear_svc
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:08
+FS: linear_svc
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:10
+FS: linear_svc
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: linear_svc
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:11
+FS: tree
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: tree
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: fclassif
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: fclassif
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:12
+FS: fclassif
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:13
+FS: fclassif
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:13
+FS: fclassif
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:14
+FS: fclassif
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:14
+FS: fclassif
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:14
+FS: fclassif
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:14
+FS: fclassif
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:15
+FS: fclassif
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:16
+FS: fclassif
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:17
+FS: fclassif
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:18
+FS: fclassif
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:18
+FS: fclassif
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:18
+FS: fclassif
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:18
+FS: fclassif
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:19
+FS: fclassif
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:20
+FS: fclassif
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: fclassif
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:21
+FS: RandForReg
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: RandForReg
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Breast
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Breast
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Breast
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Cancers
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Cancers
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Cancers
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： DLBCL
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： DLBCL
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： DLBCL
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： GCM
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： GCM
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： GCM
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Leukemia1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Leukemia1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:22
+FS: linearsvc_tree
+Dataset： Leukemia1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Leukemia2
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Leukemia2
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Leukemia2
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Lung1
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Lung1
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： Lung1
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： SRBCT
+ECOC: DC_ECOC F3
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： SRBCT
+ECOC: DC_ECOC N2
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2018-12-17 13:50:23
+FS: linearsvc_tree
+Dataset： SRBCT
+ECOC: DC_ECOC Cluster
+Not Using KNN-Decoding

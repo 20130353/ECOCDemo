@@ -1,0 +1,231 @@
+FS method:variance_threshold
+car	 FS size: 12
+cleveland	 FS size: 18
+dermatology	 FS size: 66
+led7digit	 FS size: 7
+led24digit	 FS size: 24
+letter	 FS size: 16
+satimage	 FS size: 36
+segment	 FS size: 18
+vehicle	 FS size: 18
+vowel	 FS size: 15
+yeast	 FS size: 8
+FS method:linear_svc
+car	 FS size: 4
+cleveland	 FS size: 8
+dermatology	 FS size: 26
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 8
+satimage	 FS size: 15
+segment	 FS size: 6
+vehicle	 FS size: 8
+vowel	 FS size: 7
+yeast	 FS size: 3
+FS method:tree
+car	 FS size: 5
+cleveland	 FS size: 9
+dermatology	 FS size: 23
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 16
+segment	 FS size: 10
+vehicle	 FS size: 8
+vowel	 FS size: 7
+yeast	 FS size: 5
+FS method:RandForReg
+car	 FS size: 6
+cleveland	 FS size: 7
+dermatology	 FS size: 12
+led7digit	 FS size: 4
+led24digit	 FS size: 7
+letter	 FS size: 7
+satimage	 FS size: 4
+segment	 FS size: 2
+vehicle	 FS size: 3
+vowel	 FS size: 3
+yeast	 FS size: 5
+FS method:variance_threshold
+cleveland	 FS size: 18
+dermatology	 FS size: 66
+led7digit	 FS size: 7
+led24digit	 FS size: 24
+letter	 FS size: 16
+satimage	 FS size: 36
+segment	 FS size: 18
+vehicle	 FS size: 18
+vowel	 FS size: 15
+yeast	 FS size: 8
+FS method:variance_threshold
+cleveland	 FS size: 18
+FS method:variance_threshold
+cleveland	 FS size: 18
+FS method:variance_threshold
+cleveland	 FS size: 18
+dermatology	 FS size: 66
+led7digit	 FS size: 7
+led24digit	 FS size: 24
+letter	 FS size: 16
+satimage	 FS size: 36
+segment	 FS size: 18
+vehicle	 FS size: 18
+vowel	 FS size: 15
+yeast	 FS size: 8
+FS method:linear_svc
+cleveland	 FS size: 8
+dermatology	 FS size: 25
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 17
+segment	 FS size: 6
+vehicle	 FS size: 8
+vowel	 FS size: 6
+yeast	 FS size: 3
+FS method:tree
+cleveland	 FS size: 8
+dermatology	 FS size: 22
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 13
+segment	 FS size: 9
+vehicle	 FS size: 8
+vowel	 FS size: 6
+yeast	 FS size: 5
+FS method:RandForReg
+cleveland	 FS size: 7
+dermatology	 FS size: 12
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 7
+satimage	 FS size: 5
+segment	 FS size: 2
+vehicle	 FS size: 5
+vowel	 FS size: 4
+yeast	 FS size: 6
+FS method:variance_threshold
+cleveland	 FS size: 18
+FS method:variance_threshold
+cleveland	 FS size: 18
+dermatology	 FS size: 66
+led7digit	 FS size: 7
+led24digit	 FS size: 24
+letter	 FS size: 16
+satimage	 FS size: 36
+segment	 FS size: 18
+vehicle	 FS size: 18
+vowel	 FS size: 15
+yeast	 FS size: 8
+FS method:linear_svc
+cleveland	 FS size: 8
+dermatology	 FS size: 25
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 16
+segment	 FS size: 6
+vehicle	 FS size: 7
+vowel	 FS size: 6
+yeast	 FS size: 3
+FS method:tree
+cleveland	 FS size: 7
+dermatology	 FS size: 22
+led7digit	 FS size: 4
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 14
+segment	 FS size: 9
+vehicle	 FS size: 9
+vowel	 FS size: 7
+yeast	 FS size: 5
+FS method:RandForReg
+cleveland	 FS size: 7
+dermatology	 FS size: 12
+led7digit	 FS size: 3
+led24digit	 FS size: 5
+letter	 FS size: 7
+satimage	 FS size: 6
+segment	 FS size: 2
+vehicle	 FS size: 3
+vowel	 FS size: 3
+yeast	 FS size: 5
+FS method:variance_threshold
+cleveland	 FS size: 18
+dermatology	 FS size: 66
+led7digit	 FS size: 7
+led24digit	 FS size: 24
+letter	 FS size: 16
+satimage	 FS size: 36
+segment	 FS size: 18
+vehicle	 FS size: 18
+vowel	 FS size: 15
+yeast	 FS size: 8
+FS method:linear_svc
+cleveland	 FS size: 8
+dermatology	 FS size: 25
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 15
+segment	 FS size: 6
+vehicle	 FS size: 7
+vowel	 FS size: 6
+yeast	 FS size: 3
+FS method:tree
+cleveland	 FS size: 8
+dermatology	 FS size: 19
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 9
+satimage	 FS size: 16
+segment	 FS size: 9
+vehicle	 FS size: 10
+vowel	 FS size: 7
+yeast	 FS size: 5
+FS method:RandForReg
+cleveland	 FS size: 8
+dermatology	 FS size: 10
+led7digit	 FS size: 3
+led24digit	 FS size: 7
+letter	 FS size: 7
+satimage	 FS size: 4
+segment	 FS size: 3
+vehicle	 FS size: 3
+vowel	 FS size: 2
+yeast	 FS size: 6
+FS method:variance_threshold
+FS method:linear_svc
+FS method:variance_threshold
+car	 FS size: 12
+ecoli	 FS size: 7
+flare	 FS size: 19
+isolet	 FS size: 617
+nursery	 FS size: 16
+penbased	 FS size: 16
+zoo	 FS size: 21
+FS method:linear_svc
+car	 FS size: 4
+ecoli	 FS size: 5
+flare	 FS size: 8
+isolet	 FS size: 268
+nursery	 FS size: 6
+penbased	 FS size: 6
+zoo	 FS size: 9
+FS method:tree
+car	 FS size: 7
+ecoli	 FS size: 4
+flare	 FS size: 4
+isolet	 FS size: 207
+nursery	 FS size: 4
+penbased	 FS size: 8
+zoo	 FS size: 8
+FS method:RandForReg
+car	 FS size: 7
+ecoli	 FS size: 2
+flare	 FS size: 9
+isolet	 FS size: 83
+nursery	 FS size: 4
+penbased	 FS size: 6
+zoo	 FS size: 10

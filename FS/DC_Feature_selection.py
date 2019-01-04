@@ -17,7 +17,8 @@ from sklearn.svm import LinearSVC
 from sklearn.svm import SVC
 import logging
 
-from Common.Transition_tool import turn_label_2num
+from ECOCDemo.Common.Transition_tool import turn_label_2num
+from sklearn.feature_selection import SelectFromModel
 
 
 from ECOCDemo.DC.Get_Complexity import *
@@ -68,6 +69,9 @@ def feature_method_selection(data, label, fsname):
     :return: new_data, selected data
     :return: selected_features_inx, the index of selected feature, starts with 0
     """
+
+    print(fsname)
+
     if fsname == 'variance_threshold': #变化不大就舍弃，离散值
         model = VarianceThreshold() #th=1
         return model.fit_transform(data)
@@ -89,10 +93,13 @@ def feature_method_selection(data, label, fsname):
 
 
     elif fsname == 'linear_svc':
-        model = LinearSVC() #没有importance
+        lsvc = LinearSVC() #没有importance
+        model = SelectFromModel(lsvc)
 
     elif fsname == 'tree':
-        model = ExtraTreesClassifier()
+        etc = ExtraTreesClassifier()
+        model = SelectFromModel(etc)
+        model.fit(data, label)
 
     elif fsname == 'fclassif':
         model = SelectFpr() #默认是f_classif，值越大，特征越有用
@@ -103,7 +110,9 @@ def feature_method_selection(data, label, fsname):
 
     elif fsname == 'RandForReg': #label必须是数值
         label = turn_label_2num(label)
-        model = RandomForestRegressor()
+        rfg = RandomForestRegressor()
+        model = SelectFromModel(rfg)
+        model.fit(data, label)
 
     else:
         logging.error('ERROR: feature selection option is wrong')
