@@ -732,14 +732,22 @@ class DC_ECOC(__BaseECOC):
 
 class Temp_Class(__BaseECOC):
 
-    def __init__(self, matrix, distance_measure=euclidean_distance, base_estimator=svm.SVC):
+    def __init__(self, distance_measure=euclidean_distance, base_estimator=svm.SVC):
         """
         :param distance_measure: a callable object to define the way to calculate the distance between predicted vector
                                     and true vector
         :param base_estimator: a class with fit and predict method, which define the base classifier for ECOC
         """
         super(Temp_Class, self).__init__(distance_measure, base_estimator)
-        self.matrix = matrix
+        self._matrix = None
+
+    @property
+    def matrix(self):
+        return self._matrix
+
+    @matrix.setter
+    def matrix(self,matrix):
+        self._matrix = matrix
 
     def fit(self, data, label, **estimator_param):
         """
@@ -755,14 +763,14 @@ class Temp_Class(__BaseECOC):
         self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
 
         try:
-            column_len = self.matrix.shape[1]
+            column_len = self._matrix.shape[1]
         except IndexError:
-            dat, cla = MT.get_data_from_col(data, label, self.matrix, self.index)
+            dat, cla = MT.get_data_from_col(data, label, self._matrix, self.index)
             estimator = self.estimator(**estimator_param).fit(dat, cla)
             self.predictors.append(estimator)
         else:
             for i in range(column_len):
-                dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
+                dat, cla = MT.get_data_from_col(data, label, self._matrix[:, i], self.index)
                 estimator = self.estimator(**estimator_param).fit(dat, cla)
                 self.predictors.append(estimator)
 
@@ -784,6 +792,9 @@ class Self_Adaption_ECOC(__BaseECOC):
         logging.info('base_M is')
         logging.info(self.base_M)
 
+
+        from ECOCDemo.Common import Evaluation_tool
+
         count = 0
         while True:
             count += 1
@@ -791,28 +802,38 @@ class Self_Adaption_ECOC(__BaseECOC):
             logging.info('current matrix is ')
             logging.info(res_matrix)
 
-            temp_class = Temp_Class(res_matrix)
+            temp_class = Temp_Class()
+            temp_class.matrix = res_matrix
             temp_class.fit(self.train_data, self.train_label)
             pred_label = temp_class.predict(self.val_data)
             cfus_matrix = confusion_matrix(self.val_label, pred_label)
 
-            logging.info('predict label')
-            logging.info(pred_label)
-
-            logging.info('true label')
-            logging.info(self.val_label)
-
             logging.info('confusion matrix')
             logging.info(cfus_matrix)
+
+            Eva = Evaluation_tool.Evaluation(self.val_label,pred_label)
+            row_HD = Eva.row_HD(res_matrix)
+            col_HD = Eva.col_HD(res_matrix)
+
+            logging.info('row HD')
+            logging.info(row_HD)
+
+            logging.info('col HD')
+            logging.info(col_HD)
 
             cplx_class = {}.fromkeys(self.rows.keys())
             total_cplx_class_num = 0
             class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
             average_class_acc = np.mean(class_acc)
             threhold = average_class_acc - average_class_acc * 0.1
+            # most_cplx_class_inx, most_cplx_class_value= -1,-0xfffffff
             for i in range(len(class_acc)):
                 if class_acc[i] <= threhold:
                     cplx_class[i] = True
+                    # if threhold - class_acc[i] > most_cplx_class_value:
+                    #     most_cplx_class_value = threhold - class_acc[i]
+                    #     most_cplx_class_inx = i
+
                     total_cplx_class_num += 1
 
             logging.info('cplx_class')
@@ -889,9 +910,19 @@ class Self_Adaption_ECOC(__BaseECOC):
             if select_cloumn_j is None:
                 raise ValueError('ERROR: SAT_ECOC select_column j is None')
 
-            new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
-                                                     self.train_label, self.create_method, self.dc_option, res_matrix)
+            # ========   生成新的一列    ============================
+            try:
+                most_cplx_class_inx = random.choice([inx for inx, key in cplx_class.items() if key != None])
+            except IndexError:
+                most_cplx_class_inx = -1
 
+            logging.info('most_cplx_inx')
+            logging.info(most_cplx_class_inx)
+
+
+            new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
+                                                     self.train_label, self.create_method, self.dc_option, res_matrix,
+                                                     most_cplx_class_inx)
             logging.info('new_column')
             logging.info(new_column)
 
@@ -903,7 +934,60 @@ class Self_Adaption_ECOC(__BaseECOC):
 
                 matrix_pool = np.hstack([matrix_pool, new_column])
 
-        return res_matrix
+        temp_class = Temp_Class()
+        temp_class.matrix = res_matrix
+        temp_class.fit(self.train_data, self.train_label)
+        pred_label = temp_class.predict(self.val_data)
+        Eva = Evaluation_tool.Evaluation(self.val_label, pred_label)
+        classifier_acc = Eva.evaluate_classifier_accuracy(res_matrix,temp_class.predicted_vector,self.val_label)
+
+        logging.info('\n**********      classifier acc  **************')
+        logging.info(classifier_acc)
+
+        final_matrix = self.cut_columns(res_matrix)
+
+        logging.info('cutting matrix')
+        logging.info(final_matrix)
+
+        return final_matrix
+
+
+    def cut_columns(self,matrix):
+
+        data_len = len(self.val_label)
+
+        try:
+            column_len = matrix.shape[1]
+        except IndexError:
+            return matrix
+        else:
+            while True:
+                i_column = matrix[:,0]
+                sub_matrix = matrix[:,1:]
+
+                temp_class = Temp_Class()
+
+                temp_class.matrix = matrix
+                temp_class.fit(self.train_data, self.train_label)
+                whole_pre_label = temp_class.predict(self.val_data)
+                whole_wrong_ratio = sum([1 for inx in range(data_len) if whole_pre_label[inx] != self.val_label[inx]])/float(data_len)
+
+                temp_class.matrix = sub_matrix
+                temp_class.fit(self.train_data, self.train_label)
+                sub_pre_label = temp_class.predict(self.val_data)
+                sub_wrong_inx = [inx for inx in range(len(sub_pre_label)) if sub_pre_label[inx] != self.val_label[inx]]
+
+                temp_class.matrix = i_column
+                temp_class.fit(self.train_data, self.train_label)
+                column_pre_label = temp_class.predict(self.val_data)
+                column_wrong_inx = [inx for inx in range(len(column_pre_label)) if column_pre_label[inx] != self.val_label[inx]]
+
+                column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx))/len(set(sub_wrong_inx))
+                if column_ctrbuton < 0.01 or len(sub_wrong_inx)/float(data_len) <= whole_wrong_ratio:
+                    matrix = sub_matrix
+                else:
+                    break
+        return matrix
 
     def fit(self, train_data, train_label, val_data, val_label, **param):
         """

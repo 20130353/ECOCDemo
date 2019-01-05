@@ -178,9 +178,11 @@ def ternary_info(left, right, **param):
     return ternary_res[min_inx]
 
 
-def ternary_DC(left, right, data, label, evaluation_option, matrix):
+def ternary_DC(left, right, data, label, evaluation_option, matrix, cplx_class_inx):
+
     operation_name = {'Ad': ternary_add, 'Sub': ternary_subtraction, 'Mu': ternary_multiplication \
         , 'D': ternary_divide, 'A': ternary_and, 'O': ternary_or}
+
     ternary_res = {}
     for i, each in operation_name.items():
         ternary_res[i] = each(left, right)
@@ -189,18 +191,22 @@ def ternary_DC(left, right, data, label, evaluation_option, matrix):
     cplx = {}
     group1 = []
     group2 = []
+
     for each in ternary_res:
         class_label = np.unique(ternary_res[each])
         if 1 in class_label and -1 in class_label \
                 and MT.have_same_col(ternary_res[each], matrix) == False \
                 and MT.have_contrast_col(ternary_res[each], matrix) == False:
 
-            for j in range(len(ternary_res[each])):
-                if ternary_res[each][j] == 1:
-                    group1.append(all_classes[j])
-                elif ternary_res[each][j] == -1:
-                    group2.append(all_classes[j])
-            cplx[each] = GS.get_DC_value(data, label, group1, group2, dc_option=evaluation_option)
+            if cplx_class_inx == -1 or ternary_res[each][cplx_class_inx] == 0:
+                pass
+            else:
+                for j in range(len(ternary_res[each])):
+                    if ternary_res[each][j] == 1:
+                        group1.append(all_classes[j])
+                    elif ternary_res[each][j] == -1:
+                        group2.append(all_classes[j])
+                cplx[each] = GS.get_DC_value(data, label, group1, group2, dc_option=evaluation_option)
 
     try:
         min_info_inx = sorted(cplx.items(), key=operator.itemgetter(1))[0][0]

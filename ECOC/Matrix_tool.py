@@ -199,23 +199,20 @@ def have_same_col(col, matrix):
     :param matrix:coding matrix
     :return:true or false
     """
-
-
     col = col.reshape((1, -1))[0]
     try:
         column_len = matrix.shape[1]
     except IndexError:
-        for each in zip(col, matrix):
-            if each[0] != each[1]:
-                return False
-        return True
+        if (col == matrix).all():
+            return True
+        else:
+            return False
     else:
         for i in range(column_len):
             i_column = matrix[:, i]
-            for each in zip(col, i_column):
-                if each[0] != each[1]:
-                    return False
-            return True
+            if (col == i_column).all():
+                return True
+        return False
 
 
 def have_contrast_col(col,matrix):
@@ -379,7 +376,7 @@ def check_sub_tree(column, cls):
     return True
 
 
-def left_right_create_parent(left, right, data, label, create_method, evaluation_option, matrix):
+def left_right_create_parent(left, right, data, label, create_method, evaluation_option, matrix,cplx_class_inx):
     if create_method == '+':
         ternary_fun_name = 'ternary_add'
     elif create_method == '-':
@@ -399,7 +396,7 @@ def left_right_create_parent(left, right, data, label, create_method, evaluation
     else:
         ValueError('ERROR:wrong ternary option!')
     ternary_fun = getattr(Ternary_Operation, ternary_fun_name)
-    parent_node = ternary_fun(left, right, data=data, label=label, evaluation_option=evaluation_option, matrix=matrix)
+    parent_node = ternary_fun(left, right, data=data, label=label, evaluation_option=evaluation_option, matrix=matrix,cplx_class_inx=cplx_class_inx)
     return parent_node
 
 
@@ -600,16 +597,6 @@ def change_unfit_DC(M, data, label, dc_option):
     return M
 
 
-def predict(predictors, matrix, index, test_data, distance_measure):
-    if len(predictors) == 0:
-        logging.debug('The Model has not been fitted!')
-    if len(test_data.shape) == 1:
-        test_data = np.reshape(test_data, [1, -1])
 
-    pre_label = []
-    for i in test_data:
-        predicted_vector = np.array([each.predict(np.array([i]))[0] for each in predictors])
-        value = closet_vector(predicted_vector, matrix, distance_measure)
-        pre_label.append(get_key(index, value))
 
-    return pre_label
+

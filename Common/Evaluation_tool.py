@@ -283,19 +283,20 @@ class Evaluation:
 
         return accuracy
 
-
     def row_HD(self, matrix):
         try:
-            rows = matrix.shape[0]
+            cols = matrix.shape[1]
         except IndexError:
             return 0
         else:
+            rows = matrix.shape[0]
             res = np.zeros((rows, rows))
             for i in range(rows):
                 for j in range(i + 1, rows):
                     i_row = matrix[i, :]
                     j_row = matrix[j, :]
-                    res[i][j] = sum([1 if each[0] != each[1] else 0 for each in zip(i_row, j_row)])
+                    res[i][j] = round(
+                        sum([1 if each[0] != each[1] else 0 for each in zip(i_row, j_row)]) / (1.0 * rows), 2)
         return res
 
     def col_HD(self, matrix):
@@ -309,5 +310,6 @@ class Evaluation:
                 for j in range(i + 1, cols):
                     i_col = matrix[:, i]
                     j_col = matrix[:, j]
-                    res[i][j] = sum([1 if each[0] != each[1] else 0 for each in zip(i_col, j_col)])
+                    res[i][j] = round(
+                        sum([1 if each[0] != each[1] else 0 for each in zip(i_col, j_col)]) / (1.0 * cols), 2)
         return res

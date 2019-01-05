@@ -77,14 +77,14 @@ if __name__ == '__main__':
     matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
 
     # 创建结果文件夹
-    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing4/'
+    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing7/'
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
-    selected_dataname = UCI_dataname
+    selected_dataname = UCI_dataname[:3]
     ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
-    selected_fs_name = fs_name
+    selected_fs_name = fs_name[:3]
 
     # selected_dataname = UCI_dataname
     # ecoc_name = other_ECOC
