@@ -110,9 +110,8 @@ def read_UCI_Dataset(path):
     """
     df = pd.read_csv(path, header=None)
     df_values = df.values
-    col_num = df_values.shape[1]
-    data = df_values[:, 0:col_num-1]
-    label = df_values[:, col_num-1]
+    data = df_values[1:,:]
+    label = df_values[0,:]
     return data, label
 
 

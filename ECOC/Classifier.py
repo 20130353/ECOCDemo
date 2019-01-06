@@ -20,6 +20,8 @@ from itertools import combinations
 import logging
 import copy
 import math
+from collections import Counter
+
 
 from sklearn.metrics import confusion_matrix
 import numpy as np
@@ -762,15 +764,19 @@ class Temp_Class(__BaseECOC):
         self.train_label = label
         self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
 
+
+        logging.info('positive and negative ratio')
         try:
             column_len = self._matrix.shape[1]
         except IndexError:
             dat, cla = MT.get_data_from_col(data, label, self._matrix, self.index)
+            logging.info(Counter(cla))
             estimator = self.estimator(**estimator_param).fit(dat, cla)
             self.predictors.append(estimator)
         else:
             for i in range(column_len):
                 dat, cla = MT.get_data_from_col(data, label, self._matrix[:, i], self.index)
+                logging.info(Counter(cla))
                 estimator = self.estimator(**estimator_param).fit(dat, cla)
                 self.predictors.append(estimator)
 
@@ -792,10 +798,11 @@ class Self_Adaption_ECOC(__BaseECOC):
         logging.info('base_M is')
         logging.info(self.base_M)
 
-
         from ECOCDemo.Common import Evaluation_tool
 
         count = 0
+        efficient_count = 0
+        pre_class_acc = None
         while True:
             count += 1
             logging.info('\n\n============== iter  %d ================' % count)
@@ -807,6 +814,23 @@ class Self_Adaption_ECOC(__BaseECOC):
             temp_class.fit(self.train_data, self.train_label)
             pred_label = temp_class.predict(self.val_data)
             cfus_matrix = confusion_matrix(self.val_label, pred_label)
+
+
+            logging.info('*======label=======*')
+            logging.info('true label')
+            logging.info(Counter(self.val_label))
+
+            try:
+                col_len = res_matrix.shape[1]
+            except IndexError:
+                logging.info('pre label')
+                temp_label = [row[0] for row in temp_class.predicted_vector]
+                logging.info(Counter(temp_label))
+            else:
+                for i in range(col_len):
+                    temp_label = [row[i] for row in temp_class.predicted_vector]
+                    logging.info('%d classifiers pre label' %i)
+                    logging.info(Counter(temp_label))
 
             logging.info('confusion matrix')
             logging.info(cfus_matrix)
@@ -824,6 +848,16 @@ class Self_Adaption_ECOC(__BaseECOC):
             cplx_class = {}.fromkeys(self.rows.keys())
             total_cplx_class_num = 0
             class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
+
+            if pre_class_acc is None:
+                pre_class_acc = sum(class_acc)
+            else:
+                if sum(class_acc) <= pre_class_acc:
+                    efficient_count += 1
+                else:
+                    pre_class_acc = sum(class_acc)
+                    efficient_count = 0
+
             average_class_acc = np.mean(class_acc)
             threhold = average_class_acc - average_class_acc * 0.1
             # most_cplx_class_inx, most_cplx_class_value= -1,-0xfffffff
@@ -840,13 +874,39 @@ class Self_Adaption_ECOC(__BaseECOC):
             logging.info(cplx_class)
 
             # =======    算法停止条件           ============================================================
-            # 如果每个累的分类情况都实现50%的正确率就结束
+            # 如果每个类的分类情况都实现50%的正确率就结束
             if total_cplx_class_num == 0:
                 logging.info('total_cplx_class_num == 0 break')
                 break
+
             # 如果每个类的分类正确率大于0.8
-            if sum(class_acc) <= 0.2:
-                logging.info('sum(class_acc) <= 0.2')
+            if average_class_acc >= 0.8:
+                logging.info('average_class_acc >= 0.8')
+                break
+
+            # confusion matrix 连续三次没有变化或者变差的时候就停止继续生成新的列，ba复杂的类和数量相近的类拼接起来形成列
+            if efficient_count == 3:
+                logging.info('efficient_count == 3')
+                close_class_map = {}.fromkeys([key for key, value in cplx_class.items() if value is True])
+                each_cls_data_len = Counter(self.val_label)
+                for key, value in close_class_map.items():
+                    cls_len = each_cls_data_len[str(key)]
+                    colse_cls, close_class_gap = None, 0xffffff
+                    for each in each_cls_data_len:
+                        if str(key)!= each and abs(each_cls_data_len[each] - cls_len) < close_class_gap:
+                            colse_cls = each
+                            close_class_gap = abs(each_cls_data_len[each] - cls_len)
+                    close_class_map[key] = colse_cls
+
+                for key,value in close_class_map.items():
+                    new_column = np.zeros((len(self.index), 1))
+                    new_column[key] = 1
+                    new_column[self.index[value]] = -1
+                    if new_column is not None:
+                        try:
+                            res_matrix = np.hstack([res_matrix, new_column])
+                        except ValueError:
+                            res_matrix = np.hstack([[[each] for each in res_matrix], new_column])
                 break
 
             # 如果达到normal的数量
@@ -857,7 +917,9 @@ class Self_Adaption_ECOC(__BaseECOC):
             if column_len >= 10 * math.log(len(self.index)):
                 logging.info('column_len >= 10*math.log(len(self.index))')
                 break
-            # =======    算法停止条件           ============================================================
+
+
+            # =======    挑选包含复杂类的两列        ============================================================
 
             # find first column
             prob = 0.5
@@ -944,10 +1006,22 @@ class Self_Adaption_ECOC(__BaseECOC):
         logging.info('\n**********      classifier acc  **************')
         logging.info(classifier_acc)
 
+        logging.info('before cutting matrix')
+        logging.info(res_matrix)
+
         final_matrix = self.cut_columns(res_matrix)
 
-        logging.info('cutting matrix')
+        logging.info('after cutting matrix')
         logging.info(final_matrix)
+
+        temp_class = Temp_Class()
+        temp_class.matrix = final_matrix
+        temp_class.fit(self.train_data, self.train_label)
+        pred_label = temp_class.predict(self.val_data)
+        cfus_matrix = confusion_matrix(self.val_label, pred_label)
+
+        logging.info("cutting matrix's confusion matrix")
+        logging.info(cfus_matrix)
 
         return final_matrix
 
@@ -955,38 +1029,75 @@ class Self_Adaption_ECOC(__BaseECOC):
     def cut_columns(self,matrix):
 
         data_len = len(self.val_label)
-
         try:
             column_len = matrix.shape[1]
         except IndexError:
             return matrix
         else:
-            while True:
-                i_column = matrix[:,0]
-                sub_matrix = matrix[:,1:]
 
-                temp_class = Temp_Class()
+            #  计算列的准确率
+            temp_class = Temp_Class()
+            temp_class.matrix = matrix
+            temp_class.fit(self.train_data, self.train_label)
+            _ = temp_class.predict(self.val_data)
+            clsfer_pred_label = temp_class.predicted_vector
+            clsfer_acc_ratio = []
+            for i in range(matrix.shape[1]):
+                i_column = matrix[:,i]
+                column_true_label = []
+                for j in range(data_len):
+                    if i_column[self.index[self.val_label[j]]] == 1:
+                        column_true_label.append(1)
+                    elif i_column[self.index[self.val_label[j]]] == -1:
+                        column_true_label.append(-1)
+                    else:
+                        column_true_label.append(0)
+                pre_label = [row[i] for row in clsfer_pred_label]
+                clsfer_acc_ratio.append(sum(list(map(lambda a,b:1 if a==b else 0,pre_label,column_true_label)))/float(data_len))
 
-                temp_class.matrix = matrix
-                temp_class.fit(self.train_data, self.train_label)
-                whole_pre_label = temp_class.predict(self.val_data)
-                whole_wrong_ratio = sum([1 for inx in range(data_len) if whole_pre_label[inx] != self.val_label[inx]])/float(data_len)
+            # 找到准确率较小的分类器的位置
+            try:
+                weak_clsfer_inx = [inx for inx,each in enumerate(clsfer_acc_ratio) if each < np.mean(clsfer_acc_ratio)]
+            except IndexError:
+                # 每个分类器的准确率都很高，weak_clsfer的数量为0
+                return matrix
+            else:
+                while len(weak_clsfer_inx) > 0:
+                    inx = weak_clsfer_inx.pop(0)
+                    i_column = matrix[:,inx]
+                    left_matrix = matrix[:, :inx]
+                    right_matrix = matrix[:, inx + 1:]
+                    if left_matrix.size == 0:
+                        sub_matrix = right_matrix
+                    elif right_matrix.size == 0:
+                        sub_matrix = left_matrix
+                    else:
+                        if left_matrix.shape[0] == 1:
+                            left_matrix = [[each] for each in left_matrix]
+                        if right_matrix.shape[0] == 1:
+                            right_matrix = [[each] for each in right_matrix]
+                        sub_matrix = np.hstack([left_matrix, right_matrix])
 
-                temp_class.matrix = sub_matrix
-                temp_class.fit(self.train_data, self.train_label)
-                sub_pre_label = temp_class.predict(self.val_data)
-                sub_wrong_inx = [inx for inx in range(len(sub_pre_label)) if sub_pre_label[inx] != self.val_label[inx]]
+                    temp_class = Temp_Class()
+                    temp_class.matrix = matrix
+                    temp_class.fit(self.train_data, self.train_label)
+                    whole_pre_label = temp_class.predict(self.val_data)
+                    whole_wrong_ratio = sum([1 for inx in range(data_len) if whole_pre_label[inx] != self.val_label[inx]])/float(data_len)
 
-                temp_class.matrix = i_column
-                temp_class.fit(self.train_data, self.train_label)
-                column_pre_label = temp_class.predict(self.val_data)
-                column_wrong_inx = [inx for inx in range(len(column_pre_label)) if column_pre_label[inx] != self.val_label[inx]]
+                    temp_class.matrix = sub_matrix
+                    temp_class.fit(self.train_data, self.train_label)
+                    sub_pre_label = temp_class.predict(self.val_data)
+                    sub_wrong_inx = [inx for inx in range(len(sub_pre_label)) if sub_pre_label[inx] != self.val_label[inx]]
 
-                column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx))/len(set(sub_wrong_inx))
-                if column_ctrbuton < 0.01 or len(sub_wrong_inx)/float(data_len) <= whole_wrong_ratio:
-                    matrix = sub_matrix
-                else:
-                    break
+                    temp_class.matrix = i_column
+                    temp_class.fit(self.train_data, self.train_label)
+                    column_pre_label = temp_class.predict(self.val_data)
+                    column_wrong_inx = [inx for inx in range(len(column_pre_label)) if column_pre_label[inx] != self.val_label[inx]]
+
+                    column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx))/len(set(sub_wrong_inx))
+                    if column_ctrbuton < 0.01 or len(sub_wrong_inx)/float(data_len) <= whole_wrong_ratio:
+                        matrix = sub_matrix
+                        weak_clsfer_inx = [each-1 for each in weak_clsfer_inx]
         return matrix
 
     def fit(self, train_data, train_label, val_data, val_label, **param):

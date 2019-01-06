@@ -1,2 +1,0 @@
-
-Data: Lung1	 ECOC: Self_Adaption_ECOC F1 F2 DC=F1	 [0.906, 0.444, 1.0, 0.844, 1.0]

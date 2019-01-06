@@ -4,6 +4,8 @@
 # file: many_ECOC_test.py
 # description:
 
+import logging
+
 import time
 from ECOCDemo.Common.Evaluation_tool import Evaluation
 from ECOCDemo.FS.DC_Feature_selection import *
@@ -14,17 +16,17 @@ from ECOCDemo.ECOC.Classifier import DC_ECOC, Self_Adaption_ECOC, OVO_ECOC, OVA_
 
 
 def ECOC_Process(dataname, train_data, train_label, test_data, test_label, val_data, val_label, ECOC_name,
-                 matrix_folder_path):
+                 matrix_folder_path, selected_fs_name):
     if ECOC_name.find('DC_ECOC') >= 0:
         dc_option = ECOC_name.split(' ')[1]
-        matrix_path = matrix_folder_path + selected_fs_name[k] + '/'
+        matrix_path = matrix_folder_path + selected_fs_name + '/'
         base_M = get_base_M(matrix_path, dc_option, dataname)
         E = DC_ECOC(base_M=base_M, dc_option=dc_option)
         E.fit(train_data, train_label)
 
     elif ECOC_name.find('SAT_ECOC') >= 0:
         dc_option = ECOC_name[8:].strip()
-        matrix_path = matrix_folder_path + selected_fs_name[k] + '/'
+        matrix_path = matrix_folder_path + selected_fs_name + '/'
         base_M = get_base_M(matrix_path, dc_option, dataname)
         E = Self_Adaption_ECOC(dc_option=dc_option, base_M=base_M, create_method='DC')
         E.fit(train_data, train_label, val_data, val_label)
@@ -59,7 +61,7 @@ def get_base_M(path, string, dataname):
     return M
 
 
-if __name__ == '__main__':
+def fun(count):
 
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
 
@@ -77,7 +79,7 @@ if __name__ == '__main__':
     matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
 
     # 创建结果文件夹
-    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing7/'
+    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing'+str(count)+'/'
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
@@ -97,6 +99,9 @@ if __name__ == '__main__':
         logging.basicConfig(filename=res_folder_path + selected_fs_name[k] + '_log.txt', level=logging.DEBUG,
                             format=LOG_FORMAT)
 
+        logging.info('算法备注：')
+        logging.info('连续三次没有变化或者变差的时候就停止继续生成新的列，把复杂的类和数量相近的类拼接起来形成列，最后形成的全部的矩阵送入剪枝')
+
         # save evaluation varibles
         data_acc, data_simacc, data_precision, data_specifity, data_sensitivity, data_cls_acc, data_Fscore = [], [], [], [], [], [], []
 
@@ -106,6 +111,7 @@ if __name__ == '__main__':
             test_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_test.csv'
             val_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_val.csv'
 
+            # 一行是一个样本
             train_data, train_label = Read_Write_tool.read_Microarray_Dataset(train_path)
             test_data, test_label = Read_Write_tool.read_Microarray_Dataset(test_path)
             val_data, val_label = Read_Write_tool.read_Microarray_Dataset(val_path)
@@ -129,8 +135,7 @@ if __name__ == '__main__':
                 print('Using KNN-Decoding')
 
                 res = ECOC_Process(selected_dataname[i], train_data, train_label, test_data, test_label, val_data,
-                                   val_label,
-                                   selected_ecoc_name[j], matrix_folder_path)
+                                   val_label,selected_ecoc_name[j], matrix_folder_path, selected_fs_name[k])
 
                 if 'simple_acc' in res:
                     simacc.append(res['simple_acc'])
@@ -194,3 +199,8 @@ if __name__ == '__main__':
             save_filepath = res_folder_path + 'Fscore_' + selected_fs_name[k] + '.xls'
             data_Fscore.append(np.mean(data_Fscore, axis=0))
             Read_Write_tool.write_file(save_filepath, data_Fscore, selected_ecoc_name, row_name)
+
+
+if __name__ == '__main__':
+    for each in range(25):
+        fun(each)
