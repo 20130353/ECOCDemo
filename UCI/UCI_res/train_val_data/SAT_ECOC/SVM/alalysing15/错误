@@ -1,0 +1,30 @@
+SVM classifier
+Time: 2019-01-09 23:14:58
+FS: tree
+Dataset： cleveland
+ECOC: SAT_ECOC DR
+Using KNN-Decoding
+train_data shape
+166
+unique_label
+['0' '1' '2' '3' '4']
+Traceback (most recent call last):
+  File "/home/smx/Documents/workspace/ECOCDemo/many_ECOC_test_v2.py", line 212, in <module>
+    fun(each)
+  File "/home/smx/Documents/workspace/ECOCDemo/many_ECOC_test_v2.py", line 140, in fun
+    val_label,selected_ecoc_name[j], matrix_folder_path, selected_fs_name[k])
+  File "/home/smx/Documents/workspace/ECOCDemo/many_ECOC_test_v2.py", line 32, in ECOC_Process
+    E.fit(train_data, train_label, val_data, val_label)
+  File "/home/smx/Documents/workspace/ECOCDemo/ECOC/Classifier.py", line 1222, in fit
+    self.rows = {i: l for i, l in enumerate(np.unique(self.train_label))}
+  File "/home/smx/Documents/workspace/ECOCDemo/ECOC/Classifier.py", line 893, in create_matrix
+    print('unique_label')
+  File "/home/smx/Documents/workspace/ECOCDemo/ECOC/Classifier.py", line 130, in predict
+    value = MT.closet_vector(predicted_vector, self.matrix, self.distance_measure)
+  File "/home/smx/Documents/workspace/ECOCDemo/ECOC/Matrix_tool.py", line 60, in closet_vector
+    if distance(vector, matrix[i], weights) < d:
+  File "/home/smx/Documents/workspace/ECOCDemo/ECOC/Distance.py", line 35, in euclidean_distance
+    assert len(x) == len(y)
+AssertionError
+
+Process finished with exit code 1

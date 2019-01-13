@@ -1,0 +1,4825 @@
+算法备注：
+1. 使用三进制生成的新的列没有经过去重复、去相反的判断
+2. 对unbalance的列使用近似KNN的算法调整
+3. 过程打印了非常多的log，用来分析算法效果
+4. 要添加修改的列数量站所有列数量的比例
+5. 要添加修改后的列的结果对比
+6. 只要簇中包含小类样本就会收录
+
+
+
+问题是：
+1、小类样本添加的太多了。
+2、同样也会添加大类样本
+
+
+
+SVM classifier
+Time: 2019-01-10 14:41:37
+FS: variance_threshold
+Dataset： cleveland
+ECOC: SAT_ECOC DR
+Using KNN-Decoding
+base_M is
+[[-1.  1. -1. -1. -1.  1.]
+ [-1.  1.  1.  1.  1. -1.]
+ [ 1.  1.  1.  1. -1.  1.]
+ [ 1.  1. -1.  1. -1. -1.]
+ [-1. -1. -1. -1. -1.  1.]]
+
+
+============== iter  1 ================
+current matrix is 
+[-1.  1.  1. -1. -1.]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 3  0  0  0  0]]
+row HD
+0
+col HD
+0
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1. -1. -1. -1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+1
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 0]
+ [ 1]]
+
+
+============== iter  2 ================
+current matrix is 
+[[-1.  1.]
+ [ 1. -1.]
+ [ 1.  1.]
+ [-1.  0.]
+ [-1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.2 0.2 0. ]
+ [0.  0.  0.2 0.4 0.4]
+ [0.  0.  0.  0.4 0.2]
+ [0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0. 2.]
+ [0. 0.]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1.  0.  1.]
+select_j_column
+[-1.  1.  1. -1. -1.]
+most_cplx_inx
+2
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:15,large_class sample len:151
+cluster len:1
+cluster contain small sample len:[0.09]
+before change column:	[-1, -1, 1, -1, -1]
+after change column:	[-1, -1, 1, -1, -1]
+
+
+============== iter  3 ================
+current matrix is 
+[[-1.  1. -1.]
+ [ 1. -1. -1.]
+ [ 1.  1.  1.]
+ [-1.  0. -1.]
+ [-1.  1. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.4 0.2 0. ]
+ [0.  0.  0.4 0.4 0.4]
+ [0.  0.  0.  0.6 0.4]
+ [0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   1.33 0.33]
+ [0.   0.   1.  ]
+ [0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[ 1.  1.  1.  1. -1.]
+most_cplx_inx
+1
+new_column
+[[ 0]
+ [ 1]
+ [ 0]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [ 1]
+ [ 0]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:52
+extra_class: 2,extra_sample len: 108
+cluster len:2
+cluster contain small sample len:[0.06, 0.0]
+before change column:	[0, 1, 0, 1, -1]
+after change column:	[-1, 1, -1, 1, -1]
+before change, the sample len:	Counter({1.0: 52, -1.0: 6})
+after change, the sample len:	Counter({-1.0: 114, 1.0: 52})
+
+
+============== iter  4 ================
+current matrix is 
+[[-1.  1. -1. -1.]
+ [ 1. -1. -1.  1.]
+ [ 1.  1.  1. -1.]
+ [-1.  0. -1.  1.]
+ [-1.  1. -1. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  0  0  3  0]
+ [ 6  0  0  1  0]
+ [ 2  0  0  5  0]
+ [ 0  0  0  3  0]]
+row HD
+[[0.  0.6 0.4 0.4 0. ]
+ [0.  0.  0.6 0.4 0.6]
+ [0.  0.  0.  0.8 0.4]
+ [0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   1.   0.25 0.5 ]
+ [0.   0.   0.75 1.25]
+ [0.   0.   0.   0.75]
+ [0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1.  1. -1. -1. -1.]
+select_j_column
+[-1.  1.  1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [-1]
+ [ 0]
+ [ 0]
+ [ 1]]
+
+
+============== iter  5 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.]
+ [ 1. -1. -1.  1. -1.]
+ [ 1.  1.  1. -1.  0.]
+ [-1.  0. -1.  1.  0.]
+ [-1.  1. -1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  0  0  3  0]
+ [ 6  0  0  1  0]
+ [ 2  0  0  5  0]
+ [ 0  0  0  3  0]]
+row HD
+[[0.  0.8 0.6 0.6 0. ]
+ [0.  0.  0.8 0.6 0.8]
+ [0.  0.  0.  0.8 0.6]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.8 0.2 0.4 1. ]
+ [0.  0.  0.6 1.  0.2]
+ [0.  0.  0.  0.6 0.8]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1.  1. -1.  1. -1.]
+select_j_column
+[-1. -1.  1.  1. -1.]
+most_cplx_inx
+1
+new_column
+[[ 0]
+ [-1]
+ [ 1]
+ [ 0]
+ [ 0]]
+
+
+============== iter  6 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0.]
+ [ 1. -1. -1.  1. -1. -1.]
+ [ 1.  1.  1. -1.  0.  1.]
+ [-1.  0. -1.  1.  0.  0.]
+ [-1.  1. -1. -1.  1.  0.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  0  0  3  0]
+ [ 6  0  0  1  0]
+ [ 2  0  0  5  0]
+ [ 0  0  0  3  0]]
+row HD
+[[0.  1.  0.8 0.6 0. ]
+ [0.  0.  1.  0.8 1. ]
+ [0.  0.  0.  1.  0.8]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.67 0.17 0.33 0.83 0.67]
+ [0.   0.   0.5  0.83 0.17 0.33]
+ [0.   0.   0.   0.5  0.67 0.5 ]
+ [0.   0.   0.   0.   0.83 0.83]
+ [0.   0.   0.   0.   0.   0.5 ]
+ [0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 1.  1.  1.  1. -1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+4
+new_column
+[[ 0]
+ [-1]
+ [ 0]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [-1]
+ [ 0]
+ [-1]
+ [ 1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:52
+extra_class: 2,extra_sample len: 108
+cluster len:2
+cluster contain small sample len:[0.06, 0.0]
+before change column:	[0, -1, 0, -1, 1]
+after change column:	[-1, -1, -1, -1, 1]
+before change, the sample len:	Counter({-1.0: 52, 1.0: 6})
+after change, the sample len:	Counter({-1.0: 160, 1.0: 6})
+
+
+============== iter  7 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  0  0  3  0]
+ [ 6  0  0  1  0]
+ [ 2  0  0  5  0]
+ [ 0  0  0  3  0]]
+row HD
+[[0.  1.  0.8 0.6 0.2]
+ [0.  0.  1.  0.8 1.2]
+ [0.  0.  0.  1.  1. ]
+ [0.  0.  0.  0.  0.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.57 0.14 0.29 0.71 0.57 0.43]
+ [0.   0.   0.43 0.71 0.14 0.29 0.43]
+ [0.   0.   0.   0.43 0.57 0.43 0.29]
+ [0.   0.   0.   0.   0.71 0.71 0.43]
+ [0.   0.   0.   0.   0.   0.43 0.43]
+ [0.   0.   0.   0.   0.   0.   0.57]
+ [0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 0. -1.  1.  0.  0.]
+select_j_column
+[-1. -1.  1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 0]]
+
+
+============== iter  8 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+confusion matrix
+[[29  0  0  1  0]
+ [ 7  0  0  2  0]
+ [ 6  0  0  1  0]
+ [ 3  0  0  4  0]
+ [ 0  0  0  3  0]]
+row HD
+[[0.  1.2 1.  0.8 0.2]
+ [0.  0.  1.2 1.  1.4]
+ [0.  0.  0.  1.  1.2]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.5  0.12 0.25 0.62 0.5  0.38 0.5 ]
+ [0.   0.   0.38 0.62 0.12 0.25 0.38 0.38]
+ [0.   0.   0.   0.38 0.5  0.38 0.25 0.38]
+ [0.   0.   0.   0.   0.62 0.62 0.38 0.5 ]
+ [0.   0.   0.   0.   0.   0.38 0.38 0.5 ]
+ [0.   0.   0.   0.   0.   0.   0.5  0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.5 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[-1. -1.  1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[-1]
+ [ 0]
+ [ 0]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [ 0]
+ [ 0]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:2, small_class sample:21,large_class sample len:99
+extra_class: 2,extra_sample len: 46
+cluster len:1
+cluster contain small sample len:[0.31]
+before change column:	[-1, 0, 0, 1, -1]
+after change column:	[-1, -1, -1, 1, -1]
+before change, the sample len:	Counter({-1.0: 99, 1.0: 21})
+after change, the sample len:	Counter({-1.0: 145, 1.0: 21})
+
+
+============== iter  9 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 8  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  1.2 1.  1.  0.2]
+ [0.  0.  1.2 1.2 1.4]
+ [0.  0.  0.  1.2 1.2]
+ [0.  0.  0.  0.  1.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.44 0.11 0.22 0.56 0.44 0.33 0.44 0.33]
+ [0.   0.   0.33 0.56 0.11 0.22 0.33 0.33 0.44]
+ [0.   0.   0.   0.33 0.44 0.33 0.22 0.33 0.22]
+ [0.   0.   0.   0.   0.56 0.56 0.33 0.44 0.11]
+ [0.   0.   0.   0.   0.   0.33 0.33 0.44 0.44]
+ [0.   0.   0.   0.   0.   0.   0.44 0.11 0.44]
+ [0.   0.   0.   0.   0.   0.   0.   0.44 0.22]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[-1. -1. -1. -1.  1.]
+most_cplx_inx
+3
+new_column
+[[ 0]
+ [ 1]
+ [ 0]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [ 1]
+ [ 0]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:52
+extra_class: 2,extra_sample len: 108
+cluster len:2
+cluster contain small sample len:[0.06, 0.0]
+before change column:	[0, 1, 0, 1, -1]
+after change column:	[-1, 1, -1, 1, -1]
+before change, the sample len:	Counter({1.0: 52, -1.0: 6})
+after change, the sample len:	Counter({-1.0: 114, 1.0: 52})
+
+
+============== iter  10 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+confusion matrix
+[[29  0  0  1  0]
+ [ 7  0  0  2  0]
+ [ 6  0  0  1  0]
+ [ 3  0  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.4 1.  1.2 0.2]
+ [0.  0.  1.4 1.2 1.6]
+ [0.  0.  0.  1.4 1.2]
+ [0.  0.  0.  0.  1.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.4 0.1 0.2 0.5 0.4 0.3 0.4 0.3 0.2]
+ [0.  0.  0.3 0.5 0.1 0.2 0.3 0.3 0.4 0.5]
+ [0.  0.  0.  0.3 0.4 0.3 0.2 0.3 0.2 0.3]
+ [0.  0.  0.  0.  0.5 0.5 0.3 0.4 0.1 0. ]
+ [0.  0.  0.  0.  0.  0.3 0.3 0.4 0.4 0.5]
+ [0.  0.  0.  0.  0.  0.  0.4 0.1 0.4 0.5]
+ [0.  0.  0.  0.  0.  0.  0.  0.4 0.2 0.3]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.3 0.4]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.1]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1.  1. -1.  1. -1.]
+select_j_column
+[-1.  1. -1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [-1]
+ [ 1]]
+
+
+============== iter  11 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  0  0  3  0]
+ [ 6  0  0  1  0]
+ [ 2  0  0  5  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.6 1.  1.4 0.2]
+ [0.  0.  1.6 1.2 1.8]
+ [0.  0.  0.  1.6 1.2]
+ [0.  0.  0.  0.  1.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.36 0.09 0.18 0.45 0.36 0.27 0.36 0.27 0.18 0.27]
+ [0.   0.   0.27 0.45 0.09 0.18 0.27 0.27 0.36 0.45 0.09]
+ [0.   0.   0.   0.27 0.36 0.27 0.18 0.27 0.18 0.27 0.18]
+ [0.   0.   0.   0.   0.45 0.45 0.27 0.36 0.09 0.   0.45]
+ [0.   0.   0.   0.   0.   0.27 0.27 0.36 0.36 0.45 0.18]
+ [0.   0.   0.   0.   0.   0.   0.36 0.09 0.36 0.45 0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.36 0.18 0.27 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.27 0.36 0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.09 0.36]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.45]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 0. -1.  1.  1.  0.]
+select_j_column
+[-1.  1. -1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[-1]
+ [-1]
+ [-1]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [-1]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:21,large_class sample len:145
+cluster len:1
+cluster contain small sample len:[0.13]
+before change column:	[-1, -1, -1, 1, -1]
+after change column:	[-1, -1, -1, 1, -1]
+
+
+============== iter  12 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  1  0  2  0]
+ [ 6  0  0  1  0]
+ [ 2  1  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.6 1.  1.6 0.2]
+ [0.  0.  1.6 1.4 1.8]
+ [0.  0.  0.  1.8 1.2]
+ [0.  0.  0.  0.  1.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.33 0.08 0.17 0.42 0.33 0.25 0.33 0.25 0.17 0.25 0.25]
+ [0.   0.   0.25 0.42 0.08 0.17 0.25 0.25 0.33 0.42 0.08 0.33]
+ [0.   0.   0.   0.25 0.33 0.25 0.17 0.25 0.17 0.25 0.17 0.17]
+ [0.   0.   0.   0.   0.42 0.42 0.25 0.33 0.08 0.   0.42 0.08]
+ [0.   0.   0.   0.   0.   0.25 0.25 0.33 0.33 0.42 0.17 0.33]
+ [0.   0.   0.   0.   0.   0.   0.33 0.08 0.33 0.42 0.25 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.33 0.17 0.25 0.17 0.17]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.25 0.33 0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.08 0.33 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.42 0.08]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1.  1.  1. -1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [ 1]
+ [-1]
+ [ 0]
+ [ 0]]
+
+
+============== iter  13 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  1  0  2  0]
+ [ 6  0  0  1  0]
+ [ 2  1  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.8 1.2 1.6 0.2]
+ [0.  0.  1.8 1.6 2. ]
+ [0.  0.  0.  2.  1.4]
+ [0.  0.  0.  0.  1.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.31 0.08 0.15 0.38 0.31 0.23 0.31 0.23 0.15 0.23 0.23 0.31]
+ [0.   0.   0.23 0.38 0.08 0.15 0.23 0.23 0.31 0.38 0.08 0.31 0.31]
+ [0.   0.   0.   0.23 0.31 0.23 0.15 0.23 0.15 0.23 0.15 0.15 0.38]
+ [0.   0.   0.   0.   0.38 0.38 0.23 0.31 0.08 0.   0.38 0.08 0.23]
+ [0.   0.   0.   0.   0.   0.23 0.23 0.31 0.31 0.38 0.15 0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.31 0.08 0.31 0.38 0.23 0.31 0.15]
+ [0.   0.   0.   0.   0.   0.   0.   0.31 0.15 0.23 0.15 0.15 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.23 0.31 0.23 0.23 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.08 0.31 0.   0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.38 0.08 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.31 0.38]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1.  1.  1. -1.]
+select_j_column
+[-1. -1. -1. -1.  1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [ 0]
+ [-1]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [ 0]
+ [-1]
+ [-1]
+ [ 1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:36
+extra_class: 2,extra_sample len: 124
+cluster len:1
+cluster contain small sample len:[0.05]
+before change column:	[0, 0, -1, -1, 1]
+after change column:	[-1, -1, -1, -1, 1]
+before change, the sample len:	Counter({-1.0: 36, 1.0: 6})
+after change, the sample len:	Counter({-1.0: 160, 1.0: 6})
+
+
+============== iter  14 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+13 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  1  0  2  0]
+ [ 6  0  0  1  0]
+ [ 2  1  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.8 1.2 1.6 0.4]
+ [0.  0.  1.8 1.6 2.2]
+ [0.  0.  0.  2.  1.6]
+ [0.  0.  0.  0.  2. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.29 0.07 0.14 0.36 0.29 0.21 0.29 0.21 0.14 0.21 0.21 0.29 0.21]
+ [0.   0.   0.21 0.36 0.07 0.14 0.21 0.21 0.29 0.36 0.07 0.29 0.29 0.21]
+ [0.   0.   0.   0.21 0.29 0.21 0.14 0.21 0.14 0.21 0.14 0.14 0.36 0.14]
+ [0.   0.   0.   0.   0.36 0.36 0.21 0.29 0.07 0.   0.36 0.07 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.21 0.21 0.29 0.29 0.36 0.14 0.29 0.29 0.21]
+ [0.   0.   0.   0.   0.   0.   0.29 0.07 0.29 0.36 0.21 0.29 0.14 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.29 0.14 0.21 0.14 0.14 0.29 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.21 0.29 0.21 0.21 0.21 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.29 0.   0.29 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.36 0.07 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.36 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1. -1. -1.  1.]
+select_j_column
+[-1. -1. -1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [ 1]
+ [ 1]
+ [-1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 1]
+ [ 1]
+ [-1]
+ [-1]]
+small_class len :2,large_class len:3, small_class sample:27,large_class sample len:139
+cluster len:1
+cluster contain small sample len:[0.16]
+before change column:	[1, 1, 1, -1, -1]
+after change column:	[-1, -1, -1, -1, -1]
+before change, the sample len:	Counter({1.0: 139, -1.0: 27})
+after change, the sample len:	Counter({-1.0: 166})
+
+
+============== iter  15 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+13 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  1  0  2  0]
+ [ 6  0  0  1  0]
+ [ 2  1  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  1.8 1.2 1.6 0.4]
+ [0.  0.  1.8 1.6 2.2]
+ [0.  0.  0.  2.  1.6]
+ [0.  0.  0.  0.  2. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.29 0.07 0.14 0.36 0.29 0.21 0.29 0.21 0.14 0.21 0.21 0.29 0.21]
+ [0.   0.   0.21 0.36 0.07 0.14 0.21 0.21 0.29 0.36 0.07 0.29 0.29 0.21]
+ [0.   0.   0.   0.21 0.29 0.21 0.14 0.21 0.14 0.21 0.14 0.14 0.36 0.14]
+ [0.   0.   0.   0.   0.36 0.36 0.21 0.29 0.07 0.   0.36 0.07 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.21 0.21 0.29 0.29 0.36 0.14 0.29 0.29 0.21]
+ [0.   0.   0.   0.   0.   0.   0.29 0.07 0.29 0.36 0.21 0.29 0.14 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.29 0.14 0.21 0.14 0.14 0.29 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.21 0.29 0.21 0.21 0.21 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.29 0.   0.29 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.36 0.07 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.36 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1.  1.  1. -1.]
+select_j_column
+[-1. -1.  1.  1. -1.]
+most_cplx_inx
+1
+new_column
+[[ 1]
+ [ 1]
+ [-1]
+ [-1]
+ [ 1]]
+
+
+============== iter  16 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.  1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+13 classifiers pre label
+Counter({-1.0: 56})
+14 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+confusion matrix
+[[30  0  0  0  0]
+ [ 7  2  0  0  0]
+ [ 7  0  0  0  0]
+ [ 5  1  0  1  0]
+ [ 1  1  0  1  0]]
+row HD
+[[0.  1.8 1.4 1.8 0.4]
+ [0.  0.  2.  1.8 2.2]
+ [0.  0.  0.  2.  1.8]
+ [0.  0.  0.  0.  2.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.27 0.07 0.13 0.33 0.27 0.2  0.27 0.2  0.13 0.2  0.2  0.27 0.2
+  0.2 ]
+ [0.   0.   0.2  0.33 0.07 0.13 0.2  0.2  0.27 0.33 0.07 0.27 0.27 0.2
+  0.2 ]
+ [0.   0.   0.   0.2  0.27 0.2  0.13 0.2  0.13 0.2  0.13 0.13 0.33 0.13
+  0.27]
+ [0.   0.   0.   0.   0.33 0.33 0.2  0.27 0.07 0.   0.33 0.07 0.2  0.2
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.2  0.2  0.27 0.27 0.33 0.13 0.27 0.27 0.2
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.27 0.07 0.27 0.33 0.2  0.27 0.13 0.27
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.27 0.13 0.2  0.13 0.13 0.27 0.
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.2  0.27 0.2  0.2  0.2  0.27
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.27 0.   0.27 0.13
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.33 0.07 0.2  0.2
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.27 0.33 0.13
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.27 0.13
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.27
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1.  0.  1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+1
+new_column
+[[-1]
+ [ 1]
+ [-1]
+ [-1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [ 1]
+ [-1]
+ [-1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:31,large_class sample len:135
+cluster len:1
+cluster contain small sample len:[0.19]
+before change column:	[-1, 1, -1, -1, -1]
+after change column:	[-1, 1, -1, -1, -1]
+
+
+============== iter  17 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.  1. -1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1.  1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1. -1. -1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1. -1. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.  1. -1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+13 classifiers pre label
+Counter({-1.0: 56})
+14 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+15 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 8  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 1  1  0  1  0]]
+row HD
+[[0.  2.  1.4 1.8 0.4]
+ [0.  0.  2.2 2.  2.4]
+ [0.  0.  0.  2.  1.8]
+ [0.  0.  0.  0.  2.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.25 0.06 0.12 0.31 0.25 0.19 0.25 0.19 0.12 0.19 0.19 0.25 0.19
+  0.19 0.06]
+ [0.   0.   0.19 0.31 0.06 0.12 0.19 0.19 0.25 0.31 0.06 0.25 0.25 0.19
+  0.19 0.31]
+ [0.   0.   0.   0.19 0.25 0.19 0.12 0.19 0.12 0.19 0.12 0.12 0.31 0.12
+  0.25 0.12]
+ [0.   0.   0.   0.   0.31 0.31 0.19 0.25 0.06 0.   0.31 0.06 0.19 0.19
+  0.19 0.06]
+ [0.   0.   0.   0.   0.   0.19 0.19 0.25 0.25 0.31 0.12 0.25 0.25 0.19
+  0.19 0.31]
+ [0.   0.   0.   0.   0.   0.   0.25 0.06 0.25 0.31 0.19 0.25 0.12 0.25
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.25 0.12 0.19 0.12 0.12 0.25 0.
+  0.12 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.19 0.25 0.19 0.19 0.19 0.25
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.06 0.25 0.   0.25 0.12
+  0.25 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.31 0.06 0.19 0.19
+  0.19 0.06]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25 0.31 0.12
+  0.12 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25 0.12
+  0.25 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25
+  0.19 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.12 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1. -1.  1. -1.]
+select_j_column
+[-1. -1. -1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [ 0]
+ [ 1]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 0]
+ [ 1]
+ [-1]
+ [ 1]]
+small_class len :1,large_class len:3, small_class sample:21,large_class sample len:114
+extra_class: 1,extra_sample len: 31
+cluster len:2
+cluster contain small sample len:[0.43, 0.0]
+before change column:	[1, 0, 1, -1, 1]
+after change column:	[1, -1, 1, -1, 1]
+before change, the sample len:	Counter({1.0: 114, -1.0: 21})
+after change, the sample len:	Counter({1.0: 114, -1.0: 52})
+
+
+============== iter  18 ================
+current matrix is 
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.  1. -1.  1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1.  1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1. -1. -1.  1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1. -1. -1. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.  1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 56})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 56})
+3 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+4 classifiers pre label
+Counter({1.0: 50, 0.0: 6})
+5 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+6 classifiers pre label
+Counter({-1.0: 56})
+7 classifiers pre label
+Counter({0.0: 38, 1.0: 10, -1.0: 8})
+8 classifiers pre label
+Counter({-1.0: 56})
+9 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+10 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({0.0: 40, 1.0: 16})
+13 classifiers pre label
+Counter({-1.0: 56})
+14 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+15 classifiers pre label
+Counter({-1.0: 56})
+16 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+confusion matrix
+[[29  0  0  1  0]
+ [ 6  1  0  2  0]
+ [ 6  0  0  1  0]
+ [ 2  1  0  4  0]
+ [ 0  1  0  2  0]]
+row HD
+[[0.  2.2 1.4 2.  0.4]
+ [0.  0.  2.4 2.  2.6]
+ [0.  0.  0.  2.2 1.8]
+ [0.  0.  0.  0.  2.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.24 0.06 0.12 0.29 0.24 0.18 0.24 0.18 0.12 0.18 0.18 0.24 0.18
+  0.18 0.06 0.18]
+ [0.   0.   0.18 0.29 0.06 0.12 0.18 0.18 0.24 0.29 0.06 0.24 0.24 0.18
+  0.18 0.29 0.06]
+ [0.   0.   0.   0.18 0.24 0.18 0.12 0.18 0.12 0.18 0.12 0.12 0.29 0.12
+  0.24 0.12 0.12]
+ [0.   0.   0.   0.   0.29 0.29 0.18 0.24 0.06 0.   0.29 0.06 0.18 0.18
+  0.18 0.06 0.29]
+ [0.   0.   0.   0.   0.   0.18 0.18 0.24 0.24 0.29 0.12 0.24 0.24 0.18
+  0.18 0.29 0.12]
+ [0.   0.   0.   0.   0.   0.   0.24 0.06 0.24 0.29 0.18 0.24 0.12 0.24
+  0.29 0.29 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.24 0.12 0.18 0.12 0.12 0.24 0.
+  0.12 0.12 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.18 0.24 0.18 0.18 0.18 0.24
+  0.29 0.29 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.06 0.24 0.   0.24 0.12
+  0.24 0.12 0.24]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.06 0.18 0.18
+  0.18 0.06 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.24 0.29 0.12
+  0.12 0.24 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.24 0.12
+  0.24 0.12 0.24]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.24
+  0.18 0.18 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.12 0.12 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.12 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.   0.24]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+column_len >= 10*math.log(len(self.index))
+change ratio is:	0.3888888888888889
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+
+**********      classifier acc  **************
+[0.714, 0.776, 0.875, 0.768, 0.738, 0.25, 0.946, 0.261, 0.875, 0.768, 0.768, 0.875, 0.25, 0.946, 0.768, 0.839, 0.768]
+before cutting matrix
+[[-1.  1. -1. -1.  1.  0. -1.  0. -1. -1.  1. -1.  0. -1.  1. -1.  1.]
+ [ 1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1.  1. -1.]
+ [ 1.  1.  1. -1.  0.  1. -1.  1. -1. -1.  1. -1. -1. -1. -1. -1.  1.]
+ [-1.  0. -1.  1.  0.  0. -1.  1.  1.  1. -1.  1.  0. -1. -1. -1. -1.]
+ [-1.  1. -1. -1.  1.  0.  1.  0. -1. -1.  1. -1.  0.  1.  1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({1.0: 114, -1.0: 31})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({1.0: 114, -1.0: 31})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({1.0: 99, -1.0: 31})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 31, 1.0: 15})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 36, -1.0: 31})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({1.0: 36, -1.0: 31})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+positive and negative ratio
+Counter({1.0: 31, -1.0: 15})
+after cutting matrix
+[[-1. -1. -1.  1.  0. -1. -1. -1.  1. -1.  0. -1.  1. -1.  1.]
+ [ 1. -1.  1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1.  1. -1.]
+ [ 1.  1. -1.  0.  1. -1. -1. -1.  1. -1. -1. -1. -1. -1.  1.]
+ [-1. -1.  1.  0.  0. -1.  1.  1. -1.  1.  0. -1. -1. -1. -1.]
+ [-1. -1. -1.  1.  0.  1. -1. -1.  1. -1.  0.  1.  1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 99, -1.0: 31})
+Counter({-1.0: 31, 1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 114, -1.0: 52})
+Counter({-1.0: 145, 1.0: 21})
+Counter({1.0: 31, -1.0: 15})
+Counter({-1.0: 160, 1.0: 6})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 135, 1.0: 31})
+Counter({1.0: 114, -1.0: 52})
+cutting matrix's confusion matrix
+[[29  0  0  1  0]
+ [ 6  2  0  1  0]
+ [ 6  1  0  0  0]
+ [ 2  1  0  4  0]
+ [ 0  2  0  1  0]]
+
+
+SVM classifier
+Time: 2019-01-10 14:41:42
+FS: variance_threshold
+Dataset： cleveland
+ECOC: SAT_ECOC SR
+Using KNN-Decoding
+base_M is
+[[ 0.  0.  1.  1.  0.  0.  1.  0. -1. -1.]
+ [-1.  1.  0.  0.  1.  1.  0.  1.  1.  0.]
+ [-1. -1.  0. -1.  0. -1.  1. -1.  0.  1.]
+ [ 1.  0. -1.  0.  1.  1.  0. -1.  0.  0.]
+ [-1.  0.  1. -1. -1. -1. -1.  1.  1.  0.]]
+
+
+============== iter  1 ================
+current matrix is 
+[ 1.  0.  1.  0. -1.]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+pre label
+Counter({1.0: 42, 0.0: 14})
+confusion matrix
+[[26  4  0  0  0]
+ [ 6  3  0  0  0]
+ [ 4  3  0  0  0]
+ [ 5  2  0  0  0]
+ [ 1  2  0  0  0]]
+row HD
+0
+col HD
+0
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  0.  0. -1.  1.]
+select_j_column
+[ 0.  1. -1. -1.  1.]
+most_cplx_inx
+2
+ERROR-F1: the denominator of the 10 dimension of F1 is zero!
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 0]
+ [ 0]]
+
+
+============== iter  2 ================
+current matrix is 
+[[ 1.  1.]
+ [ 0. -1.]
+ [ 1.  1.]
+ [ 0.  0.]
+ [-1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.  0.4 0.4]
+ [0.  0.  0.4 0.2 0.4]
+ [0.  0.  0.  0.4 0.4]
+ [0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0. 1.]
+ [0. 0.]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 0.  1. -1.  0.  0.]
+select_j_column
+[ 0.  1. -1.  0.  0.]
+most_cplx_inx
+4
+new_column
+None
+
+
+============== iter  3 ================
+current matrix is 
+[[ 1.  1.]
+ [ 0. -1.]
+ [ 1.  1.]
+ [ 0.  0.]
+ [-1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.  0.4 0.4]
+ [0.  0.  0.4 0.2 0.4]
+ [0.  0.  0.  0.4 0.4]
+ [0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0. 1.]
+ [0. 0.]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  0.  1.  0. -1.]
+select_j_column
+[-1.  0.  1.  0.  0.]
+most_cplx_inx
+3
+new_column
+None
+
+
+============== iter  4 ================
+current matrix is 
+[[ 1.  1.]
+ [ 0. -1.]
+ [ 1.  1.]
+ [ 0.  0.]
+ [-1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.  0.4 0.4]
+ [0.  0.  0.4 0.2 0.4]
+ [0.  0.  0.  0.4 0.4]
+ [0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0. 1.]
+ [0. 0.]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 0.  1. -1.  0.  0.]
+select_j_column
+[-1.  1.  0.  0.  1.]
+most_cplx_inx
+4
+new_column
+[[-1]
+ [-1]
+ [-1]
+ [ 0]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [-1]
+ [ 0]
+ [ 1]]
+small_class len :1,large_class len:3, small_class sample:6,large_class sample len:139
+extra_class: 1,extra_sample len: 21
+cluster len:15
+cluster contain small sample len:[0.0, 0.0, 0.5, 0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 1.0]
+before change column:	[-1, -1, -1, 0, 1]
+after change column:	[-1, -1, -1, 0, 1]
+
+
+============== iter  5 ================
+current matrix is 
+[[ 1.  1. -1.]
+ [ 0. -1. -1.]
+ [ 1.  1. -1.]
+ [ 0.  0.  0.]
+ [-1.  0.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.4 0.  0.6 0.6]
+ [0.  0.  0.4 0.4 0.6]
+ [0.  0.  0.  0.6 0.6]
+ [0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.67 1.33]
+ [0.   0.   1.  ]
+ [0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[-1. -1. -1.  0.  1.]
+select_j_column
+[ 0. -1. -1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 0]
+ [ 1]
+ [ 1]
+ [ 0]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [ 1]
+ [ 1]
+ [ 0]
+ [-1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:46
+extra_class: 2,extra_sample len: 114
+cluster len:2
+cluster contain small sample len:[0.05, 0.0]
+before change column:	[0, 1, 1, 0, -1]
+after change column:	[-1, 1, 1, -1, -1]
+before change, the sample len:	Counter({1.0: 46, -1.0: 6})
+after change, the sample len:	Counter({-1.0: 120, 1.0: 46})
+
+
+============== iter  6 ================
+current matrix is 
+[[ 1.  1. -1. -1.]
+ [ 0. -1. -1.  1.]
+ [ 1.  1. -1.  1.]
+ [ 0.  0.  0. -1.]
+ [-1.  0.  1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.6 0.2 0.6 0.6]
+ [0.  0.  0.4 0.6 0.8]
+ [0.  0.  0.  0.8 0.8]
+ [0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.5  1.   0.75]
+ [0.   0.   0.75 1.  ]
+ [0.   0.   0.   1.  ]
+ [0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  0.  1.  0. -1.]
+select_j_column
+[ 0.  1.  0.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [ 1]
+ [ 1]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 1]
+ [ 1]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:6,large_class sample len:160
+cluster len:1
+cluster contain small sample len:[0.04]
+before change column:	[1, 1, 1, 1, -1]
+after change column:	[-1, -1, -1, -1, -1]
+before change, the sample len:	Counter({1.0: 160, -1.0: 6})
+after change, the sample len:	Counter({-1.0: 166})
+
+
+============== iter  7 ================
+current matrix is 
+[[ 1.  1. -1. -1.]
+ [ 0. -1. -1.  1.]
+ [ 1.  1. -1.  1.]
+ [ 0.  0.  0. -1.]
+ [-1.  0.  1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.6 0.2 0.6 0.6]
+ [0.  0.  0.4 0.6 0.8]
+ [0.  0.  0.  0.8 0.8]
+ [0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.5  1.   0.75]
+ [0.   0.   0.75 1.  ]
+ [0.   0.   0.   1.  ]
+ [0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  0.  1.  0. -1.]
+select_j_column
+[-1. -1. -1.  0.  1.]
+most_cplx_inx
+1
+new_column
+[[-1]
+ [ 1]
+ [-1]
+ [ 0]
+ [ 1]]
+
+
+============== iter  8 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.]
+ [ 0. -1. -1.  1.  1.]
+ [ 1.  1. -1.  1. -1.]
+ [ 0.  0.  0. -1.  0.]
+ [-1.  0.  1. -1.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  0.8 0.2 0.8 0.8]
+ [0.  0.  0.6 0.8 0.8]
+ [0.  0.  0.  1.  1. ]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.4 0.8 0.6 0.8]
+ [0.  0.  0.6 0.8 0.8]
+ [0.  0.  0.  0.8 0.2]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 0.  1. -1.  1. -1.]
+select_j_column
+[ 0.  1. -1.  1. -1.]
+most_cplx_inx
+1
+new_column
+[[ 0]
+ [-1]
+ [ 1]
+ [-1]
+ [ 1]]
+
+
+============== iter  9 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.]
+ [ 0. -1. -1.  1.  1. -1.]
+ [ 1.  1. -1.  1. -1.  1.]
+ [ 0.  0.  0. -1.  0. -1.]
+ [-1.  0.  1. -1.  1.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  1.  0.4 1.  1. ]
+ [0.  0.  0.8 0.8 1. ]
+ [0.  0.  0.  1.2 1. ]
+ [0.  0.  0.  0.  0.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.33 0.67 0.5  0.67 0.67]
+ [0.   0.   0.5  0.67 0.67 0.5 ]
+ [0.   0.   0.   0.67 0.17 0.5 ]
+ [0.   0.   0.   0.   0.5  0.5 ]
+ [0.   0.   0.   0.   0.   0.67]
+ [0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1.  0.  0.]
+select_j_column
+[ 0. -1. -1.  1. -1.]
+most_cplx_inx
+1
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 0]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 0]]
+small_class len :1,large_class len:3, small_class sample:31,large_class sample len:129
+extra_class: 1,extra_sample len: 6
+cluster len:9
+cluster contain small sample len:[0.86, 1.0, 0.89, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0]
+before change column:	[1, -1, 1, 1, 0]
+after change column:	[1, -1, 1, 1, 0]
+
+
+============== iter  10 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  1.2 0.4 1.  1.2]
+ [0.  0.  1.  1.  1.2]
+ [0.  0.  0.  1.2 1.2]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.29 0.57 0.43 0.57 0.57 0.43]
+ [0.   0.   0.43 0.57 0.57 0.43 0.14]
+ [0.   0.   0.   0.57 0.14 0.43 0.57]
+ [0.   0.   0.   0.   0.43 0.43 0.57]
+ [0.   0.   0.   0.   0.   0.57 0.71]
+ [0.   0.   0.   0.   0.   0.   0.43]
+ [0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  1. -1. -1.]
+select_j_column
+[-1.  1.  1. -1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [-1]
+ [-1]
+ [ 1]
+ [ 1]]
+
+
+============== iter  11 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 7  0  0  0  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  1.4 0.6 1.  1.2]
+ [0.  0.  1.  1.2 1.4]
+ [0.  0.  0.  1.4 1.4]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.25 0.5  0.38 0.5  0.5  0.38 0.5 ]
+ [0.   0.   0.38 0.5  0.5  0.38 0.12 0.38]
+ [0.   0.   0.   0.5  0.12 0.38 0.5  0.25]
+ [0.   0.   0.   0.   0.38 0.38 0.5  0.62]
+ [0.   0.   0.   0.   0.   0.5  0.62 0.38]
+ [0.   0.   0.   0.   0.   0.   0.38 0.38]
+ [0.   0.   0.   0.   0.   0.   0.   0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  0. -1.  0. -1.]
+select_j_column
+[ 1. -1.  1.  1.  0.]
+most_cplx_inx
+1
+new_column
+[[-1]
+ [-1]
+ [ 0]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [ 0]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:3, small_class sample:21,large_class sample len:130
+extra_class: 1,extra_sample len: 15
+cluster len:2
+cluster contain small sample len:[0.62, 0.0]
+before change column:	[-1, -1, 0, 1, -1]
+after change column:	[-1, -1, 1, 1, -1]
+before change, the sample len:	Counter({-1.0: 130, 1.0: 21})
+after change, the sample len:	Counter({-1.0: 130, 1.0: 36})
+
+
+============== iter  12 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  1.4 0.8 1.2 1.2]
+ [0.  0.  1.2 1.4 1.4]
+ [0.  0.  0.  1.4 1.6]
+ [0.  0.  0.  0.  1.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.22 0.44 0.33 0.44 0.44 0.33 0.44 0.33]
+ [0.   0.   0.33 0.44 0.44 0.33 0.11 0.33 0.33]
+ [0.   0.   0.   0.44 0.11 0.33 0.44 0.22 0.33]
+ [0.   0.   0.   0.   0.33 0.33 0.44 0.56 0.22]
+ [0.   0.   0.   0.   0.   0.44 0.56 0.33 0.44]
+ [0.   0.   0.   0.   0.   0.   0.33 0.33 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.22 0.22]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 0. -1. -1.  1. -1.]
+select_j_column
+[ 1. -1.  1.  1.  0.]
+most_cplx_inx
+1
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 0]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 0]]
+small_class len :1,large_class len:3, small_class sample:31,large_class sample len:129
+extra_class: 1,extra_sample len: 6
+cluster len:9
+cluster contain small sample len:[0.86, 1.0, 0.89, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0]
+before change column:	[1, -1, 1, 1, 0]
+after change column:	[1, -1, 1, 1, 0]
+
+
+============== iter  13 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  1.6 0.8 1.2 1.4]
+ [0.  0.  1.4 1.6 1.6]
+ [0.  0.  0.  1.4 1.8]
+ [0.  0.  0.  0.  1.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.2 0.4 0.3 0.4 0.4 0.3 0.4 0.3 0.3]
+ [0.  0.  0.3 0.4 0.4 0.3 0.1 0.3 0.3 0.1]
+ [0.  0.  0.  0.4 0.1 0.3 0.4 0.2 0.3 0.4]
+ [0.  0.  0.  0.  0.3 0.3 0.4 0.5 0.2 0.4]
+ [0.  0.  0.  0.  0.  0.4 0.5 0.3 0.4 0.5]
+ [0.  0.  0.  0.  0.  0.  0.3 0.3 0.3 0.3]
+ [0.  0.  0.  0.  0.  0.  0.  0.2 0.2 0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.3 0.2]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 1. -1.  1.  1.  0.]
+select_j_column
+[ 0. -1.  1. -1.  1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 1]]
+small_class len :1,large_class len:4, small_class sample:31,large_class sample len:135
+cluster len:1
+cluster contain small sample len:[0.19]
+before change column:	[1, -1, 1, 1, 1]
+after change column:	[-1, -1, -1, -1, -1]
+before change, the sample len:	Counter({1.0: 135, -1.0: 31})
+after change, the sample len:	Counter({-1.0: 166})
+
+
+============== iter  14 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  1.6 0.8 1.2 1.4]
+ [0.  0.  1.4 1.6 1.6]
+ [0.  0.  0.  1.4 1.8]
+ [0.  0.  0.  0.  1.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.2 0.4 0.3 0.4 0.4 0.3 0.4 0.3 0.3]
+ [0.  0.  0.3 0.4 0.4 0.3 0.1 0.3 0.3 0.1]
+ [0.  0.  0.  0.4 0.1 0.3 0.4 0.2 0.3 0.4]
+ [0.  0.  0.  0.  0.3 0.3 0.4 0.5 0.2 0.4]
+ [0.  0.  0.  0.  0.  0.4 0.5 0.3 0.4 0.5]
+ [0.  0.  0.  0.  0.  0.  0.3 0.3 0.3 0.3]
+ [0.  0.  0.  0.  0.  0.  0.  0.2 0.2 0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.3 0.2]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.2]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1. -1.  0.  1.]
+select_j_column
+[ 1. -1. -1.  1.  1.]
+most_cplx_inx
+1
+new_column
+[[ 0]
+ [ 1]
+ [ 1]
+ [ 1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [ 1]
+ [ 1]
+ [ 1]
+ [-1]]
+small_class len :1,large_class len:3, small_class sample:6,large_class sample len:67
+extra_class: 1,extra_sample len: 93
+cluster len:5
+cluster contain small sample len:[0.01, 0.29, 0.4, 0.17, 0.0]
+before change column:	[0, 1, 1, 1, -1]
+after change column:	[1, 1, 1, 1, -1]
+before change, the sample len:	Counter({1.0: 67, -1.0: 6})
+after change, the sample len:	Counter({1.0: 160, -1.0: 6})
+
+
+============== iter  15 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  1.6 0.8 1.2 1.6]
+ [0.  0.  1.4 1.6 1.8]
+ [0.  0.  0.  1.4 2. ]
+ [0.  0.  0.  0.  1.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.18 0.36 0.27 0.36 0.36 0.27 0.36 0.27 0.27 0.18]
+ [0.   0.   0.27 0.36 0.36 0.27 0.09 0.27 0.27 0.09 0.27]
+ [0.   0.   0.   0.36 0.09 0.27 0.36 0.18 0.27 0.36 0.45]
+ [0.   0.   0.   0.   0.27 0.27 0.36 0.45 0.18 0.36 0.18]
+ [0.   0.   0.   0.   0.   0.36 0.45 0.27 0.36 0.45 0.36]
+ [0.   0.   0.   0.   0.   0.   0.27 0.27 0.27 0.27 0.36]
+ [0.   0.   0.   0.   0.   0.   0.   0.18 0.18 0.   0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.27 0.18 0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.18 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 1. -1.  1.  1.  0.]
+select_j_column
+[ 0.  1. -1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [ 1]
+ [-1]]
+
+
+============== iter  16 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 3  0  0  0  0]]
+row HD
+[[0.  1.8 1.  1.4 1.8]
+ [0.  0.  1.4 1.8 1.8]
+ [0.  0.  0.  1.6 2. ]
+ [0.  0.  0.  0.  1.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.17 0.33 0.25 0.33 0.33 0.25 0.33 0.25 0.25 0.17 0.33]
+ [0.   0.   0.25 0.33 0.33 0.25 0.08 0.25 0.25 0.08 0.25 0.33]
+ [0.   0.   0.   0.33 0.08 0.25 0.33 0.17 0.25 0.33 0.42 0.25]
+ [0.   0.   0.   0.   0.25 0.25 0.33 0.42 0.17 0.33 0.17 0.33]
+ [0.   0.   0.   0.   0.   0.33 0.42 0.25 0.33 0.42 0.33 0.33]
+ [0.   0.   0.   0.   0.   0.   0.25 0.25 0.25 0.25 0.33 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.17 0.17 0.   0.17 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.25 0.17 0.25 0.17]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.17 0.17 0.17]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.17 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 0.  1.  0.  1. -1.]
+select_j_column
+[ 1. -1. -1.  1.  1.]
+most_cplx_inx
+1
+new_column
+[[ 0]
+ [-1]
+ [ 0]
+ [ 1]
+ [-1]]
+
+
+============== iter  17 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+Counter({-1.0: 37, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+12 classifiers pre label
+Counter({0.0: 42, -1.0: 14})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 3  0  0  0  0]]
+row HD
+[[0.  2.  1.  1.6 2. ]
+ [0.  0.  1.6 2.  1.8]
+ [0.  0.  0.  1.8 2.2]
+ [0.  0.  0.  0.  2. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.15 0.31 0.23 0.31 0.31 0.23 0.31 0.23 0.23 0.15 0.31 0.31]
+ [0.   0.   0.23 0.31 0.31 0.23 0.08 0.23 0.23 0.08 0.23 0.31 0.31]
+ [0.   0.   0.   0.31 0.08 0.23 0.31 0.15 0.23 0.31 0.38 0.23 0.31]
+ [0.   0.   0.   0.   0.23 0.23 0.31 0.38 0.15 0.31 0.15 0.31 0.31]
+ [0.   0.   0.   0.   0.   0.31 0.38 0.23 0.31 0.38 0.31 0.31 0.38]
+ [0.   0.   0.   0.   0.   0.   0.23 0.23 0.23 0.23 0.31 0.23 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.15 0.15 0.   0.15 0.23 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.23 0.15 0.23 0.15 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.15 0.15 0.15 0.15]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.15 0.23 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.23 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.08]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 0.  1. -1.  1. -1.]
+select_j_column
+[ 0.  1.  0.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [-1]
+ [ 1]]
+small_class len :1,large_class len:3, small_class sample:6,large_class sample len:67
+extra_class: 1,extra_sample len: 93
+cluster len:5
+cluster contain small sample len:[0.01, 0.29, 0.4, 0.17, 0.0]
+before change column:	[0, -1, -1, -1, 1]
+after change column:	[1, -1, -1, -1, 1]
+before change, the sample len:	Counter({-1.0: 67, 1.0: 6})
+after change, the sample len:	Counter({1.0: 99, -1.0: 67})
+
+
+============== iter  18 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0. -1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1. -1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+Counter({-1.0: 37, 1.0: 21})
+Counter({1.0: 99, -1.0: 67})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+12 classifiers pre label
+Counter({0.0: 42, -1.0: 14})
+13 classifiers pre label
+Counter({1.0: 34, -1.0: 22})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 5  0  0  2  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  2.2 1.2 1.8 2. ]
+ [0.  0.  1.6 2.  2. ]
+ [0.  0.  0.  1.8 2.4]
+ [0.  0.  0.  0.  2.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.14 0.29 0.21 0.29 0.29 0.21 0.29 0.21 0.21 0.14 0.29 0.29 0.29]
+ [0.   0.   0.21 0.29 0.29 0.21 0.07 0.21 0.21 0.07 0.21 0.29 0.29 0.21]
+ [0.   0.   0.   0.29 0.07 0.21 0.29 0.14 0.21 0.29 0.36 0.21 0.29 0.14]
+ [0.   0.   0.   0.   0.21 0.21 0.29 0.36 0.14 0.29 0.14 0.29 0.29 0.29]
+ [0.   0.   0.   0.   0.   0.29 0.36 0.21 0.29 0.36 0.29 0.29 0.36 0.21]
+ [0.   0.   0.   0.   0.   0.   0.21 0.21 0.21 0.21 0.29 0.21 0.21 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.14 0.14 0.   0.14 0.21 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.21 0.14 0.21 0.14 0.21 0.07]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.14 0.14 0.14 0.14 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.14 0.21 0.21 0.21]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.21 0.21 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.21]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1. -1.  0.  1.]
+select_j_column
+[ 0.  1. -1.  0.  0.]
+most_cplx_inx
+4
+new_column
+[[-1]
+ [ 1]
+ [ 0]
+ [ 0]
+ [ 1]]
+
+
+============== iter  19 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.  1. -1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1. -1.  1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0. -1.  0.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1. -1.  0.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.  1.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+Counter({-1.0: 37, 1.0: 21})
+Counter({1.0: 99, -1.0: 67})
+Counter({-1.0: 93, 1.0: 37})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+12 classifiers pre label
+Counter({0.0: 42, -1.0: 14})
+13 classifiers pre label
+Counter({1.0: 34, -1.0: 22})
+14 classifiers pre label
+Counter({-1.0: 40, 1.0: 10, 0.0: 6})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 5  0  0  2  0]
+ [ 2  0  0  1  0]]
+row HD
+[[0.  2.4 1.4 2.  2.2]
+ [0.  0.  1.8 2.2 2. ]
+ [0.  0.  0.  1.8 2.6]
+ [0.  0.  0.  0.  2.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.13 0.27 0.2  0.27 0.27 0.2  0.27 0.2  0.2  0.13 0.27 0.27 0.27
+  0.27]
+ [0.   0.   0.2  0.27 0.27 0.2  0.07 0.2  0.2  0.07 0.2  0.27 0.27 0.2
+  0.27]
+ [0.   0.   0.   0.27 0.07 0.2  0.27 0.13 0.2  0.27 0.33 0.2  0.27 0.13
+  0.13]
+ [0.   0.   0.   0.   0.2  0.2  0.27 0.33 0.13 0.27 0.13 0.27 0.27 0.27
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.27 0.33 0.2  0.27 0.33 0.27 0.27 0.33 0.2
+  0.07]
+ [0.   0.   0.   0.   0.   0.   0.2  0.2  0.2  0.2  0.27 0.2  0.2  0.13
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.13 0.13 0.   0.13 0.2  0.2  0.2
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.2  0.13 0.2  0.13 0.2  0.07
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.13 0.13 0.13 0.13 0.27
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.13 0.2  0.2  0.2
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.2  0.2  0.27
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.2
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.27
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[-1. -1.  1.  1. -1.]
+select_j_column
+[ 1. -1.  1.  1.  0.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [ 1]
+ [-1]
+ [-1]
+ [-1]]
+
+
+============== iter  20 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.  1. -1.  0.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1. -1.  1.  1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0. -1.  0. -1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1. -1.  0. -1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.  1.  1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+Counter({-1.0: 37, 1.0: 21})
+Counter({1.0: 99, -1.0: 67})
+Counter({-1.0: 93, 1.0: 37})
+Counter({-1.0: 42, 1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+12 classifiers pre label
+Counter({0.0: 42, -1.0: 14})
+13 classifiers pre label
+Counter({1.0: 34, -1.0: 22})
+14 classifiers pre label
+Counter({-1.0: 40, 1.0: 10, 0.0: 6})
+15 classifiers pre label
+Counter({0.0: 38, -1.0: 12, 1.0: 6})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  2.6 1.6 2.2 2.4]
+ [0.  0.  2.  2.4 2.2]
+ [0.  0.  0.  1.8 2.6]
+ [0.  0.  0.  0.  2.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.12 0.25 0.19 0.25 0.25 0.19 0.25 0.19 0.19 0.12 0.25 0.25 0.25
+  0.25 0.25]
+ [0.   0.   0.19 0.25 0.25 0.19 0.06 0.19 0.19 0.06 0.19 0.25 0.25 0.19
+  0.25 0.31]
+ [0.   0.   0.   0.25 0.06 0.19 0.25 0.12 0.19 0.25 0.31 0.19 0.25 0.12
+  0.12 0.25]
+ [0.   0.   0.   0.   0.19 0.19 0.25 0.31 0.12 0.25 0.12 0.25 0.25 0.25
+  0.19 0.12]
+ [0.   0.   0.   0.   0.   0.25 0.31 0.19 0.25 0.31 0.25 0.25 0.31 0.19
+  0.06 0.19]
+ [0.   0.   0.   0.   0.   0.   0.19 0.19 0.19 0.19 0.25 0.19 0.19 0.12
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.12 0.12 0.   0.12 0.19 0.19 0.19
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.19 0.12 0.19 0.12 0.19 0.06
+  0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.12 0.12 0.12 0.12 0.25
+  0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.12 0.19 0.19 0.19
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.19 0.19 0.25
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.06 0.19
+  0.31 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 1.  0. -1.  0. -1.]
+select_j_column
+[ 0. -1. -1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [ 1]
+ [ 1]]
+small_class len :1,large_class len:4, small_class sample:31,large_class sample len:135
+cluster len:1
+cluster contain small sample len:[0.19]
+before change column:	[1, -1, 1, 1, 1]
+after change column:	[-1, -1, -1, -1, -1]
+before change, the sample len:	Counter({1.0: 135, -1.0: 31})
+after change, the sample len:	Counter({-1.0: 166})
+
+
+============== iter  21 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.  1. -1.  0.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1. -1.  1.  1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0. -1.  0. -1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1. -1.  0. -1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.  1.  1. -1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 120, -1.0: 46})
+Counter({-1.0: 130, 1.0: 36})
+Counter({1.0: 129, -1.0: 31})
+Counter({1.0: 160, -1.0: 6})
+Counter({-1.0: 52, 1.0: 21})
+Counter({-1.0: 37, 1.0: 21})
+Counter({1.0: 99, -1.0: 67})
+Counter({-1.0: 93, 1.0: 37})
+Counter({-1.0: 42, 1.0: 31})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+1 classifiers pre label
+Counter({1.0: 54, 0.0: 2})
+2 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+3 classifiers pre label
+Counter({-1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 54, 0.0: 2})
+5 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+6 classifiers pre label
+Counter({1.0: 56})
+7 classifiers pre label
+Counter({1.0: 56})
+8 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+9 classifiers pre label
+Counter({1.0: 56})
+10 classifiers pre label
+Counter({1.0: 56})
+11 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+12 classifiers pre label
+Counter({0.0: 42, -1.0: 14})
+13 classifiers pre label
+Counter({1.0: 34, -1.0: 22})
+14 classifiers pre label
+Counter({-1.0: 40, 1.0: 10, 0.0: 6})
+15 classifiers pre label
+Counter({0.0: 38, -1.0: 12, 1.0: 6})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 6  0  0  1  0]
+ [ 5  0  0  2  0]
+ [ 1  0  0  2  0]]
+row HD
+[[0.  2.6 1.6 2.2 2.4]
+ [0.  0.  2.  2.4 2.2]
+ [0.  0.  0.  1.8 2.6]
+ [0.  0.  0.  0.  2.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.12 0.25 0.19 0.25 0.25 0.19 0.25 0.19 0.19 0.12 0.25 0.25 0.25
+  0.25 0.25]
+ [0.   0.   0.19 0.25 0.25 0.19 0.06 0.19 0.19 0.06 0.19 0.25 0.25 0.19
+  0.25 0.31]
+ [0.   0.   0.   0.25 0.06 0.19 0.25 0.12 0.19 0.25 0.31 0.19 0.25 0.12
+  0.12 0.25]
+ [0.   0.   0.   0.   0.19 0.19 0.25 0.31 0.12 0.25 0.12 0.25 0.25 0.25
+  0.19 0.12]
+ [0.   0.   0.   0.   0.   0.25 0.31 0.19 0.25 0.31 0.25 0.25 0.31 0.19
+  0.06 0.19]
+ [0.   0.   0.   0.   0.   0.   0.19 0.19 0.19 0.19 0.25 0.19 0.19 0.12
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.12 0.12 0.   0.12 0.19 0.19 0.19
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.19 0.12 0.19 0.12 0.19 0.06
+  0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.12 0.12 0.12 0.12 0.25
+  0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.12 0.19 0.19 0.19
+  0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.19 0.19 0.25
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.06 0.19
+  0.31 0.12]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.25
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.25 0.19]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.   0.  ]]
+cplx_class
+{0: None, 1: True, 2: True, 3: None, 4: True}
+select_i_column
+[ 0. -1.  0.  1. -1.]
+select_j_column
+[ 1.  1.  1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [ 0]
+ [ 1]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 0]
+ [ 1]
+ [-1]
+ [ 1]]
+small_class len :1,large_class len:3, small_class sample:21,large_class sample len:114
+extra_class: 1,extra_sample len: 31
+cluster len:2
+cluster contain small sample len:[0.43, 0.0]
+before change column:	[1, 0, 1, -1, 1]
+after change column:	[1, -1, 1, -1, 1]
+before change, the sample len:	Counter({1.0: 114, -1.0: 21})
+after change, the sample len:	Counter({1.0: 114, -1.0: 52})
+
+
+============== iter  22 ================
+current matrix is 
+[[ 1.  1. -1. -1. -1.  0.  1.  1. -1.  1.  1.  0.  0.  1. -1.  0.  1.]
+ [ 0. -1. -1.  1.  1. -1. -1. -1. -1. -1.  1. -1. -1. -1.  1.  1. -1.]
+ [ 1.  1. -1.  1. -1.  1.  1. -1.  1.  1.  1. -1.  0. -1.  0. -1.  1.]
+ [ 0.  0.  0. -1.  0. -1.  1.  1.  1.  1.  1.  1.  1. -1.  0. -1. -1.]
+ [-1.  0.  1. -1.  1.  1.  0.  1. -1.  0. -1. -1. -1.  1.  1. -1.  1.]]
+positive and negative ratio
+Counter({1.0: 108, -1.0: 6})
+Counter({1.0: 108, -1.0: 31})
+Counter({-1.0: 139, 1.0: 6})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 108, 1.0: 37})
+Counter({-1.0: 52, 1.0: 21})
+Counter({1.0: 129, -1.0: 31})
+算法备注：
+1. 使用三进制生成的新的列没有经过去重复、去相反的判断
+2. 对unbalance的列使用近似KNN的算法调整
+3. 过程打印了非常多的log，用来分析算法效果
+4. 要添加修改的列数量站所有列数量的比例
+5. 要添加修改后的列的结果对比
+6. 只要簇中包含小类样本就会收录
+7. 修改决定每个簇是否要保留的条件：当簇中包含小类样本个数超过一半的时候就留下
+
+
+SVM classifier
+Time: 2019-01-10 14:47:52
+FS: variance_threshold
+Dataset： cleveland
+ECOC: SAT_ECOC DR
+Using KNN-Decoding
+base_M is
+[[-1.  1. -1. -1. -1.  1.]
+ [-1.  1.  1.  1.  1. -1.]
+ [ 1.  1.  1.  1. -1.  1.]
+ [ 1.  1. -1.  1. -1. -1.]
+ [-1. -1. -1. -1. -1.  1.]]
+
+
+============== iter  1 ================
+current matrix is 
+[-1. -1.  1.  1. -1.]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+pre label
+Counter({-1.0: 53, 1.0: 3})
+confusion matrix
+[[30  0  0  0  0]
+ [ 9  0  0  0  0]
+ [ 7  0  0  0  0]
+ [ 5  0  2  0  0]
+ [ 2  0  1  0  0]]
+row HD
+0
+col HD
+0
+cplx_class
+{0: None, 1: True, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+2
+new_column
+[[-1]
+ [ 1]
+ [-1]
+ [ 1]
+ [-1]]
+
+
+============== iter  2 ================
+current matrix is 
+[[-1. -1.]
+ [-1.  1.]
+ [ 1. -1.]
+ [ 1.  1.]
+ [-1. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 1  4  1  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.2 0.2 0.4 0. ]
+ [0.  0.  0.4 0.2 0.2]
+ [0.  0.  0.  0.2 0.2]
+ [0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0. 1.]
+ [0. 0.]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  1. -1. -1.]
+select_j_column
+[ 1.  1.  1.  1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [ 0]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [ 0]
+ [ 1]]
+small_class len :1,large_class len:2, small_class sample:6,large_class sample len:46
+extra_class: 2,extra_sample len: 114
+cluster len:2
+cluster contain small sample len:[0.05, 0.0]
+no one train sample is selected
+
+
+============== iter  3 ================
+current matrix is 
+[[-1. -1.  0.]
+ [-1.  1. -1.]
+ [ 1. -1. -1.]
+ [ 1.  1.  0.]
+ [-1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 1  4  1  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.4 0.4 0.4 0.2]
+ [0.  0.  0.4 0.4 0.4]
+ [0.  0.  0.  0.4 0.4]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.67 1.33]
+ [0.   0.   1.33]
+ [0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1. -1. -1. -1.]
+select_j_column
+[-1.  1.  1. -1. -1.]
+most_cplx_inx
+2
+new_column
+[[ 1]
+ [ 1]
+ [-1]
+ [ 1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 1]
+ [-1]
+ [ 1]
+ [ 1]]
+small_class len :1,large_class len:4, small_class sample:15,large_class sample len:151
+cluster len:1
+cluster contain small sample len:[0.09]
+no one train sample is selected
+
+
+============== iter  4 ================
+current matrix is 
+[[-1. -1.  0.  1.]
+ [-1.  1. -1.  1.]
+ [ 1. -1. -1. -1.]
+ [ 1.  1.  0.  1.]
+ [-1. -1.  1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 1  4  1  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.4 0.6 0.4 0.2]
+ [0.  0.  0.6 0.4 0.4]
+ [0.  0.  0.  0.6 0.6]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.5  1.   1.  ]
+ [0.   0.   1.   0.5 ]
+ [0.   0.   0.   0.75]
+ [0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  1. -1.  1.  1.]
+select_j_column
+[ 1.  1. -1.  1.  1.]
+most_cplx_inx
+2
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:15,large_class sample len:151
+cluster len:1
+cluster contain small sample len:[0.09]
+no one train sample is selected
+
+
+============== iter  5 ================
+current matrix is 
+[[-1. -1.  0.  1. -1.]
+ [-1.  1. -1.  1. -1.]
+ [ 1. -1. -1. -1.  1.]
+ [ 1.  1.  0.  1. -1.]
+ [-1. -1.  1.  1. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.4 0.8 0.4 0.2]
+ [0.  0.  0.8 0.4 0.4]
+ [0.  0.  0.  0.8 0.8]
+ [0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.4 0.8 0.8 0.2]
+ [0.  0.  0.8 0.4 0.6]
+ [0.  0.  0.  0.6 0.8]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[-1.  1.  1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[-1]
+ [ 1]
+ [ 0]
+ [ 1]
+ [-1]]
+
+
+============== iter  6 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1.]
+ [-1.  1. -1.  1. -1.  1.]
+ [ 1. -1. -1. -1.  1.  0.]
+ [ 1.  1.  0.  1. -1.  1.]
+ [-1. -1.  1.  1. -1. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+confusion matrix
+[[29  1  0  0  0]
+ [ 4  5  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.6 1.  0.6 0.2]
+ [0.  0.  1.  0.4 0.6]
+ [0.  0.  0.  1.  1. ]
+ [0.  0.  0.  0.  0.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.33 0.67 0.67 0.17 0.33]
+ [0.   0.   0.67 0.33 0.5  0.17]
+ [0.   0.   0.   0.5  0.67 0.83]
+ [0.   0.   0.   0.   0.83 0.5 ]
+ [0.   0.   0.   0.   0.   0.5 ]
+ [0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  0.  1. -1.]
+select_j_column
+[ 1.  1. -1.  1.  1.]
+most_cplx_inx
+3
+new_column
+[[-1]
+ [ 1]
+ [-1]
+ [ 1]
+ [-1]]
+
+
+============== iter  7 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.]
+ [-1.  1. -1.  1. -1.  1.  1.]
+ [ 1. -1. -1. -1.  1.  0. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.]
+ [-1. -1.  1.  1. -1. -1. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  0.8 1.  0.8 0.2]
+ [0.  0.  1.2 0.4 0.8]
+ [0.  0.  0.  1.2 1. ]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.29 0.57 0.57 0.14 0.29 0.29]
+ [0.   0.   0.57 0.29 0.43 0.14 0.  ]
+ [0.   0.   0.   0.43 0.57 0.71 0.57]
+ [0.   0.   0.   0.   0.71 0.43 0.29]
+ [0.   0.   0.   0.   0.   0.43 0.43]
+ [0.   0.   0.   0.   0.   0.   0.14]
+ [0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  1. -1. -1.]
+select_j_column
+[ 1.  1. -1.  1.  1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [ 0]
+ [-1]
+ [ 1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 0]
+ [-1]
+ [ 1]
+ [ 1]]
+small_class len :1,large_class len:3, small_class sample:15,large_class sample len:120
+extra_class: 1,extra_sample len: 31
+cluster len:4
+cluster contain small sample len:[0.42, 0.2, 0.18, 1.0]
+no one train sample is selected
+
+
+============== iter  8 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.  1.2 0.8 0.2]
+ [0.  0.  1.4 0.6 1. ]
+ [0.  0.  0.  1.4 1.2]
+ [0.  0.  0.  0.  1. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.25 0.5  0.5  0.12 0.25 0.25 0.5 ]
+ [0.   0.   0.5  0.25 0.38 0.12 0.   0.38]
+ [0.   0.   0.   0.38 0.5  0.62 0.5  0.38]
+ [0.   0.   0.   0.   0.62 0.38 0.25 0.12]
+ [0.   0.   0.   0.   0.   0.38 0.38 0.62]
+ [0.   0.   0.   0.   0.   0.   0.12 0.5 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.38]
+ [0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  1. -1. -1.]
+select_j_column
+[-1.  1. -1.  1. -1.]
+most_cplx_inx
+3
+new_column
+[[ 1]
+ [ 1]
+ [-1]
+ [-1]
+ [ 1]]
+
+
+============== iter  9 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.  1.4 1.  0.2]
+ [0.  0.  1.6 0.8 1. ]
+ [0.  0.  0.  1.4 1.4]
+ [0.  0.  0.  0.  1.2]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.22 0.44 0.44 0.11 0.22 0.22 0.44 0.56]
+ [0.   0.   0.44 0.22 0.33 0.11 0.   0.33 0.33]
+ [0.   0.   0.   0.33 0.44 0.56 0.44 0.33 0.33]
+ [0.   0.   0.   0.   0.56 0.33 0.22 0.11 0.11]
+ [0.   0.   0.   0.   0.   0.33 0.33 0.56 0.44]
+ [0.   0.   0.   0.   0.   0.   0.11 0.44 0.44]
+ [0.   0.   0.   0.   0.   0.   0.   0.33 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.22]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1. -1.  1. -1.  1.]
+select_j_column
+[ 1.  0. -1.  1.  1.]
+most_cplx_inx
+2
+new_column
+[[ 0]
+ [-1]
+ [-1]
+ [ 1]
+ [ 0]]
+
+
+============== iter  10 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.2 1.6 1.2 0.2]
+ [0.  0.  1.6 1.  1.2]
+ [0.  0.  0.  1.6 1.6]
+ [0.  0.  0.  0.  1.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.  0.2 0.4 0.4 0.1 0.2 0.2 0.4 0.5 0.3]
+ [0.  0.  0.4 0.2 0.3 0.1 0.  0.3 0.3 0.3]
+ [0.  0.  0.  0.3 0.4 0.5 0.4 0.3 0.3 0.2]
+ [0.  0.  0.  0.  0.5 0.3 0.2 0.1 0.1 0.3]
+ [0.  0.  0.  0.  0.  0.3 0.3 0.5 0.4 0.4]
+ [0.  0.  0.  0.  0.  0.  0.1 0.4 0.4 0.4]
+ [0.  0.  0.  0.  0.  0.  0.  0.3 0.3 0.3]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.2 0.3]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.4]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  1. -1. -1.  1.]
+select_j_column
+[-1.  1. -1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[-1]
+ [ 1]
+ [ 1]
+ [-1]
+ [-1]]
+
+
+============== iter  11 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+10 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.4 1.8 1.2 0.2]
+ [0.  0.  1.6 1.2 1.4]
+ [0.  0.  0.  1.8 1.8]
+ [0.  0.  0.  0.  1.4]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.18 0.36 0.36 0.09 0.18 0.18 0.36 0.45 0.27 0.18]
+ [0.   0.   0.36 0.18 0.27 0.09 0.   0.27 0.27 0.27 0.18]
+ [0.   0.   0.   0.27 0.36 0.45 0.36 0.27 0.27 0.18 0.45]
+ [0.   0.   0.   0.   0.45 0.27 0.18 0.09 0.09 0.27 0.36]
+ [0.   0.   0.   0.   0.   0.27 0.27 0.45 0.36 0.36 0.09]
+ [0.   0.   0.   0.   0.   0.   0.09 0.36 0.36 0.36 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.27 0.27 0.27 0.18]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.18 0.27 0.45]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.36 0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.45]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  1.  1.  1. -1.]
+select_j_column
+[-1. -1.  1. -1. -1.]
+most_cplx_inx
+3
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [ 1]]
+small_class len :2,large_class len:3, small_class sample:21,large_class sample len:145
+cluster len:1
+cluster contain small sample len:[0.13]
+no one train sample is selected
+
+
+============== iter  12 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1. -1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1. -1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.  1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1. -1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 145, 1.0: 21})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+10 classifiers pre label
+Counter({-1.0: 56})
+11 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.4 2.  1.2 0.4]
+ [0.  0.  1.8 1.2 1.6]
+ [0.  0.  0.  2.  1.8]
+ [0.  0.  0.  0.  1.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.17 0.33 0.33 0.08 0.17 0.17 0.33 0.42 0.25 0.17 0.17]
+ [0.   0.   0.33 0.17 0.25 0.08 0.   0.25 0.25 0.25 0.17 0.33]
+ [0.   0.   0.   0.25 0.33 0.42 0.33 0.25 0.25 0.17 0.42 0.25]
+ [0.   0.   0.   0.   0.42 0.25 0.17 0.08 0.08 0.25 0.33 0.33]
+ [0.   0.   0.   0.   0.   0.25 0.25 0.42 0.33 0.33 0.08 0.08]
+ [0.   0.   0.   0.   0.   0.   0.08 0.33 0.33 0.33 0.17 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.25 0.25 0.25 0.17 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.17 0.25 0.42 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.33 0.25 0.25]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.42 0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.17]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[ 1.  1.  1.  1. -1.]
+select_j_column
+[-1. -1.  1. -1.  1.]
+most_cplx_inx
+3
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+*======adjust_unbalance=======*
+new_column
+[[-1]
+ [-1]
+ [ 1]
+ [-1]
+ [-1]]
+small_class len :1,large_class len:4, small_class sample:15,large_class sample len:151
+cluster len:1
+cluster contain small sample len:[0.09]
+no one train sample is selected
+
+
+============== iter  13 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1. -1. -1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1. -1. -1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.  1.  1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1. -1. -1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.  1. -1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 151, 1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+10 classifiers pre label
+Counter({-1.0: 56})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({-1.0: 56})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.4 2.2 1.2 0.4]
+ [0.  0.  2.  1.2 1.6]
+ [0.  0.  0.  2.2 2. ]
+ [0.  0.  0.  0.  1.6]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.15 0.31 0.31 0.08 0.15 0.15 0.31 0.38 0.23 0.15 0.15 0.08]
+ [0.   0.   0.31 0.15 0.23 0.08 0.   0.23 0.23 0.23 0.15 0.31 0.23]
+ [0.   0.   0.   0.23 0.31 0.38 0.31 0.23 0.23 0.15 0.38 0.23 0.31]
+ [0.   0.   0.   0.   0.38 0.23 0.15 0.08 0.08 0.23 0.31 0.31 0.38]
+ [0.   0.   0.   0.   0.   0.23 0.23 0.38 0.31 0.31 0.08 0.08 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.08 0.31 0.31 0.31 0.15 0.31 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.23 0.23 0.23 0.15 0.31 0.23]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.15 0.23 0.38 0.31 0.38]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.31 0.23 0.23 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.38 0.31 0.31]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.15 0.08]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.08]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1. -1.  1. -1. -1.]
+select_j_column
+[-1.  1.  1.  1. -1.]
+most_cplx_inx
+4
+new_column
+[[ 1]
+ [ 0]
+ [-1]
+ [ 0]
+ [ 1]]
+*======adjust_unbalance=======*
+new_column
+[[ 1]
+ [ 0]
+ [-1]
+ [ 0]
+ [ 1]]
+small_class len :1,large_class len:2, small_class sample:15,large_class sample len:99
+extra_class: 2,extra_sample len: 52
+cluster len:1
+cluster contain small sample len:[0.22]
+no one train sample is selected
+
+
+============== iter  14 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1. -1. -1.  1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1. -1. -1.  0.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.  1.  1. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1. -1. -1.  0.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.  1. -1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 151, 1.0: 15})
+Counter({1.0: 99, -1.0: 15})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+10 classifiers pre label
+Counter({-1.0: 56})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({-1.0: 56})
+13 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.6 2.4 1.4 0.4]
+ [0.  0.  2.2 1.2 1.8]
+ [0.  0.  0.  2.4 2.2]
+ [0.  0.  0.  0.  1.8]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.14 0.29 0.29 0.07 0.14 0.14 0.29 0.36 0.21 0.14 0.14 0.07 0.36]
+ [0.   0.   0.29 0.14 0.21 0.07 0.   0.21 0.21 0.21 0.14 0.29 0.21 0.29]
+ [0.   0.   0.   0.21 0.29 0.36 0.29 0.21 0.21 0.14 0.36 0.21 0.29 0.14]
+ [0.   0.   0.   0.   0.36 0.21 0.14 0.07 0.07 0.21 0.29 0.29 0.36 0.14]
+ [0.   0.   0.   0.   0.   0.21 0.21 0.36 0.29 0.29 0.07 0.07 0.   0.36]
+ [0.   0.   0.   0.   0.   0.   0.07 0.29 0.29 0.29 0.14 0.29 0.21 0.36]
+ [0.   0.   0.   0.   0.   0.   0.   0.21 0.21 0.21 0.14 0.29 0.21 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.14 0.21 0.36 0.29 0.36 0.07]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.29 0.21 0.21 0.29 0.14]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.36 0.29 0.29 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.14 0.07 0.36]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.29]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.36]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1. -1.  1. -1.]
+select_j_column
+[-1.  1. -1.  1. -1.]
+most_cplx_inx
+3
+new_column
+[[ 1]
+ [-1]
+ [ 1]
+ [-1]
+ [ 1]]
+
+
+============== iter  15 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1. -1. -1.  1.  1.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1. -1. -1.  0. -1.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.  1.  1. -1.  1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1. -1. -1.  0. -1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.  1. -1.  1.  1.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 151, 1.0: 15})
+Counter({1.0: 99, -1.0: 15})
+Counter({1.0: 114, -1.0: 52})
+*======label=======*
+true label
+Counter({'0': 30, '1': 9, '3': 7, '2': 7, '4': 3})
+0 classifiers pre label
+Counter({-1.0: 53, 1.0: 3})
+1 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+2 classifiers pre label
+Counter({0.0: 40, -1.0: 16})
+3 classifiers pre label
+Counter({1.0: 56})
+4 classifiers pre label
+Counter({-1.0: 56})
+5 classifiers pre label
+Counter({-1.0: 35, 1.0: 17, 0.0: 4})
+6 classifiers pre label
+Counter({-1.0: 43, 1.0: 13})
+7 classifiers pre label
+Counter({1.0: 44, 0.0: 12})
+8 classifiers pre label
+Counter({1.0: 53, -1.0: 3})
+9 classifiers pre label
+Counter({0.0: 38, -1.0: 18})
+10 classifiers pre label
+Counter({-1.0: 56})
+11 classifiers pre label
+Counter({-1.0: 56})
+12 classifiers pre label
+Counter({-1.0: 56})
+13 classifiers pre label
+Counter({1.0: 42, 0.0: 14})
+14 classifiers pre label
+Counter({1.0: 43, -1.0: 13})
+confusion matrix
+[[29  1  0  0  0]
+ [ 6  3  0  0  0]
+ [ 6  1  0  0  0]
+ [ 2  4  0  1  0]
+ [ 0  2  0  1  0]]
+row HD
+[[0.  1.8 2.4 1.6 0.4]
+ [0.  0.  2.4 1.2 2. ]
+ [0.  0.  0.  2.6 2.2]
+ [0.  0.  0.  0.  2. ]
+ [0.  0.  0.  0.  0. ]]
+col HD
+[[0.   0.13 0.27 0.27 0.07 0.13 0.13 0.27 0.33 0.2  0.13 0.13 0.07 0.33
+  0.2 ]
+ [0.   0.   0.27 0.13 0.2  0.07 0.   0.2  0.2  0.2  0.13 0.27 0.2  0.27
+  0.33]
+ [0.   0.   0.   0.2  0.27 0.33 0.27 0.2  0.2  0.13 0.33 0.2  0.27 0.13
+  0.2 ]
+ [0.   0.   0.   0.   0.33 0.2  0.13 0.07 0.07 0.2  0.27 0.27 0.33 0.13
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.2  0.2  0.33 0.27 0.27 0.07 0.07 0.   0.33
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.07 0.27 0.27 0.27 0.13 0.27 0.2  0.33
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.2  0.2  0.2  0.13 0.27 0.2  0.27
+  0.33]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.13 0.2  0.33 0.27 0.33 0.07
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.27 0.2  0.2  0.27 0.13
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.33 0.27 0.27 0.27
+  0.27]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.13 0.07 0.33
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.07 0.27
+  0.07]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.33
+  0.13]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.2 ]
+ [0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+  0.  ]]
+cplx_class
+{0: None, 1: None, 2: True, 3: True, 4: True}
+select_i_column
+[-1.  1.  1. -1. -1.]
+select_j_column
+[ 1. -1.  1. -1.  1.]
+most_cplx_inx
+3
+new_column
+[[ 0]
+ [ 0]
+ [-1]
+ [ 1]
+ [ 0]]
+
+
+============== iter  16 ================
+current matrix is 
+[[-1. -1.  0.  1. -1. -1. -1.  1.  1.  0. -1. -1. -1.  1.  1.  0.]
+ [-1.  1. -1.  1. -1.  1.  1.  0.  1. -1.  1. -1. -1.  0. -1.  0.]
+ [ 1. -1. -1. -1.  1.  0. -1. -1. -1. -1.  1.  1.  1. -1.  1. -1.]
+ [ 1.  1.  0.  1. -1.  1.  1.  1. -1.  1. -1. -1. -1.  0. -1.  1.]
+ [-1. -1.  1.  1. -1. -1. -1.  1.  1.  0. -1.  1. -1.  1.  1.  0.]]
+positive and negative ratio
+Counter({-1.0: 130, 1.0: 36})
+Counter({-1.0: 114, 1.0: 52})
+Counter({-1.0: 46, 1.0: 6})
+Counter({1.0: 151, -1.0: 15})
+Counter({-1.0: 151, 1.0: 15})
+Counter({-1.0: 99, 1.0: 52})
+Counter({-1.0: 114, 1.0: 52})
+Counter({1.0: 120, -1.0: 15})
+Counter({1.0: 130, -1.0: 36})
+Counter({-1.0: 46, 1.0: 21})
+Counter({-1.0: 120, 1.0: 46})
+Counter({-1.0: 145, 1.0: 21})
+Counter({-1.0: 151, 1.0: 15})
+Counter({1.0: 99, -1.0: 15})
+Counter({1.0: 114, -1.0: 52})
+Counter({1.0: 21, -1.0: 15})

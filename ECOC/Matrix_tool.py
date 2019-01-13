@@ -64,6 +64,12 @@ def closet_vector(vector, matrix, distance=euclidean_distance, weights=None):
 
 
 def get_key(dictionary, value):
+    '''
+
+    :param dictionary: index array
+    :param value: label index
+    :return: the label (the row that the label belongs to)
+    '''
     for i in dictionary:
         if dictionary[i] == value:
             return i

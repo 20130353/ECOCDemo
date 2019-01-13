@@ -21,7 +21,7 @@ import logging
 import copy
 import math
 from collections import Counter
-
+from sklearn.cluster import AffinityPropagation, MeanShift, estimate_bandwidth, DBSCAN,Birch
 
 from sklearn.metrics import confusion_matrix
 import numpy as np
@@ -748,7 +748,7 @@ class Temp_Class(__BaseECOC):
         return self._matrix
 
     @matrix.setter
-    def matrix(self,matrix):
+    def matrix(self, matrix):
         self._matrix = matrix
 
     def fit(self, data, label, **estimator_param):
@@ -763,7 +763,6 @@ class Temp_Class(__BaseECOC):
         self.train_data = data
         self.train_label = label
         self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
-
 
         logging.info('positive and negative ratio')
         try:
@@ -790,7 +789,109 @@ class Self_Adaption_ECOC(__BaseECOC):
         self.base_M = base_M
         self.create_method = create_method
 
+    def check_pos_neg_len(self,new_column):
+
+        pos_len,neg_len = 0,0
+        for i in range(len(new_column)):
+            d = self.train_data[self.train_label == MT.get_key(self.index, i)]
+            l = self.train_label[self.train_label == MT.get_key(self.index, i)]
+            if new_column[i] == 1:
+                pos_len += len(d)
+            elif new_column[i] == -1:
+                neg_len += len(d)
+
+        return float(pos_len)/neg_len
+
+    def adjust_unbalance(self, small_cls, large_cls, extra_cls, small_data, large_data, extra_data, small_label,
+                         large_label, extra_label, new_column):
+
+        logging.info('*======adjust_unbalance=======*')
+
+        # 用small class 和 extra class的数据拟合
+        if extra_data is None or len(extra_data) == 0:
+            AP_train_label = np.concatenate((small_label, large_label), axis=0)
+            AP_train_data = np.concatenate((small_data, large_data), axis=0)
+        else:
+            AP_train_label = np.concatenate((small_label, extra_label), axis=0)
+            AP_train_data = np.concatenate((small_data, extra_data), axis=0)
+
+        # AP = AffinityPropagation().fit(AP_train_data)  # AP 算法拟合数据
+        # bandwidth = estimate_bandwidth(AP_train_data, quantile=0.05) Mean shitf 算法拟合数据
+        # AP = MeanShift(bandwidth=bandwidth, bin_seeding=True).fit(AP_train_data)
+
+        # AP = DBSCAN(eps=3, min_samples=2).fit(AP_train_data)
+        AP = Birch().fit(AP_train_data)
+        # 找到所有合适的簇，同时选中簇包含的样本
+        train_members = [False for _ in range(len(AP_train_data))]
+        cluster_label = AP.labels_
+        n_cluster = len(np.unique(cluster_label))
+
+        small_cls_sample_dict = {}
+        small_cls_sample_len_dict = {}
+        for k in range(n_cluster):
+            class_members = cluster_label == k
+            counter = Counter(AP_train_label[class_members])  # 找到一个簇中样本的label的个数
+            small_cls_sample_len = sum([counter[MT.get_key(self.index, inx)] for inx in small_cls])
+            small_cls_sample_len_dict[k] = round(float(small_cls_sample_len) / sum(class_members), 2)  # 计算每个簇中小类样本的比例
+            small_cls_sample_dict[k] = class_members
+
+        small_cls_sample_len_dict = sorted(small_cls_sample_len_dict.items(), key=lambda x: x[1]) # 排序之后的数据类型是ｔｕｐｌｅ
+        small_cls_sample_len_dict.reverse()
+        for key, value in small_cls_sample_len_dict: # 如果小类样本不够大类样本的一般的话就继续添加
+            if sum(train_members)== 0 or float(len(large_data))/sum(train_members) >= 2:
+                train_members = list(train_members) and list(small_cls_sample_dict[key])
+            else:
+                break
+
+            # *===================  logging   ==============================
+        logging.info('new_column')
+        logging.info(new_column)
+        logging.info(
+            'small_class len :%d,large_class len:%d, small_class sample:%d,large_class sample len:%d'
+            % (len(small_cls), len(large_cls), len(small_data), len(large_data)))
+
+        if extra_cls is not None and extra_data is not None:
+            logging.info('extra_class: %d,extra_sample len: %d' % (len(extra_cls), len(extra_data)))
+
+        logging.info('cluster len:%d' % (n_cluster))
+        logging.info('cluster contain small sample len:' + str(small_cls_sample_len_dict))
+        # *===================  logging   ==============================
+
+        if sum(train_members) == 0:
+            logging.info('no one train sample is selected')
+            return new_column
+
+        sel_train_data = AP_train_data[train_members]
+        sel_train_label = AP_train_label[train_members]
+        sel_cls = np.unique(sel_train_label)
+
+        # 构造正负类的样本标签,预测验证集的数据，判断
+        pos_label = [1 for _ in range(len(large_data))]
+        neg_label = [-1 for _ in range(len(sel_train_data))]
+
+        model = self.estimator().fit(np.concatenate((large_data, sel_train_data), axis=0),
+                                     np.concatenate((pos_label, neg_label), axis=0))
+
+        logging.info('before change column:\t' + str([each[0] for each in new_column]))
+
+        small_cls_label = [MT.get_key(self.index, each) for each in small_cls]
+        temp_label = model.predict(self.val_data)
+        for k in sel_cls:
+            pos_neg_ratio = self.check_pos_neg_len(new_column)
+            if  pos_neg_ratio <= 2 or (pos_neg_ratio >= 0.2 and pos_neg_ratio <=1): # 如果正负类样本个数差不多就停止
+                    break
+            if k not in small_cls_label:  # 只能修改不是小类的样本
+                class_members = self.val_label == k
+                majority_label = list(Counter(temp_label[class_members])).pop()
+                if majority_label == new_column[small_cls[0]]:  # 只有将类别改成和小类一样的话，才允许修改
+                    new_column[self.index[k]] = majority_label  # 这边会修改原先可能为+1，,1，0的值
+
+        logging.info('after change column:\t' + str([each[0] for each in new_column]))
+
+        return new_column
+
     def create_matrix(self):
+
         matrix_pool = copy.deepcopy(self.base_M)
         rand_column = random.randint(0, matrix_pool.shape[1] - 1)
         res_matrix = self.base_M[:, rand_column]
@@ -801,8 +902,7 @@ class Self_Adaption_ECOC(__BaseECOC):
         from ECOCDemo.Common import Evaluation_tool
 
         count = 0
-        efficient_count = 0
-        pre_class_acc = None
+        change_count = 0
         while True:
             count += 1
             logging.info('\n\n============== iter  %d ================' % count)
@@ -815,7 +915,8 @@ class Self_Adaption_ECOC(__BaseECOC):
             pred_label = temp_class.predict(self.val_data)
             cfus_matrix = confusion_matrix(self.val_label, pred_label)
 
-
+            # ==============================logging============================*
+            #
             logging.info('*======label=======*')
             logging.info('true label')
             logging.info(Counter(self.val_label))
@@ -829,13 +930,13 @@ class Self_Adaption_ECOC(__BaseECOC):
             else:
                 for i in range(col_len):
                     temp_label = [row[i] for row in temp_class.predicted_vector]
-                    logging.info('%d classifiers pre label' %i)
+                    logging.info('%d classifiers pre label' % i)
                     logging.info(Counter(temp_label))
 
             logging.info('confusion matrix')
             logging.info(cfus_matrix)
 
-            Eva = Evaluation_tool.Evaluation(self.val_label,pred_label)
+            Eva = Evaluation_tool.Evaluation(self.val_label, pred_label)
             row_HD = Eva.row_HD(res_matrix)
             col_HD = Eva.col_HD(res_matrix)
 
@@ -844,30 +945,18 @@ class Self_Adaption_ECOC(__BaseECOC):
 
             logging.info('col HD')
             logging.info(col_HD)
+            #
+            # ==============================logging============================*
 
             cplx_class = {}.fromkeys(self.rows.keys())
             total_cplx_class_num = 0
             class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
 
-            if pre_class_acc is None:
-                pre_class_acc = sum(class_acc)
-            else:
-                if sum(class_acc) <= pre_class_acc:
-                    efficient_count += 1
-                else:
-                    pre_class_acc = sum(class_acc)
-                    efficient_count = 0
-
             average_class_acc = np.mean(class_acc)
             threhold = average_class_acc - average_class_acc * 0.1
-            # most_cplx_class_inx, most_cplx_class_value= -1,-0xfffffff
             for i in range(len(class_acc)):
                 if class_acc[i] <= threhold:
                     cplx_class[i] = True
-                    # if threhold - class_acc[i] > most_cplx_class_value:
-                    #     most_cplx_class_value = threhold - class_acc[i]
-                    #     most_cplx_class_inx = i
-
                     total_cplx_class_num += 1
 
             logging.info('cplx_class')
@@ -884,31 +973,6 @@ class Self_Adaption_ECOC(__BaseECOC):
                 logging.info('average_class_acc >= 0.8')
                 break
 
-            # confusion matrix 连续三次没有变化或者变差的时候就停止继续生成新的列，ba复杂的类和数量相近的类拼接起来形成列
-            if efficient_count == 3:
-                logging.info('efficient_count == 3')
-                close_class_map = {}.fromkeys([key for key, value in cplx_class.items() if value is True])
-                each_cls_data_len = Counter(self.val_label)
-                for key, value in close_class_map.items():
-                    cls_len = each_cls_data_len[str(key)]
-                    colse_cls, close_class_gap = None, 0xffffff
-                    for each in each_cls_data_len:
-                        if str(key)!= each and abs(each_cls_data_len[each] - cls_len) < close_class_gap:
-                            colse_cls = each
-                            close_class_gap = abs(each_cls_data_len[each] - cls_len)
-                    close_class_map[key] = colse_cls
-
-                for key,value in close_class_map.items():
-                    new_column = np.zeros((len(self.index), 1))
-                    new_column[key] = 1
-                    new_column[self.index[value]] = -1
-                    if new_column is not None:
-                        try:
-                            res_matrix = np.hstack([res_matrix, new_column])
-                        except ValueError:
-                            res_matrix = np.hstack([[[each] for each in res_matrix], new_column])
-                break
-
             # 如果达到normal的数量
             try:
                 column_len = res_matrix.shape[1]
@@ -917,7 +981,6 @@ class Self_Adaption_ECOC(__BaseECOC):
             if column_len >= 10 * math.log(len(self.index)):
                 logging.info('column_len >= 10*math.log(len(self.index))')
                 break
-
 
             # =======    挑选包含复杂类的两列        ============================================================
 
@@ -981,12 +1044,69 @@ class Self_Adaption_ECOC(__BaseECOC):
             logging.info('most_cplx_inx')
             logging.info(most_cplx_class_inx)
 
-
             new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
                                                      self.train_label, self.create_method, self.dc_option, res_matrix,
                                                      most_cplx_class_inx)
             logging.info('new_column')
             logging.info(new_column)
+
+            # ================  解决unbalance问题        ======================================
+            #
+            if new_column is not None:
+                pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data, pos_label, neg_label, extra_label = [], [], [], None, None, None, None, None, None
+                for i in range(len(new_column)):
+                    d = self.train_data[self.train_label == MT.get_key(self.index, i)]
+                    l = self.train_label[self.train_label == MT.get_key(self.index, i)]
+                    if new_column[i] == 1:
+                        pos_cls.append(i)
+                        if pos_data is None:
+                            pos_data = copy.deepcopy(d)
+                            pos_label = copy.deepcopy(l)
+                        else:
+                            pos_data = np.concatenate((pos_data, d), axis=0)
+                            pos_label = np.concatenate((pos_label, l), axis=0)
+                    elif new_column[i] == -1:
+                        neg_cls.append(i)
+                        if neg_data is None:
+                            neg_data = copy.deepcopy(d)
+                            neg_label = copy.deepcopy(l)
+                        else:
+                            neg_data = np.concatenate((neg_data, d), axis=0)
+                            neg_label = np.concatenate((neg_label, l), axis=0)
+                    else:
+                        extra_cls.append(i)
+                        if extra_data is None:
+                            extra_data = copy.deepcopy(d)
+                            extra_label = copy.deepcopy(l)
+                        else:
+                            extra_data = np.concatenate((extra_data, d), axis=0)
+                            extra_label = np.concatenate((extra_label, l), axis=0)
+
+                new_column_back = copy.deepcopy(new_column)
+
+                logging.info('pos vs. neg: %s, %s' %(str(len(pos_data) / float(len(neg_data))),len(neg_data) / float(len(pos_data))))
+
+                if len(pos_data) / float(len(neg_data)) >= 3:  # 小类，大类，额外类
+                    new_column = self.adjust_unbalance(neg_cls, pos_cls, extra_cls, neg_data, pos_data, extra_data,
+                                                       neg_label, pos_label, extra_label, new_column)
+                elif (len(neg_data) / float(len(pos_data)) >= 3):
+                    new_column = self.adjust_unbalance(pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data,
+                                                       pos_label, neg_label, extra_label, new_column)
+                if (new_column != new_column_back).any():
+                    change_count += 1
+                    _, lab = MT.get_data_from_col(self.train_data, self.train_label, new_column_back, self.index)
+                    logging.info('before change, the sample len:\t' + str(Counter(lab)))
+                    _, lab = MT.get_data_from_col(self.train_data, self.train_label, new_column, self.index)
+                    logging.info('after change, the sample len:\t' + str(Counter(lab)))
+                    pos_column = [[1] for _ in new_column]
+                    neg_column = [[-1] for _ in new_column]
+                    if (new_column == pos_column).all() or (new_column == neg_column).all():
+                        logging.info('changed new column only has one class')
+                        new_column = None
+                else:
+                    logging.info('change no bit!')
+
+            # ================  解决unbalance问题        ======================================
 
             if new_column is not None:
                 try:
@@ -996,12 +1116,16 @@ class Self_Adaption_ECOC(__BaseECOC):
 
                 matrix_pool = np.hstack([matrix_pool, new_column])
 
+        # ==============================logging============================*
+        #
+        logging.info('change ratio is:\t' + str(float(change_count) / float(count)))
+
         temp_class = Temp_Class()
         temp_class.matrix = res_matrix
         temp_class.fit(self.train_data, self.train_label)
         pred_label = temp_class.predict(self.val_data)
         Eva = Evaluation_tool.Evaluation(self.val_label, pred_label)
-        classifier_acc = Eva.evaluate_classifier_accuracy(res_matrix,temp_class.predicted_vector,self.val_label)
+        classifier_acc = Eva.evaluate_classifier_accuracy(res_matrix, temp_class.predicted_vector, self.val_label,self.index)
 
         logging.info('\n**********      classifier acc  **************')
         logging.info(classifier_acc)
@@ -1022,11 +1146,12 @@ class Self_Adaption_ECOC(__BaseECOC):
 
         logging.info("cutting matrix's confusion matrix")
         logging.info(cfus_matrix)
+        #
+        # ==============================logging============================*
 
         return final_matrix
 
-
-    def cut_columns(self,matrix):
+    def cut_columns(self, matrix):
 
         data_len = len(self.val_label)
         try:
@@ -1043,7 +1168,7 @@ class Self_Adaption_ECOC(__BaseECOC):
             clsfer_pred_label = temp_class.predicted_vector
             clsfer_acc_ratio = []
             for i in range(matrix.shape[1]):
-                i_column = matrix[:,i]
+                i_column = matrix[:, i]
                 column_true_label = []
                 for j in range(data_len):
                     if i_column[self.index[self.val_label[j]]] == 1:
@@ -1053,18 +1178,19 @@ class Self_Adaption_ECOC(__BaseECOC):
                     else:
                         column_true_label.append(0)
                 pre_label = [row[i] for row in clsfer_pred_label]
-                clsfer_acc_ratio.append(sum(list(map(lambda a,b:1 if a==b else 0,pre_label,column_true_label)))/float(data_len))
+                clsfer_acc_ratio.append(
+                    sum(list(map(lambda a, b: 1 if a == b else 0, pre_label, column_true_label))) / float(data_len))
 
             # 找到准确率较小的分类器的位置
             try:
-                weak_clsfer_inx = [inx for inx,each in enumerate(clsfer_acc_ratio) if each < np.mean(clsfer_acc_ratio)]
+                weak_clsfer_inx = [inx for inx, each in enumerate(clsfer_acc_ratio) if each < np.mean(clsfer_acc_ratio)]
             except IndexError:
                 # 每个分类器的准确率都很高，weak_clsfer的数量为0
                 return matrix
             else:
                 while len(weak_clsfer_inx) > 0:
                     inx = weak_clsfer_inx.pop(0)
-                    i_column = matrix[:,inx]
+                    i_column = matrix[:, inx]
                     left_matrix = matrix[:, :inx]
                     right_matrix = matrix[:, inx + 1:]
                     if left_matrix.size == 0:
@@ -1082,22 +1208,25 @@ class Self_Adaption_ECOC(__BaseECOC):
                     temp_class.matrix = matrix
                     temp_class.fit(self.train_data, self.train_label)
                     whole_pre_label = temp_class.predict(self.val_data)
-                    whole_wrong_ratio = sum([1 for inx in range(data_len) if whole_pre_label[inx] != self.val_label[inx]])/float(data_len)
+                    whole_wrong_ratio = sum(
+                        [1 for inx in range(data_len) if whole_pre_label[inx] != self.val_label[inx]]) / float(data_len)
 
                     temp_class.matrix = sub_matrix
                     temp_class.fit(self.train_data, self.train_label)
                     sub_pre_label = temp_class.predict(self.val_data)
-                    sub_wrong_inx = [inx for inx in range(len(sub_pre_label)) if sub_pre_label[inx] != self.val_label[inx]]
+                    sub_wrong_inx = [inx for inx in range(len(sub_pre_label)) if
+                                     sub_pre_label[inx] != self.val_label[inx]]
 
                     temp_class.matrix = i_column
                     temp_class.fit(self.train_data, self.train_label)
                     column_pre_label = temp_class.predict(self.val_data)
-                    column_wrong_inx = [inx for inx in range(len(column_pre_label)) if column_pre_label[inx] != self.val_label[inx]]
+                    column_wrong_inx = [inx for inx in range(len(column_pre_label)) if
+                                        column_pre_label[inx] != self.val_label[inx]]
 
-                    column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx))/len(set(sub_wrong_inx))
-                    if column_ctrbuton < 0.01 or len(sub_wrong_inx)/float(data_len) <= whole_wrong_ratio:
+                    column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx)) / len(set(sub_wrong_inx))
+                    if column_ctrbuton < 0.01 or len(sub_wrong_inx) / float(data_len) <= whole_wrong_ratio:
                         matrix = sub_matrix
-                        weak_clsfer_inx = [each-1 for each in weak_clsfer_inx]
+                        weak_clsfer_inx = [each - 1 for each in weak_clsfer_inx]
         return matrix
 
     def fit(self, train_data, train_label, val_data, val_label, **param):

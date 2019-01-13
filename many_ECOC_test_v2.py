@@ -83,7 +83,7 @@ def fun(count):
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
-    selected_dataname = UCI_dataname[:3]
+    selected_dataname = UCI_dataname
     ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_fs_name = fs_name[:3]
@@ -100,12 +100,28 @@ def fun(count):
                             format=LOG_FORMAT)
 
         logging.info('算法备注：')
-        logging.info('连续三次没有变化或者变差的时候就停止继续生成新的列，把复杂的类和数量相近的类拼接起来形成列，最后形成的全部的矩阵送入剪枝')
+        logging.info('1. 使用三进制生成的新的列没有经过去重复、去相反的判断')
+        logging.info('2. 对unbalance的列使用近似KNN的算法调整')
+        logging.info('3. 过程打印了非常多的log，用来分析算法效果')
+        logging.info('4. 要添加修改的列数量站所有列数量的比例')
+        logging.info('5. 要添加修改后的列的结果对比')
+        logging.info('6. 只要簇中包含小类样本就会收录')
+        logging.info('7. 修改决定每个簇是否要保留的条件：当簇中包含小类样本个数超过一半的时候就留下')
+        logging.info('8. 使用Birch来聚类')
+        logging.info('9. 添加小类样本限制')
+        logging.info('10. 防止小类样本完全霸占整个类')
+        logging.info('11. 生成过程中添加了去重复去掉相反的无用处理')
+        logging.info('全面测试算法效果！')
+
 
         # save evaluation varibles
         data_acc, data_simacc, data_precision, data_specifity, data_sensitivity, data_cls_acc, data_Fscore = [], [], [], [], [], [], []
 
         for i in range(len(selected_dataname)):
+
+            if i == 0:
+                continue
+
 
             train_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_train.csv'
             test_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_test.csv'
@@ -202,5 +218,11 @@ def fun(count):
 
 
 if __name__ == '__main__':
-    for each in range(25):
+
+    import warnings
+    warnings.filterwarnings('ignore')
+
+    for each in range(25,26):
         fun(each)
+
+    # bandwidth=3.063224

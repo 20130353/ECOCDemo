@@ -195,8 +195,8 @@ def ternary_DC(left, right, data, label, evaluation_option, matrix, cplx_class_i
     for each in ternary_res:
         class_label = np.unique(ternary_res[each])
         if 1 in class_label and -1 in class_label \
-                and MT.have_same_col(ternary_res[each], matrix) == False \
-                and MT.have_contrast_col(ternary_res[each], matrix) == False:
+                and MT.have_same_col(ternary_res[each],matrix) == False\
+                and MT.have_contrast_col(ternary_res[each],matrix) == False:
 
             if cplx_class_inx == -1 or ternary_res[each][cplx_class_inx] == 0:
                 pass

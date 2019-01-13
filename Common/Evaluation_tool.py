@@ -8,7 +8,6 @@ import numpy as np
 import logging
 from sklearn.metrics import confusion_matrix
 
-
 class Evaluation:
     def __init__(self, true_labels, pre_labels):
         self.true_labels = true_labels
@@ -245,31 +244,24 @@ class Evaluation:
 
         return np.mean(total_dis)
 
-    def evaluate_classifier_accuracy(self, matrix, predicted_vector, true_label):
-        class_index = np.unique(true_label)
+    def evaluate_classifier_accuracy(self, matrix, predicted_vector, true_label,index):
+
         accuracy = []
-        for i in range(matrix.shape[1]):
-            pre_label = [row[i] for row in predicted_vector]
+
+        try:
+            cols_len = matrix.shape[1]
+        except IndexError:
+            pre_label = [row[0] for row in predicted_vector]
 
             # find class1 and class2
-            c1 = matrix[:, i]
-            class1 = []
-            class2 = []
-            for j in range(len(c1)):
-                if c1[j] == 1:
-                    class1.append(class_index[j])
-                elif c1[j] == -1:
-                    class2.append(class_index[j])
-
-            # constructed 1,-1 label vector
-            temp_label = []  # construted ture label
+            temp_true_label = []  # construted ture label
             temp_sample_inx = []
             for i, each in enumerate(true_label):
-                if each in class1:
-                    temp_label.append(1)
+                if matrix[index[each]] == 1:
+                    temp_true_label.append(1)
                     temp_sample_inx.append(i)
-                elif each in class2:
-                    temp_label.append(-1)
+                elif matrix[index[each]] == -1:
+                    temp_true_label.append(-1)
                     temp_sample_inx.append(i)
 
             # constructed predicted vector
@@ -277,10 +269,32 @@ class Evaluation:
             for i in temp_sample_inx:
                 temp_predicted_label.append(pre_label[i])
 
-            right_num = np.sum([1 for i in range(len(temp_label)) if temp_predicted_label[i] == temp_label[i]])
-            acc = right_num / float(len(temp_label))
+            right_num = np.sum([1 for i in range(len(temp_true_label)) if temp_predicted_label[i] == temp_true_label[i]])
+            acc = right_num / float(len(temp_true_label))
             accuracy.append(round(acc, 3))
+        else:
+            for j in range(matrix.shape[1]):
+                pre_label = [row[0] for row in predicted_vector]
 
+                # find class1 and class2
+                temp_true_label = []  # construted ture label
+                temp_sample_inx = []
+                for i, each in enumerate(true_label):
+                    if matrix[index[each]][j] == 1:
+                        temp_true_label.append(1)
+                        temp_sample_inx.append(i)
+                    elif matrix[index[each]][j] == -1:
+                        temp_true_label.append(-1)
+                        temp_sample_inx.append(i)
+
+                # constructed predicted vector
+                temp_predicted_label = []  # part predicted label
+                for i in temp_sample_inx:
+                    temp_predicted_label.append(pre_label[i])
+
+                right_num = np.sum([1 for i in range(len(temp_true_label)) if temp_predicted_label[i] == temp_true_label[i]])
+                acc = right_num / float(len(temp_true_label))
+                accuracy.append(round(acc, 3))
         return accuracy
 
     def row_HD(self, matrix):

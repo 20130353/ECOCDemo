@@ -11,24 +11,16 @@ from ECOCDemo.Common.Read_Write_tool import read_UCI_Dataset
 from ECOCDemo.Common.Read_Write_tool import write_FS_data
 from ECOCDemo.FS.DC_Feature_selection import FS_selection
 import os
-
-from sklearn.preprocessing import MinMaxScaler
 from collections import Counter
+import numpy as np
+from ECOCDemo.ECOC import Matrix_tool as MT
+from sklearn.cluster import AffinityPropagation
+from sklearn import metrics
+from sklearn.datasets.samples_generator import make_blobs
 
-cplx_class = {'a': True, 'b': False, 'c': True}
-
-
-close_class_map = {}.fromkeys([key for key, value in cplx_class.items() if value is True])
-each_cls_data_len = Counter(['a', 'b', 'a', 'b', 'c'])
-for key, value in close_class_map.items():
-    cls_len = each_cls_data_len[key]
-    colse_cls, close_class_gap = None, 0xffffff
-    for each in each_cls_data_len:
-        if key != each and abs(each_cls_data_len[each] - cls_len) < close_class_gap:
-            colse_cls = each
-            close_class_gap = abs(each_cls_data_len[each] - cls_len)
-    close_class_map[key] = colse_cls
-print(close_class_map)
-
-cplx_class = {'1':'a','2':'b','3':'c'}
-print(list(cplx_class.values()).index('c'))
+dict = {'a':1,'b':3,'c':4}
+sorted_ = sorted(dict.items(),key=lambda x:x[1])
+sorted_.reverse()
+print(sorted_)
+for each in sorted_:
+    print(each[0],each[1])
