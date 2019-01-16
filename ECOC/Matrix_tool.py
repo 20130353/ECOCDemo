@@ -108,8 +108,8 @@ def exist_same_col(matrix):
 def is_same_col(col1, col2):
     for each in zip(col1, col2):
         if each[0] == each[1]:
-            return True
-    return False
+            return False
+    return True
 
 
 def shuffle_matrix(matrix):

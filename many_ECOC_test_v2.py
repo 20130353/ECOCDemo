@@ -68,8 +68,8 @@ def fun(count):
     microarray_dataname = ['Breast', 'Cancers', 'DLBCL', 'GCM', 'Leukemia1', 'Leukemia2', 'Lung1', 'SRBCT']
 
     UCI_dataname = ['cleveland', 'dermatology', 'led7digit' \
-        , 'led24digit', 'letter', 'satimage', 'segment' \
-        , 'vehicle', 'vowel', 'yeast']
+        , 'led24digit', 'satimage', 'segment' \
+        , 'vehicle', 'vowel', 'yeast','letter']
 
     other_ECOC = ['OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC' \
         , 'D_ECOC', 'DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC F3', 'DC_ECOC N2', 'DC_ECOC N3', 'DC_ECOC Cluster']
@@ -83,7 +83,7 @@ def fun(count):
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
-    selected_dataname = UCI_dataname
+    selected_dataname = UCI_dataname[:3]
     ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_fs_name = fs_name[:3]
@@ -111,17 +111,14 @@ def fun(count):
         logging.info('9. 添加小类样本限制')
         logging.info('10. 防止小类样本完全霸占整个类')
         logging.info('11. 生成过程中添加了去重复去掉相反的无用处理')
-        logging.info('全面测试算法效果！')
+        logging.info('12. 生成matrix的过程添加了至少要生产logN个column的条件限制')
+        logging.info('13. 将大类样本下采样')
 
 
         # save evaluation varibles
         data_acc, data_simacc, data_precision, data_specifity, data_sensitivity, data_cls_acc, data_Fscore = [], [], [], [], [], [], []
 
         for i in range(len(selected_dataname)):
-
-            if i == 0:
-                continue
-
 
             train_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_train.csv'
             test_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_test.csv'
@@ -222,7 +219,7 @@ if __name__ == '__main__':
     import warnings
     warnings.filterwarnings('ignore')
 
-    for each in range(25,26):
+    for each in range(28,29):
         fun(each)
 
     # bandwidth=3.063224

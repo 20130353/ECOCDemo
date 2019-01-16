@@ -21,7 +21,7 @@ import logging
 import copy
 import math
 from collections import Counter
-from sklearn.cluster import AffinityPropagation, MeanShift, estimate_bandwidth, DBSCAN,Birch
+from sklearn.cluster import AffinityPropagation, MeanShift, estimate_bandwidth, DBSCAN, Birch
 
 from sklearn.metrics import confusion_matrix
 import numpy as np
@@ -41,6 +41,7 @@ from ECOCDemo.ECOC.Distance import *
 from ECOCDemo.ECOC.SFFS import sffs
 from ECOCDemo.ECOC import Greedy_Search
 from ECOCDemo.Common.Evaluation_tool import Evaluation
+from ECOCDemo.ECOC.Greedy_Search import get_DC_value
 
 __all__ = ['Self_Adaption_ECOC', 'OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC', 'D_ECOC',
            'AGG_ECOC', 'CL_ECOC', 'DC_ECOC']
@@ -609,129 +610,6 @@ class DC_ECOC(__BaseECOC):
             self.predictors.append(estimator)
 
 
-# 注释日期： 2018.12.28
-# 注释内容：因为要修改confusion matrix来保证效果，所以封存这份代码
-# class Self_Adaption_ECOC(__BaseECOC):
-#     """
-#     self adaption ECOC:many DC ecoc merge and form new ECOC by ternary conpution
-#     """
-#
-#     def __init__(self, base_M=None, create_method='DC', evaluation_option='F1', distance_measure=euclidean_distance,
-#                  base_estimator=svm.SVC):
-#         """
-#
-#         :param base_M: candidated columns for select
-#                         default is None
-#
-#         :param create_method: the way to create new column;
-#                 candidates: '+','-','*','/','DC'
-#                 default is 'DC'
-#
-#
-#         :param evaluation_option: the evaluation function for making decision of the bset column of various columns which are created by the ternary_option
-#                                     default is F1 measure
-#
-#         :param distance_measure: a callable object to define the way to calculate the distance between predicted vector
-#                                     and true vector
-#
-#         :param base_estimator: a class with fit and predict method, which define the base classifier for ECOC
-#
-#         """
-#
-#         super(Self_Adaption_ECOC, self).__init__()
-#         self.base_M = base_M
-#         self.create_method = create_method
-#         self.evaluation_option = evaluation_option
-#
-#     def create_matrix(self, data, label):
-#
-#         index = {l: i for i, l in enumerate(np.unique(label))}
-#
-#         if self.base_M is None:
-#             raise ValueError('ERROR: Self_Adaption_ECOCs base matrix is None!')
-#         # copy
-#         # Step1. select fitable columns
-#         selected_M = MT.select_column(self.base_M, data, label, len(index))
-#         copy_selected_M = copy.deepcopy(selected_M)
-#
-#         # Step2. create new columns
-#         GPM = copy.deepcopy(selected_M)
-#         while (selected_M.shape[1] != 0):
-#             if selected_M.shape[1] == 1:
-#                 GPM = np.c_[GPM, selected_M]
-#                 break
-#
-#             elif selected_M.shape[1] == 2 or selected_M.shape[1] == 3:
-#                 left_node, right_node, selected_M = MT.get_2column(selected_M)
-#                 parent_node = MT.left_right_create_parent(left_node, right_node, data, label, self.create_method,
-#                                                           self.evaluation_option)
-#                 selected_M = np.hstack((selected_M, parent_node))
-#
-#                 GPM = MT.insert_2column(GPM, left_node, right_node)
-#
-#             elif selected_M.shape[1] >= 4:
-#                 left_left_node, left_right_node, selected_M = MT.get_2column(
-#                     selected_M)  # get left column, right column, new matrix
-#                 left_parent_node = MT.left_right_create_parent(left_left_node, left_right_node, data, label,
-#                                                                self.create_method,
-#                                                                self.evaluation_option)
-#                 GPM = MT.insert_2column(GPM, left_left_node, left_right_node)
-#
-#                 right_left_node, right_right_node, selected_M = MT.get_2column(selected_M)
-#                 right_parent_node = MT.left_right_create_parent(right_left_node, right_right_node, data, label,
-#                                                                 self.create_method,
-#                                                                 self.evaluation_option)
-#                 GPM = MT.insert_2column(GPM, right_left_node, right_right_node)
-#
-#                 selected_M = np.hstack((selected_M, left_parent_node, right_parent_node))
-#
-#         no_reversed_M = MT.remove_reverse(GPM)  # delete reverse column and row
-#         no_dpt_M = MT.remove_duplicate_column(no_reversed_M)  # delete identical column
-#         no_unfit_M = MT.remove_unfit(no_dpt_M)  # delete column that does not contain +1 and -1
-#
-#         print('=============   create_matrix    =========================')
-#         print('select_matrix_num:%d,no_reversed_M_num:%d,no_duplicate_M_num:%d,no_unfit_num:%d' % (
-#             len(selected_M[0]), len(no_reversed_M), len(no_dpt_M), len(no_unfit_M)))
-#         print('select_matrix:\n', copy_selected_M)
-#         print('no_reversed_matrix:\n', no_reversed_M)
-#         print('no_duplicate_matrix:\n', no_dpt_M)
-#         print('no_unfit:\n', no_dpt_M)
-#
-#         logging.info('=============   create_matrix    =========================')
-#         logging.info('select_matrix_num:%d,no_reversed_M_num:%d,no_duplicate_M_num:%d,no_unfit_num:%d' % (
-#             len(selected_M[0]), len(no_reversed_M), len(no_dpt_M), len(no_unfit_M)))
-#         logging.info('select_matrix:')
-#         logging.info(copy_selected_M)
-#         logging.info('no_reversed_matrix:')
-#         logging.info(no_reversed_M)
-#         logging.info('no_duplicate_matrix:')
-#         logging.info(no_dpt_M)
-#         logging.info('no_unfit:')
-#         logging.info( no_unfit_M)
-#         return no_unfit_M, index
-#
-#     def fit(self, data, label, **param):
-#         """
-#         a method to train base estimator based on given data and label
-#         :param data: data used to train base estimator
-#         :param label: label corresponding to the data
-#         :param estimator_param: some param used by matrix and base estimator
-#         :return: None
-#         """
-#         self.train_data = data
-#         self.train_label = label
-#         self.predictors = []
-#         self.matrix, self.index = self.create_matrix(data, label)
-#
-#         for i in range(self.matrix.shape[1]):
-#             dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
-#             if 'estimator_param' in param:
-#                 estimator = self.estimator(**param['estimator_param']).fit(dat, cla)
-#             else:
-#                 estimator = self.estimator().fit(dat, cla)
-#
-#
-
 class Temp_Class(__BaseECOC):
 
     def __init__(self, distance_measure=euclidean_distance, base_estimator=svm.SVC):
@@ -764,18 +642,15 @@ class Temp_Class(__BaseECOC):
         self.train_label = label
         self.index = {l: i for i, l in enumerate(np.unique(self.train_label))}
 
-        logging.info('positive and negative ratio')
         try:
             column_len = self._matrix.shape[1]
         except IndexError:
             dat, cla = MT.get_data_from_col(data, label, self._matrix, self.index)
-            logging.info(Counter(cla))
             estimator = self.estimator(**estimator_param).fit(dat, cla)
             self.predictors.append(estimator)
         else:
             for i in range(column_len):
                 dat, cla = MT.get_data_from_col(data, label, self._matrix[:, i], self.index)
-                logging.info(Counter(cla))
                 estimator = self.estimator(**estimator_param).fit(dat, cla)
                 self.predictors.append(estimator)
 
@@ -789,28 +664,69 @@ class Self_Adaption_ECOC(__BaseECOC):
         self.base_M = base_M
         self.create_method = create_method
 
-    def check_pos_neg_len(self,new_column):
+    def check_pos_neg_len(self, new_column, data, label):
 
-        pos_len,neg_len = 0,0
+        pos_len, neg_len = 0, 0
         for i in range(len(new_column)):
-            d = self.train_data[self.train_label == MT.get_key(self.index, i)]
-            l = self.train_label[self.train_label == MT.get_key(self.index, i)]
+            d = data[label == MT.get_key(self.index, i)]
+            l = label[label == MT.get_key(self.index, i)]
             if new_column[i] == 1:
                 pos_len += len(d)
             elif new_column[i] == -1:
                 neg_len += len(d)
+        return float(pos_len) / neg_len
 
-        return float(pos_len)/neg_len
+    def find_most_simi_class(self, small_cls, large_cls, new_column):
+        '''
+
+        :param small_cls:  small class index
+        :param large_cls:  large class index
+        :param new_column:
+        :return:
+        '''
+        large_cls_DC = {}.fromkeys(large_cls)
+        for each_cls in large_cls:
+            large_cls_DC[each_cls] = get_DC_value(self.train_data, self.train_label,
+                                                  [MT.get_key(self.index, e) for e in small_cls],
+                                                  [MT.get_key(self.index, each_cls)],
+                                                  self.dc_option)
+
+        large_cls_DC = sorted(large_cls_DC.items(), key=lambda x: x[1])  # 复杂度从小到大
+        stop = False
+        for each_cls in large_cls_DC:
+            new_column[each_cls[0]] = -1
+            _, _, _, pos_data, neg_data, extra_data, _, _, _ = self.get_pos_neg(new_column, self.train_data,
+                                                                                self.train_label)
+            try:
+                pos_len = len(pos_data)
+                neg_len = len(neg_data)
+            except IndexError:  # 数量为０
+                new_column[each_cls[0]] = 1  # 返回上一步
+                stop = True
+            else:
+                # 数量接近２倍
+                if (float(pos_len) / float(neg_len) <= 2) or (float(neg_len) / float(pos_len) <= 2):
+                    stop = True
+            if stop is True:
+                return new_column
+        return new_column
 
     def adjust_unbalance(self, small_cls, large_cls, extra_cls, small_data, large_data, extra_data, small_label,
                          large_label, extra_label, new_column):
 
         logging.info('*======adjust_unbalance=======*')
 
+        logging.info('small class sample %s' %str(Counter(small_label)))
+        logging.info('large class sample %s' %str(Counter(large_label)))
+
         # 用small class 和 extra class的数据拟合
         if extra_data is None or len(extra_data) == 0:
-            AP_train_label = np.concatenate((small_label, large_label), axis=0)
-            AP_train_data = np.concatenate((small_data, large_data), axis=0)
+            logging.info('no extra class data')
+            logging.info('before change column:\t' + str([each[0] for each in new_column]))
+            new_column = self.find_most_simi_class(small_cls, large_cls, new_column)
+            logging.info('after change column:\t' + str([each[0] for each in new_column]))
+            return new_column
+
         else:
             AP_train_label = np.concatenate((small_label, extra_label), axis=0)
             AP_train_data = np.concatenate((small_data, extra_data), axis=0)
@@ -826,19 +742,21 @@ class Self_Adaption_ECOC(__BaseECOC):
         cluster_label = AP.labels_
         n_cluster = len(np.unique(cluster_label))
 
+        logging.info('***---------- cluster label counter-------------***')
         small_cls_sample_dict = {}
         small_cls_sample_len_dict = {}
         for k in range(n_cluster):
             class_members = cluster_label == k
             counter = Counter(AP_train_label[class_members])  # 找到一个簇中样本的label的个数
+            logging.info('cluster label %s %s' % (str(k),str(counter)))
             small_cls_sample_len = sum([counter[MT.get_key(self.index, inx)] for inx in small_cls])
             small_cls_sample_len_dict[k] = round(float(small_cls_sample_len) / sum(class_members), 2)  # 计算每个簇中小类样本的比例
             small_cls_sample_dict[k] = class_members
 
-        small_cls_sample_len_dict = sorted(small_cls_sample_len_dict.items(), key=lambda x: x[1]) # 排序之后的数据类型是ｔｕｐｌｅ
+        small_cls_sample_len_dict = sorted(small_cls_sample_len_dict.items(), key=lambda x: x[1])  # 排序之后的数据类型是ｔｕｐｌｅ
         small_cls_sample_len_dict.reverse()
-        for key, value in small_cls_sample_len_dict: # 如果小类样本不够大类样本的一般的话就继续添加
-            if sum(train_members)== 0 or float(len(large_data))/sum(train_members) >= 2:
+        for key, value in small_cls_sample_len_dict:  # 如果小类样本不够大类样本的一般的话就继续添加
+            if sum(train_members) == 0 or float(len(large_data)) / sum(train_members) >= 2:
                 train_members = list(train_members) and list(small_cls_sample_dict[key])
             else:
                 break
@@ -865,6 +783,11 @@ class Self_Adaption_ECOC(__BaseECOC):
         sel_train_label = AP_train_label[train_members]
         sel_cls = np.unique(sel_train_label)
 
+        if len(large_data)/float(len(sel_train_data)) >=3:
+            logging.info('large data sampling')
+            np.random.shuffle(large_data)
+            large_data = large_data[:len(sel_train_data)*2]
+
         # 构造正负类的样本标签,预测验证集的数据，判断
         pos_label = [1 for _ in range(len(large_data))]
         neg_label = [-1 for _ in range(len(sel_train_data))]
@@ -873,283 +796,129 @@ class Self_Adaption_ECOC(__BaseECOC):
                                      np.concatenate((pos_label, neg_label), axis=0))
 
         logging.info('before change column:\t' + str([each[0] for each in new_column]))
+        logging.info('pos len:%d vs. neg len:%d' % (len(pos_label), len(neg_label)))
+        logging.info('selected class:%s' % str(sel_cls))
 
         small_cls_label = [MT.get_key(self.index, each) for each in small_cls]
+        logging.info('small_cls_label %s' % str(small_cls_label))
         temp_label = model.predict(self.val_data)
         for k in sel_cls:
-            pos_neg_ratio = self.check_pos_neg_len(new_column)
-            if  pos_neg_ratio <= 2 or (pos_neg_ratio >= 0.2 and pos_neg_ratio <=1): # 如果正负类样本个数差不多就停止
-                    break
+            pos_neg_ratio = self.check_pos_neg_len(new_column, self.train_data, self.train_label)
+            if pos_neg_ratio <= 2 or (pos_neg_ratio >= 0.2 and pos_neg_ratio <= 1):  # 如果正负类样本个数差不多就停止
+                break
             if k not in small_cls_label:  # 只能修改不是小类的样本
                 class_members = self.val_label == k
                 majority_label = list(Counter(temp_label[class_members])).pop()
+                logging.info('class label %s' % str(k))
+                logging.info('majority label %s' % majority_label)
                 if majority_label == new_column[small_cls[0]]:  # 只有将类别改成和小类一样的话，才允许修改
                     new_column[self.index[k]] = majority_label  # 这边会修改原先可能为+1，,1，0的值
 
         logging.info('after change column:\t' + str([each[0] for each in new_column]))
-
         return new_column
 
-    def create_matrix(self):
-
-        matrix_pool = copy.deepcopy(self.base_M)
-        rand_column = random.randint(0, matrix_pool.shape[1] - 1)
-        res_matrix = self.base_M[:, rand_column]
-
-        logging.info('base_M is')
-        logging.info(self.base_M)
-
-        from ECOCDemo.Common import Evaluation_tool
-
-        count = 0
-        change_count = 0
-        while True:
-            count += 1
-            logging.info('\n\n============== iter  %d ================' % count)
-            logging.info('current matrix is ')
-            logging.info(res_matrix)
-
-            temp_class = Temp_Class()
-            temp_class.matrix = res_matrix
-            temp_class.fit(self.train_data, self.train_label)
-            pred_label = temp_class.predict(self.val_data)
-            cfus_matrix = confusion_matrix(self.val_label, pred_label)
-
-            # ==============================logging============================*
-            #
-            logging.info('*======label=======*')
-            logging.info('true label')
-            logging.info(Counter(self.val_label))
-
-            try:
-                col_len = res_matrix.shape[1]
-            except IndexError:
-                logging.info('pre label')
-                temp_label = [row[0] for row in temp_class.predicted_vector]
-                logging.info(Counter(temp_label))
+    def get_pos_neg(self, new_column, train_data, train_label):
+        pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data, pos_label, neg_label, extra_label = [], [], [], None, None, None, None, None, None
+        for i in range(len(new_column)):
+            d = train_data[train_label == MT.get_key(self.index, i)]
+            l = train_label[train_label == MT.get_key(self.index, i)]
+            if new_column[i] == 1:
+                pos_cls.append(i)
+                if pos_data is None:
+                    pos_data = copy.deepcopy(d)
+                    pos_label = copy.deepcopy(l)
+                else:
+                    pos_data = np.concatenate((pos_data, d), axis=0)
+                    pos_label = np.concatenate((pos_label, l), axis=0)
+            elif new_column[i] == -1:
+                neg_cls.append(i)
+                if neg_data is None:
+                    neg_data = copy.deepcopy(d)
+                    neg_label = copy.deepcopy(l)
+                else:
+                    neg_data = np.concatenate((neg_data, d), axis=0)
+                    neg_label = np.concatenate((neg_label, l), axis=0)
             else:
-                for i in range(col_len):
-                    temp_label = [row[i] for row in temp_class.predicted_vector]
-                    logging.info('%d classifiers pre label' % i)
-                    logging.info(Counter(temp_label))
+                extra_cls.append(i)
+                if extra_data is None:
+                    extra_data = copy.deepcopy(d)
+                    extra_label = copy.deepcopy(l)
+                else:
+                    extra_data = np.concatenate((extra_data, d), axis=0)
+                    extra_label = np.concatenate((extra_label, l), axis=0)
 
-            logging.info('confusion matrix')
-            logging.info(cfus_matrix)
+        return pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data, pos_label, neg_label, extra_label
 
-            Eva = Evaluation_tool.Evaluation(self.val_label, pred_label)
-            row_HD = Eva.row_HD(res_matrix)
-            col_HD = Eva.col_HD(res_matrix)
+    def temp_log(self, matrix, train_data, train_label, test_data, test_label, **kwargs):
 
+        temp_class = Temp_Class()
+        temp_class.matrix = matrix
+        temp_class.fit(train_data, train_label)
+        pred_label = temp_class.predict(test_data)
+        cfus_matrix = confusion_matrix(test_label, pred_label)
+        Eva = Evaluation(test_label, pred_label)
+        classifier_acc = Eva.evaluate_classifier_accuracy(matrix, temp_class.predicted_vector,
+                                                          test_label, self.index)
+
+        # print the info of one column
+        try:
+            col_len = matrix.shape[1]
+        except IndexError:
+
+            pos_neg_r_train = self.check_pos_neg_len(matrix, train_data, train_label)
+            pos_neg_r_test = self.check_pos_neg_len(matrix, test_data, test_label)
+            counter_train = Counter(train_label)
+            counter_test = Counter(test_label)
+            pred_label_clsfer = [each for each in range(len(temp_class.predicted_vector))]
+            counter_pred = Counter(pred_label_clsfer)
+            clsfer_acc_i = classifier_acc[0]
+
+            logging.info('------------------------------')
+            logging.info('matrix')
+            logging.info(matrix)
+            logging.info('column %d info:' % 0)
+            logging.info('pos_neg_r_train : %f' % round(pos_neg_r_train, 2))
+            logging.info('pos_neg_r_test : %f' % round(pos_neg_r_test, 2))
+            logging.info('count train %s' % str(counter_train))
+            logging.info('count test %s' % str(counter_test))
+            logging.info('count pred %s' % str(counter_pred))
+            logging.info('classifier acc is %f' % round(clsfer_acc_i, 2))
+
+        else:
+            logging.info('matrix')
+            logging.info(matrix)
+            for i in range(col_len):
+                pos_neg_r_train = self.check_pos_neg_len(matrix[:, i], train_data, train_label)
+                pos_neg_r_test = self.check_pos_neg_len(matrix[:, i], test_data, test_label)
+                counter_train = Counter(train_label)
+                counter_test = Counter(test_label)
+                pred_label_clsfer = [each[i] for each in temp_class.predicted_vector]
+                counter_pred = Counter(pred_label_clsfer)
+                clsfer_acc_i = classifier_acc[i]
+
+                logging.info('------------------------------')
+                logging.info('column %d info:' % i)
+                logging.info('pos_neg_r_train : %f' % round(pos_neg_r_train, 2))
+                logging.info('pos_neg_r_test : %f' % round(pos_neg_r_test, 2))
+                logging.info('count train %s' % str(counter_train))
+                logging.info('count test %s' % str(counter_test))
+                logging.info('count pred %s' % str(counter_pred))
+                logging.info('classifier acc is %f' % round(clsfer_acc_i, 2))
+
+        logging.info('confusion matrix')
+        logging.info(cfus_matrix)
+
+        if kwargs['row_HD'] is True:
+            row_HD = Eva.row_HD(matrix)
             logging.info('row HD')
             logging.info(row_HD)
 
+        if kwargs['col_HD'] is True:
+            col_HD = Eva.row_HD(matrix)
             logging.info('col HD')
             logging.info(col_HD)
-            #
-            # ==============================logging============================*
 
-            cplx_class = {}.fromkeys(self.rows.keys())
-            total_cplx_class_num = 0
-            class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
-
-            average_class_acc = np.mean(class_acc)
-            threhold = average_class_acc - average_class_acc * 0.1
-            for i in range(len(class_acc)):
-                if class_acc[i] <= threhold:
-                    cplx_class[i] = True
-                    total_cplx_class_num += 1
-
-            logging.info('cplx_class')
-            logging.info(cplx_class)
-
-            # =======    算法停止条件           ============================================================
-            # 如果每个类的分类情况都实现50%的正确率就结束
-            if total_cplx_class_num == 0:
-                logging.info('total_cplx_class_num == 0 break')
-                break
-
-            # 如果每个类的分类正确率大于0.8
-            if average_class_acc >= 0.8:
-                logging.info('average_class_acc >= 0.8')
-                break
-
-            # 如果达到normal的数量
-            try:
-                column_len = res_matrix.shape[1]
-            except IndexError:
-                column_len = 1
-            if column_len >= 10 * math.log(len(self.index)):
-                logging.info('column_len >= 10*math.log(len(self.index))')
-                break
-
-            # =======    挑选包含复杂类的两列        ============================================================
-
-            # find first column
-            prob = 0.5
-            matrix_pool = MT.shuffle_matrix(matrix_pool)
-            select_cloumn_i = None
-            while True:
-                for i in range(matrix_pool.shape[1]):
-                    i_column = matrix_pool[:, i]
-                    contain_num = 0
-                    for j in range(len(i_column)):
-                        if i_column[j] != 0 and cplx_class[j] == True:
-                            contain_num += 1
-                            cplx_class[j] = False
-                    if contain_num > total_cplx_class_num * prob:
-                        select_cloumn_i = i_column
-                        break
-                if select_cloumn_i is not None:
-                    break
-                else:
-                    prob -= 0.05
-
-            # find second column
-            prob = 0.5
-            matrix_pool = MT.shuffle_matrix(matrix_pool)
-            select_cloumn_j = None
-            while True:
-                for i in range(matrix_pool.shape[1]):
-                    i_column = matrix_pool[:, i]
-                    contain_num = 0
-                    for j in range(len(i_column)):
-                        if i_column[j] != 0 and cplx_class[j] == True:
-                            contain_num += 1
-                    if contain_num > total_cplx_class_num * prob and MT.is_same_col(i_column, select_cloumn_i):
-                        select_cloumn_j = i_column
-                        break
-                if select_cloumn_j is not None:
-                    break
-                else:
-                    prob -= 0.05
-
-            logging.info('select_i_column')
-            logging.info(select_cloumn_i)
-
-            logging.info('select_j_column')
-            logging.info(select_cloumn_j)
-
-            if select_cloumn_i is None:
-                raise ValueError('ERROR: SAT_ECOC select_column i is None')
-
-            if select_cloumn_j is None:
-                raise ValueError('ERROR: SAT_ECOC select_column j is None')
-
-            # ========   生成新的一列    ============================
-            try:
-                most_cplx_class_inx = random.choice([inx for inx, key in cplx_class.items() if key != None])
-            except IndexError:
-                most_cplx_class_inx = -1
-
-            logging.info('most_cplx_inx')
-            logging.info(most_cplx_class_inx)
-
-            new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
-                                                     self.train_label, self.create_method, self.dc_option, res_matrix,
-                                                     most_cplx_class_inx)
-            logging.info('new_column')
-            logging.info(new_column)
-
-            # ================  解决unbalance问题        ======================================
-            #
-            if new_column is not None:
-                pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data, pos_label, neg_label, extra_label = [], [], [], None, None, None, None, None, None
-                for i in range(len(new_column)):
-                    d = self.train_data[self.train_label == MT.get_key(self.index, i)]
-                    l = self.train_label[self.train_label == MT.get_key(self.index, i)]
-                    if new_column[i] == 1:
-                        pos_cls.append(i)
-                        if pos_data is None:
-                            pos_data = copy.deepcopy(d)
-                            pos_label = copy.deepcopy(l)
-                        else:
-                            pos_data = np.concatenate((pos_data, d), axis=0)
-                            pos_label = np.concatenate((pos_label, l), axis=0)
-                    elif new_column[i] == -1:
-                        neg_cls.append(i)
-                        if neg_data is None:
-                            neg_data = copy.deepcopy(d)
-                            neg_label = copy.deepcopy(l)
-                        else:
-                            neg_data = np.concatenate((neg_data, d), axis=0)
-                            neg_label = np.concatenate((neg_label, l), axis=0)
-                    else:
-                        extra_cls.append(i)
-                        if extra_data is None:
-                            extra_data = copy.deepcopy(d)
-                            extra_label = copy.deepcopy(l)
-                        else:
-                            extra_data = np.concatenate((extra_data, d), axis=0)
-                            extra_label = np.concatenate((extra_label, l), axis=0)
-
-                new_column_back = copy.deepcopy(new_column)
-
-                logging.info('pos vs. neg: %s, %s' %(str(len(pos_data) / float(len(neg_data))),len(neg_data) / float(len(pos_data))))
-
-                if len(pos_data) / float(len(neg_data)) >= 3:  # 小类，大类，额外类
-                    new_column = self.adjust_unbalance(neg_cls, pos_cls, extra_cls, neg_data, pos_data, extra_data,
-                                                       neg_label, pos_label, extra_label, new_column)
-                elif (len(neg_data) / float(len(pos_data)) >= 3):
-                    new_column = self.adjust_unbalance(pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data,
-                                                       pos_label, neg_label, extra_label, new_column)
-                if (new_column != new_column_back).any():
-                    change_count += 1
-                    _, lab = MT.get_data_from_col(self.train_data, self.train_label, new_column_back, self.index)
-                    logging.info('before change, the sample len:\t' + str(Counter(lab)))
-                    _, lab = MT.get_data_from_col(self.train_data, self.train_label, new_column, self.index)
-                    logging.info('after change, the sample len:\t' + str(Counter(lab)))
-                    pos_column = [[1] for _ in new_column]
-                    neg_column = [[-1] for _ in new_column]
-                    if (new_column == pos_column).all() or (new_column == neg_column).all():
-                        logging.info('changed new column only has one class')
-                        new_column = None
-                else:
-                    logging.info('change no bit!')
-
-            # ================  解决unbalance问题        ======================================
-
-            if new_column is not None:
-                try:
-                    res_matrix = np.hstack([res_matrix, new_column])
-                except ValueError:
-                    res_matrix = np.hstack([[[each] for each in res_matrix], new_column])
-
-                matrix_pool = np.hstack([matrix_pool, new_column])
-
-        # ==============================logging============================*
-        #
-        logging.info('change ratio is:\t' + str(float(change_count) / float(count)))
-
-        temp_class = Temp_Class()
-        temp_class.matrix = res_matrix
-        temp_class.fit(self.train_data, self.train_label)
-        pred_label = temp_class.predict(self.val_data)
-        Eva = Evaluation_tool.Evaluation(self.val_label, pred_label)
-        classifier_acc = Eva.evaluate_classifier_accuracy(res_matrix, temp_class.predicted_vector, self.val_label,self.index)
-
-        logging.info('\n**********      classifier acc  **************')
-        logging.info(classifier_acc)
-
-        logging.info('before cutting matrix')
-        logging.info(res_matrix)
-
-        final_matrix = self.cut_columns(res_matrix)
-
-        logging.info('after cutting matrix')
-        logging.info(final_matrix)
-
-        temp_class = Temp_Class()
-        temp_class.matrix = final_matrix
-        temp_class.fit(self.train_data, self.train_label)
-        pred_label = temp_class.predict(self.val_data)
-        cfus_matrix = confusion_matrix(self.val_label, pred_label)
-
-        logging.info("cutting matrix's confusion matrix")
-        logging.info(cfus_matrix)
-        #
-        # ==============================logging============================*
-
-        return final_matrix
+        return
 
     def cut_columns(self, matrix):
 
@@ -1229,6 +998,181 @@ class Self_Adaption_ECOC(__BaseECOC):
                         weak_clsfer_inx = [each - 1 for each in weak_clsfer_inx]
         return matrix
 
+    def select_column(self, matrix_pool, cplx_class, total_cplx_class_num, select_column):
+        prob = 0.5
+        matrix_pool = MT.shuffle_matrix(matrix_pool)
+        select_cloumn_j = None
+        while True:
+            stop = False
+            for i in range(matrix_pool.shape[1]):
+                i_column = matrix_pool[:, i]
+                contain_num = 0
+                for j in range(len(i_column)):
+                    if i_column[j] != 0 and cplx_class[j] == True:
+                        contain_num += 1
+                if contain_num > total_cplx_class_num * prob:
+                    if select_column is not None:
+                        if (i_column == select_column).all() == False:
+                            select_cloumn_j = i_column
+                            stop = True
+                    else:
+                        select_cloumn_j = i_column
+                        stop = True
+                if stop is True:
+                    break
+            if select_cloumn_j is not None:
+                break
+            else:
+                prob -= 0.05
+        return select_cloumn_j
+
+    def create_matrix(self):
+
+        logging.info('**-----------  init matrix info --------------**')
+        self.temp_log(self.base_M, self.train_data, self.train_label, self.val_data, self.val_label,
+                      row_HD=True, col_HD=True)
+
+        matrix_pool = copy.deepcopy(self.base_M)
+        rand_column = random.randint(0, matrix_pool.shape[1] - 1)
+        res_matrix = self.base_M[:, rand_column]
+
+        count = 0
+        change_count = 0
+        while True:
+            # =======    算法开始１．：计算借助confusion matrix计算复杂类      ============================================================
+            logging.info('*---------------------iter %d------------------------------*' % count)
+            logging.info('**-----------  current matrix info --------------**')
+            self.temp_log(res_matrix, self.train_data, self.train_label, self.val_data, self.val_label,
+                          row_HD=True, col_HD=True)
+
+            count += 1
+            temp_class = Temp_Class()
+            temp_class.matrix = res_matrix
+            temp_class.fit(self.train_data, self.train_label)
+            pred_label = temp_class.predict(self.val_data)
+            cfus_matrix = confusion_matrix(self.val_label, pred_label)
+
+            cplx_class = {}.fromkeys(self.rows.keys())
+            total_cplx_class_num = 0
+            class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
+
+            average_class_acc = np.mean(class_acc)
+            threhold = average_class_acc - average_class_acc * 0.1
+            for i in range(len(class_acc)):
+                if class_acc[i] <= threhold:
+                    cplx_class[i] = True
+                    total_cplx_class_num += 1
+
+            logging.info('average_class_acc %f' % round(average_class_acc, 2))
+            logging.info('cplx_class_threhold %f' % round(threhold, 2))
+            logging.info('cplx_class %s' % str(cplx_class))
+
+            # =======    算法停止２．： 满足三个条件之一即可停止      ============================================================
+            # 如果达到log2(N)列，并且没有复杂类存在
+            try:
+                column_len = res_matrix.shape[1]
+            except IndexError:
+                column_len = 1
+            if column_len >= math.log(len(self.index), 2) and total_cplx_class_num == 0:
+                # 如果每个类的分类情况都实现50%的正确率就结束
+                logging.info('total_cplx_class_num == 0 break')
+                break
+
+            # 如果达到10log2(N)列, 如果每个类的分类正确率大于0.8
+            elif column_len >= math.log(len(self.index), 2) and average_class_acc >= 0.8:
+                logging.info('average_class_acc >= 0.8')
+                break
+
+            # 如果达到10log2(N)列
+            elif column_len >= 10 * math.log(len(self.index), 2):
+                logging.info('column_len >= 10*math.log(len(self.index))')
+                break
+
+            # =======    算法继续３．：挑选包含复杂类的两列     ============================================================
+
+            select_cloumn_i = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, None)
+
+            if select_cloumn_i is None:
+                raise ValueError('ERROR: SAT_ECOC select_column i is None')
+            else:
+                logging.info('select_i_column %s' % str([each for each in select_cloumn_i]))
+
+            select_cloumn_j = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, select_cloumn_i)
+            if select_cloumn_j is None:
+                raise ValueError('ERROR: SAT_ECOC select_column j is None')
+            else:
+                logging.info('select_j_column %s' % str([each for each in select_cloumn_i]))
+
+            # ========   算法继续４．：生成新的一列    ============================
+            try:
+                most_cplx_class_inx = random.choice([inx for inx, key in cplx_class.items() if key != None])
+                logging.info('most_cplx_inx is %d' % most_cplx_class_inx)
+            except IndexError:
+                most_cplx_class_inx = -1
+                logging.info('find no most cplx inx')
+
+            new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
+                                                     self.train_label, self.create_method, self.dc_option, res_matrix,
+                                                     most_cplx_class_inx)
+
+            if new_column is None:
+                logging.info('new column is None')
+                continue
+
+            # ================  算法继续５．：解决unbalance问题        ======================================
+            if new_column is not None:
+                pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data, pos_label, neg_label, extra_label = self.get_pos_neg(
+                    new_column, self.train_data, self.train_label)
+
+                new_column_backup = copy.deepcopy(new_column)
+
+                if len(pos_data) / float(len(neg_data)) >= 3:  # 小类，大类，额外类
+                    new_column = self.adjust_unbalance(neg_cls, pos_cls, extra_cls, neg_data, pos_data, extra_data,
+                                                       neg_label, pos_label, extra_label, new_column)
+                elif (len(neg_data) / float(len(pos_data)) >= 3):
+                    new_column = self.adjust_unbalance(pos_cls, neg_cls, extra_cls, pos_data, neg_data, extra_data,
+                                                       pos_label, neg_label, extra_label, new_column)
+                if (new_column != new_column_backup).any():
+                    change_count += 1
+                    pos_column = [[1] for _ in new_column]
+                    neg_column = [[-1] for _ in new_column]
+                    if (new_column == pos_column).all() or (new_column == neg_column).all():
+                        logging.info('changed new column only has one class')
+                        new_column = None
+                    else:
+                        logging.info('** ---------- before changing, the new column performance ---------**')
+                        self.temp_log(new_column_backup, self.train_data, self.train_label, self.val_data,
+                                      self.val_label,
+                                      row_HD=False, col_HD=False)
+
+                        logging.info('** ---------- after changing, the new column performance ---------**')
+                        self.temp_log(new_column, self.train_data, self.train_label, self.val_data, self.val_label,
+                                      row_HD=False, col_HD=False)
+                else:
+                    logging.info('change no bit!')
+
+            if new_column is not None:
+                try:
+                    res_matrix = np.hstack([res_matrix, new_column])
+                except ValueError:
+                    res_matrix = np.hstack([[[each] for each in res_matrix], new_column])
+
+                matrix_pool = np.hstack([matrix_pool, new_column])
+
+        logging.info('change ratio is:\t' + str(float(change_count) / float(count)))
+
+        # ================ 算法继续６． 剪枝        ======================================
+
+        final_matrix = self.cut_columns(res_matrix)
+        logging.info('** ---------- before cutting, the new column performance -----------**')
+        self.temp_log(res_matrix, self.train_data, self.train_label, self.val_data, self.val_label,
+                      row_HD=True, col_HD=True)
+
+        logging.info('** ---------- after cutting, the new column performance ------------**')
+        self.temp_log(final_matrix, self.train_data, self.train_label, self.val_data, self.val_label,
+                      row_HD=True, col_HD=True)
+        return final_matrix
+
     def fit(self, train_data, train_label, val_data, val_label, **param):
         """
         a method to train base estimator based on given data and label
@@ -1264,73 +1208,3 @@ class Self_Adaption_ECOC(__BaseECOC):
                 else:
                     estimator = self.estimator().fit(dat, cla)
                 self.predictors.append(estimator)
-
-
-class CSFT_ECOC(__BaseECOC):
-    """
-    change subtree of DC ECOC matrix
-    """
-
-    def create_matrix(self, data, label, **param):
-        labels_to_divide = [np.unique(label)]
-        index = {l: i for i, l in enumerate(np.unique(label))}
-
-        TM = None
-        DCECOC = DC_ECOC()
-        if 'dc_option' in param:
-            for each in param['dc_option']:
-                m, index = DCECOC.create_matrix(data, label, dc_option=each)
-                if M is None:
-                    M = [m]
-                else:
-                    M = M.append(m)
-        else:
-
-            logging.debug('ERROR: undefine the type of DCECOC')
-            return
-
-        train_data, train_label, val_data, val_label = MT.split_traindata(data,
-                                                                          label)  # split data into train and validation
-
-        # select the most effective matrix
-        res = np.zeros(1, len(M))
-        for i in range(len(M)):
-            m = M[i]
-            res[i] = MT.res_matrix(m, index, train_data, train_label, val_data, val_label, self.estimator,
-                                   self.distance_measure)
-        best_M = M[res.index(max(res))]
-
-        most_time = 10
-        res = 1
-        while (most_time and res < 0.8):
-
-            sel_m = random.random(len(M))
-            new_M, new_index = MT.change_subtree(best_M, M[sel_m])
-            new_res = MT.res_matrix(new_M, new_index, train_data, train_label, val_data, val_label, self.estimator,
-                                    self.distance_measure)
-            if new_res > res:
-                best_M = new_M
-                res = new_res
-
-            most_time = most_time + 1
-
-        return M, index
-
-    def fit(self, data, label, **estimator_param):
-        """
-        a method to train base estimator based on given data and label
-        :param data: data used to train base estimator
-        :param label: label corresponding to the data
-        :param estimator_param: some param used by base estimator
-        :return: None
-        """
-        self.predictors = []
-        if 'dc_option' in estimator_param:
-            self.matrix, self.index = self.create_matrix(data, label, dc_option=estimator_param['dc_option'])
-            estimator_param.pop('dc_option')
-        else:
-            self.matrix, self.index = self.create_matrix(data, label)
-        for i in range(self.matrix.shape[1]):
-            dat, cla = MT.get_data_from_col(data, label, self.matrix[:, i], self.index)
-            estimator = self.estimator(**estimator_param).fit(dat, cla)
-            self.predictors.append(estimator)

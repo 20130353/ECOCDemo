@@ -201,6 +201,7 @@ def ternary_DC(left, right, data, label, evaluation_option, matrix, cplx_class_i
             if cplx_class_inx == -1 or ternary_res[each][cplx_class_inx] == 0:
                 pass
             else:
+                group1,group2 = [],[]
                 for j in range(len(ternary_res[each])):
                     if ternary_res[each][j] == 1:
                         group1.append(all_classes[j])

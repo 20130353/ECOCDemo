@@ -1,0 +1,130 @@
+
+
+data name cleveland
+====== data size =========
+train data size:166
+test  data size:75
+val   data size:56
+====== feature size =========
+feature size :8
+====== class sample size =========
+train:Counter({'0': 89, '1': 29, '3': 23, '2': 16, '4': 9})
+test :Counter({'0': 37, '1': 16, '2': 12, '3': 7, '4': 3})
+val  :Counter({'0': 34, '1': 9, '2': 7, '3': 5, '4': 1})
+
+
+data name dermatology
+====== data size =========
+train data size:201
+test  data size:90
+val   data size:67
+====== feature size =========
+feature size :19
+====== class sample size =========
+train:Counter({'1': 58, '2': 38, '3': 37, '4': 30, '5': 28, '6': 10})
+test :Counter({'1': 31, '5': 16, '3': 16, '2': 12, '4': 10, '6': 5})
+val  :Counter({'1': 22, '3': 18, '2': 10, '4': 8, '6': 5, '5': 4})
+
+
+data name led7digit
+====== data size =========
+train data size:562
+test  data size:250
+val   data size:188
+====== feature size =========
+feature size :3
+====== class sample size =========
+train:Counter({'8': 65, '7': 64, '3': 61, '5': 60, '2': 60, '1': 59, '9': 54, '4': 51, '6': 45, '0': 43})
+test :Counter({'1': 32, '5': 31, '7': 29, '4': 26, '2': 25, '3': 24, '9': 22, '8': 21, '0': 20, '6': 20})
+val  :Counter({'4': 26, '2': 22, '1': 21, '8': 21, '0': 20, '3': 19, '5': 16, '7': 15, '6': 14, '9': 14})
+
+
+data name led24digit
+====== data size =========
+train data size:562
+test  data size:250
+val   data size:188
+====== feature size =========
+feature size :7
+====== class sample size =========
+train:Counter({'7': 71, '9': 61, '0': 59, '2': 59, '8': 56, '3': 55, '5': 55, '6': 52, '1': 49, '4': 45})
+test :Counter({'4': 33, '5': 28, '3': 26, '6': 25, '2': 25, '0': 24, '1': 23, '8': 23, '7': 22, '9': 21})
+val  :Counter({'9': 24, '4': 23, '2': 22, '7': 22, '6': 21, '5': 19, '1': 18, '3': 14, '8': 13, '0': 12})
+
+
+data name letter
+====== data size =========
+train data size:11250
+test  data size:5000
+val   data size:3750
+====== feature size =========
+feature size :9
+====== class sample size =========
+train:Counter({'U': 486, 'N': 467, 'T': 452, 'A': 449, 'D': 446, 'P': 444, 'S': 442, 'B': 442, 'M': 441, 'G': 439, 'F': 436, 'Q': 435, 'E': 433, 'Z': 433, 'X': 432, 'J': 431, 'R': 428, 'V': 426, 'I': 425, 'Y': 422, 'O': 413, 'C': 408, 'W': 407, 'K': 406, 'L': 406, 'H': 401})
+test :Counter({'D': 212, 'T': 208, 'P': 207, 'Q': 206, 'M': 201, 'H': 200, 'V': 200, 'Y': 199, 'E': 198, 'I': 198, 'B': 196, 'O': 193, 'W': 191, 'F': 191, 'R': 190, 'S': 190, 'L': 189, 'X': 188, 'K': 187, 'A': 185, 'C': 185, 'Z': 183, 'G': 182, 'U': 177, 'J': 177, 'N': 167})
+val  :Counter({'X': 167, 'L': 166, 'Y': 165, 'A': 155, 'W': 154, 'G': 152, 'P': 152, 'M': 150, 'U': 150, 'N': 149, 'F': 148, 'D': 147, 'O': 147, 'K': 146, 'C': 143, 'Q': 142, 'R': 140, 'J': 139, 'V': 138, 'E': 137, 'T': 136, 'H': 133, 'I': 132, 'B': 128, 'Z': 118, 'S': 116})
+
+
+data name satimage
+====== data size =========
+train data size:3619
+test  data size:1609
+val   data size:1207
+====== feature size =========
+feature size :16
+====== class sample size =========
+train:Counter({'7': 871, '1': 866, '3': 748, '5': 411, '2': 381, '4': 342})
+test :Counter({'1': 385, '3': 358, '7': 352, '5': 184, '2': 175, '4': 155})
+val  :Counter({'7': 285, '1': 282, '3': 252, '2': 147, '4': 129, '5': 112})
+
+
+data name segment
+====== data size =========
+train data size:1299
+test  data size:578
+val   data size:433
+====== feature size =========
+feature size :9
+====== class sample size =========
+train:Counter({'5': 200, '3': 190, '7': 184, '6': 184, '2': 183, '1': 180, '4': 178})
+test :Counter({'6': 93, '4': 85, '3': 84, '7': 82, '1': 80, '5': 79, '2': 75})
+val  :Counter({'2': 72, '1': 70, '4': 67, '7': 64, '3': 56, '6': 53, '5': 51})
+
+
+data name vehicle
+====== data size =========
+train data size:475
+test  data size:212
+val   data size:159
+====== feature size =========
+feature size :10
+====== class sample size =========
+train:Counter({'bus': 133, 'saab': 123, 'opel': 118, 'van': 101})
+test :Counter({'saab': 63, 'van': 54, 'opel': 48, 'bus': 47})
+val  :Counter({'opel': 46, 'van': 44, 'bus': 38, 'saab': 31})
+
+
+data name vowel
+====== data size =========
+train data size:556
+test  data size:248
+val   data size:186
+====== feature size =========
+feature size :7
+====== class sample size =========
+train:Counter({'8': 58, '3': 55, '10': 55, '5': 53, '9': 50, '1': 49, '6': 49, '7': 49, '2': 48, '4': 46, '0': 44})
+test :Counter({'2': 30, '4': 27, '9': 25, '7': 25, '1': 24, '10': 21, '3': 20, '0': 20, '5': 20, '6': 19, '8': 17})
+val  :Counter({'0': 26, '6': 22, '5': 17, '1': 17, '4': 17, '7': 16, '9': 15, '3': 15, '8': 15, '10': 14, '2': 12})
+
+
+data name yeast
+====== data size =========
+train data size:834
+test  data size:371
+val   data size:279
+====== feature size =========
+feature size :5
+====== class sample size =========
+train:Counter({'CYT': 259, 'NUC': 246, 'MIT': 138, 'ME3': 93, 'ME1': 28, 'ME2': 26, 'EXC': 17, 'VAC': 14, 'POX': 10, 'ERL': 3})
+test :Counter({'CYT': 117, 'NUC': 102, 'MIT': 56, 'ME3': 45, 'ME2': 14, 'ME1': 11, 'EXC': 10, 'VAC': 9, 'POX': 5, 'ERL': 2})
+val  :Counter({'CYT': 87, 'NUC': 81, 'MIT': 50, 'ME3': 25, 'ME2': 11, 'EXC': 8, 'VAC': 7, 'POX': 5, 'ME1': 5})
