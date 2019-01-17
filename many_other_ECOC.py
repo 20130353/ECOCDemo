@@ -76,19 +76,18 @@ if __name__ == '__main__':
                       'column_3C', 'Cardiotocography', 'avila-ts', 'abalone']
 
     module_path = os.path.dirname(__file__)
-    data_folder_path = module_path + '/UCI/train_val_data/'
+    data_folder_path = module_path + '/UCI/4_train_val_data/'
     matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
 
     # 创建结果文件夹
-    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/other_ECOC_backup/SVM/'
+    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/other_ECOC_backup/SVM1/'
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
-    selected_dataname = UCI_dataname
+    selected_dataname = unbalance_data
     ecoc_name = other_ECOC
     selected_ecoc_name = other_ECOC
     selected_fs_name = fs_name
-
 
     # selected_dataname = UCI_dataname
     # ecoc_name = other_ECOC
@@ -96,6 +95,9 @@ if __name__ == '__main__':
     # selected_fs_name = fs_name[2:]
 
     for k in range(len(selected_fs_name)):
+
+        if k == 3:
+            continue
 
         LOG_FORMAT = "%(message)s"
         logging.basicConfig(filename=res_folder_path + selected_fs_name[k] + '_log.txt', level=logging.DEBUG,
@@ -105,10 +107,6 @@ if __name__ == '__main__':
         data_acc, data_simacc, data_precision, data_specifity, data_sensitivity, data_cls_acc, data_Fscore = [], [], [], [], [], [], []
 
         for i in range(len(selected_dataname)):
-
-
-            if i >= 2:
-                continue
 
             train_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_train.csv'
             test_path = data_folder_path + selected_fs_name[k] + '/' + selected_dataname[i] + '_test.csv'
