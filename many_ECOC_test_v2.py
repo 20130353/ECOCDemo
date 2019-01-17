@@ -62,38 +62,34 @@ def get_base_M(path, string, dataname):
 
 
 def fun(count):
-
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
 
-    microarray_dataname = ['Breast', 'Cancers', 'DLBCL', 'GCM', 'Leukemia1', 'Leukemia2', 'Lung1', 'SRBCT']
-
-    UCI_dataname = ['cleveland', 'dermatology', 'led7digit' \
-        , 'led24digit', 'satimage', 'segment' \
-        , 'vehicle', 'vowel', 'yeast','letter']
+    unbalance_data = ['wine', 'winequality-red', 'winequality-white', 'poker-hand-training-true', 'haberman', 'thyroid',
+                      'sensor_readings_24', 'sat', 'page-blocks', 'ionosphere', 'fertility_Diagnosis', 'contraceptive',
+                      'column_2C', 'column_3C', 'Cardiotocography', 'avila-ts', 'abalone', 'car', 'cleveland',
+                      'dermatology', 'flare','nursery', 'satimage', 'segment', 'yeast']
 
     other_ECOC = ['OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC' \
         , 'D_ECOC', 'DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC F3', 'DC_ECOC N2', 'DC_ECOC N3', 'DC_ECOC Cluster']
 
     module_path = os.path.dirname(__file__)
-    data_folder_path = module_path + '/UCI/train_val_data/'
-    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
+    data_folder_path = module_path + '/UCI/4_train_val_data/'
+    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/4_train_val_data/'
 
     # 创建结果文件夹
-    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing'+str(count)+'/'
+    res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing' + str(count) + '/'
     if not os.path.exists(res_folder_path):
         os.makedirs(res_folder_path)
     #
-    selected_dataname = UCI_dataname[:3]
+    selected_dataname = unbalance_data[:3]
     ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_ecoc_name = ['SAT_ECOC DR', 'SAT_ECOC SR']
     selected_fs_name = fs_name[:3]
 
-    # selected_dataname = UCI_dataname
-    # ecoc_name = other_ECOC
-    # selected_ecoc_name = other_ECOC  # 为ECOC 算法添加evaluation 操作
-    # selected_fs_name = fs_name[2:]
-
     for k in range(len(selected_fs_name)):
+
+        if k != 0:
+            continue
 
         LOG_FORMAT = "%(message)s"
         logging.basicConfig(filename=res_folder_path + selected_fs_name[k] + '_log.txt', level=logging.DEBUG,
@@ -113,7 +109,6 @@ def fun(count):
         logging.info('11. 生成过程中添加了去重复去掉相反的无用处理')
         logging.info('12. 生成matrix的过程添加了至少要生产logN个column的条件限制')
         logging.info('13. 将大类样本下采样')
-
 
         # save evaluation varibles
         data_acc, data_simacc, data_precision, data_specifity, data_sensitivity, data_cls_acc, data_Fscore = [], [], [], [], [], [], []
@@ -148,7 +143,7 @@ def fun(count):
                 print('Using KNN-Decoding')
 
                 res = ECOC_Process(selected_dataname[i], train_data, train_label, test_data, test_label, val_data,
-                                   val_label,selected_ecoc_name[j], matrix_folder_path, selected_fs_name[k])
+                                   val_label, selected_ecoc_name[j], matrix_folder_path, selected_fs_name[k])
 
                 if 'simple_acc' in res:
                     simacc.append(res['simple_acc'])
@@ -217,9 +212,10 @@ def fun(count):
 if __name__ == '__main__':
 
     import warnings
+
     warnings.filterwarnings('ignore')
 
-    for each in range(28,29):
+    for each in range(29,30):
         fun(each)
 
     # bandwidth=3.063224

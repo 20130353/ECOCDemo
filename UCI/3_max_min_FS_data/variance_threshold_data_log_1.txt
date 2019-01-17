@@ -1,0 +1,452 @@
+
+create time is 2019-01-17 15:24:10
+
+
+*-------------- wine.csv-------------------*
+feature len
+13
+train sample len 
+106
+test sample len 
+72
+*-------------- wine.csv-------------------*
+feature len
+13
+train sample len 
+106
+test sample len 
+36
+val sample len 
+36
+
+
+*-------------- winequality-red.csv-------------------*
+feature len
+11
+train sample len 
+959
+test sample len 
+640
+*-------------- winequality-red.csv-------------------*
+feature len
+11
+train sample len 
+959
+test sample len 
+320
+val sample len 
+320
+
+
+*-------------- winequality-white.csv-------------------*
+feature len
+11
+train sample len 
+2938
+test sample len 
+1960
+*-------------- winequality-white.csv-------------------*
+feature len
+11
+train sample len 
+2938
+test sample len 
+980
+val sample len 
+980
+
+
+*-------------- poker-hand-training-true.csv-------------------*
+feature len
+10
+train sample len 
+15006
+test sample len 
+10004
+*-------------- poker-hand-training-true.csv-------------------*
+feature len
+10
+train sample len 
+15006
+test sample len 
+5002
+val sample len 
+5002
+
+
+*-------------- poker-hand-testing.csv-------------------*
+feature len
+10
+train sample len 
+600000
+test sample len 
+400000
+*-------------- poker-hand-testing.csv-------------------*
+feature len
+10
+train sample len 
+600000
+test sample len 
+200000
+val sample len 
+200000
+
+
+*-------------- haberman.csv-------------------*
+feature len
+3
+train sample len 
+183
+test sample len 
+123
+*-------------- haberman.csv-------------------*
+feature len
+3
+train sample len 
+183
+test sample len 
+61
+val sample len 
+62
+
+
+*-------------- transfusion.csv-------------------*
+feature len
+4
+train sample len 
+448
+test sample len 
+300
+*-------------- transfusion.csv-------------------*
+feature len
+4
+train sample len 
+448
+test sample len 
+150
+val sample len 
+150
+
+
+*-------------- thyroid.csv-------------------*
+feature len
+21
+train sample len 
+4320
+test sample len 
+2880
+*-------------- thyroid.csv-------------------*
+feature len
+21
+train sample len 
+4320
+test sample len 
+1440
+val sample len 
+1440
+
+
+*-------------- texture.csv-------------------*
+feature len
+40
+train sample len 
+3300
+test sample len 
+2200
+*-------------- texture.csv-------------------*
+feature len
+40
+train sample len 
+3300
+test sample len 
+1100
+val sample len 
+1100
+
+
+*-------------- sensor_readings_24.csv-------------------*
+feature len
+24
+train sample len 
+3273
+test sample len 
+2183
+*-------------- sensor_readings_24.csv-------------------*
+feature len
+24
+train sample len 
+3273
+test sample len 
+1091
+val sample len 
+1092
+
+
+*-------------- sat.csv-------------------*
+feature len
+36
+train sample len 
+3861
+test sample len 
+2574
+*-------------- sat.csv-------------------*
+feature len
+36
+train sample len 
+3861
+test sample len 
+1287
+val sample len 
+1287
+
+
+*-------------- processed.cleveland.csv-------------------*
+feature len
+13
+train sample len 
+178
+test sample len 
+119
+*-------------- processed.cleveland.csv-------------------*
+feature len
+13
+train sample len 
+178
+test sample len 
+59
+val sample len 
+60
+
+
+*-------------- penbased.csv-------------------*
+feature len
+16
+train sample len 
+6595
+test sample len 
+4397
+*-------------- penbased.csv-------------------*
+feature len
+16
+train sample len 
+6595
+test sample len 
+2198
+val sample len 
+2199
+
+
+*-------------- page-blocks.csv-------------------*
+feature len
+10
+train sample len 
+3283
+test sample len 
+2190
+*-------------- page-blocks.csv-------------------*
+feature len
+10
+train sample len 
+3283
+test sample len 
+1095
+val sample len 
+1095
+
+
+*-------------- ionosphere.csv-------------------*
+feature len
+33
+train sample len 
+210
+test sample len 
+141
+*-------------- ionosphere.csv-------------------*
+feature len
+33
+train sample len 
+210
+test sample len 
+70
+val sample len 
+71
+
+
+*-------------- fertility_Diagnosis.csv-------------------*
+feature len
+9
+train sample len 
+60
+test sample len 
+40
+*-------------- fertility_Diagnosis.csv-------------------*
+feature len
+9
+train sample len 
+60
+test sample len 
+20
+val sample len 
+20
+
+
+*-------------- contraceptive.csv-------------------*
+feature len
+9
+train sample len 
+883
+test sample len 
+590
+*-------------- contraceptive.csv-------------------*
+feature len
+9
+train sample len 
+883
+test sample len 
+295
+val sample len 
+295
+
+
+*-------------- contraceptive-method-choice.csv-------------------*
+feature len
+9
+train sample len 
+883
+test sample len 
+590
+*-------------- contraceptive-method-choice.csv-------------------*
+feature len
+9
+train sample len 
+883
+test sample len 
+295
+val sample len 
+295
+
+
+*-------------- column_2C.csv-------------------*
+feature len
+6
+train sample len 
+186
+test sample len 
+124
+*-------------- column_2C.csv-------------------*
+feature len
+6
+train sample len 
+186
+test sample len 
+62
+val sample len 
+62
+
+
+*-------------- column_3C.csv-------------------*
+feature len
+6
+train sample len 
+186
+test sample len 
+124
+*-------------- column_3C.csv-------------------*
+feature len
+6
+train sample len 
+186
+test sample len 
+62
+val sample len 
+62
+
+
+*-------------- Cardiotocography.csv-------------------*
+feature len
+35
+train sample len 
+1275
+test sample len 
+851
+*-------------- Cardiotocography.csv-------------------*
+feature len
+35
+train sample len 
+1275
+test sample len 
+425
+val sample len 
+426
+
+
+*-------------- breast-cancer-wisconsin.csv-------------------*
+feature len
+9
+train sample len 
+409
+test sample len 
+274
+*-------------- breast-cancer-wisconsin.csv-------------------*
+feature len
+9
+train sample len 
+409
+test sample len 
+137
+val sample len 
+137
+
+
+*-------------- avila-ts.csv-------------------*
+feature len
+10
+train sample len 
+6262
+test sample len 
+4175
+*-------------- avila-ts.csv-------------------*
+feature len
+10
+train sample len 
+6262
+test sample len 
+2087
+val sample len 
+2088
+
+
+*-------------- adult.csv-------------------*
+feature len
+14
+train sample len 
+19536
+test sample len 
+13025
+*-------------- adult.csv-------------------*
+feature len
+14
+train sample len 
+19536
+test sample len 
+6512
+val sample len 
+6513
+
+
+*-------------- abalone.csv-------------------*
+feature len
+8
+train sample len 
+2506
+test sample len 
+1671
+*-------------- abalone.csv-------------------*
+feature len
+8
+train sample len 
+2506
+test sample len 
+835
+val sample len 
+836

@@ -44,14 +44,16 @@ if __name__ == '__main__':
 
 
     UCI_dataname = ['car', 'ecoli', 'flare', 'isolet', 'nursery', 'penbased', 'zoo']
-
+    unbalance_data = ['wine', 'winequality-red', 'winequality-white', 'poker-hand-training-true', 'haberman', 'thyroid',
+                      'sensor_readings_24', 'sat', 'page-blocks', 'ionosphere', 'fertility_Diagnosis', 'contraceptive',
+                      'column_2C', 'column_3C', 'Cardiotocography', 'avila-ts', 'abalone']
 
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
     # ecoc_name = ['DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC F3', 'DC_ECOC N2', 'DC_ECOC N3', 'DC_ECOC Cluster']
     ecoc_name = ['Dense_random_ECOC', 'Sparse_random_ECOC']
     name = ['DR', 'SR']
 
-    folder_path = module_path + '/UCI/train_val_data/'
+    folder_path = module_path + '/UCI/4_train_val_data/'
     save_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
     selected_dataname = UCI_dataname
     selected_ecoc_name = ecoc_name
@@ -80,3 +82,6 @@ if __name__ == '__main__':
                 dc = name[j]
                 save_filepath = fin_save_folder_path + '/' + dc + '_' + selected_dataname[i] + '.xls'
                 write_matrix(save_filepath, Matrix)
+
+
+

@@ -1,0 +1,127 @@
+
+create time is 2019-01-17 15:24:10
+
+
+*-------------- wine.csv-------------------*
+data len is :2492
+label counter is :Counter({2.0: 71, 1.0: 59, 3.0: 48})  不均衡！
+
+
+*-------------- winequality-red.csv-------------------*
+data len is :19188
+label counter is :Counter({5.0: 681, 6.0: 638, 7.0: 199, 4.0: 53, 8.0: 18, 3.0: 10}) 不均衡！
+
+
+*-------------- winequality-white.csv-------------------*
+data len is :58776
+label counter is :Counter({6.0: 2198, 5.0: 1457, 7.0: 880, 8.0: 175, 4.0: 163, 3.0: 20, 9.0: 5})  不均衡！
+
+
+*-------------- poker-hand-training-true.csv-------------------*
+data len is :275110
+label counter is :Counter({0.0: 12493, 1.0: 10599, 2.0: 1206, 3.0: 513, 4.0: 93, 5.0: 54, 6.0: 36, 7.0: 6, 8.0: 5, 9.0: 5}) 不均衡！
+
+
+*-------------- poker-hand-testing.csv-------------------*
+data len is :11000000
+label counter is :Counter({0.0: 501209, 1.0: 422498, 2.0: 47622, 3.0: 21121, 4.0: 3885, 5.0: 1996, 6.0: 1424, 7.0: 230, 8.0: 12, 9.0: 3})  不均衡！
+
+
+*-------------- haberman.csv-------------------*
+data len is :1224
+label counter is :Counter({1.0: 225, 2.0: 81})  不均衡！
+
+
+*-------------- transfusion.csv-------------------*
+data len is :3740
+label counter is :Counter({0: 570, 1: 178})  不均衡！
+
+
+*-------------- thyroid.csv-------------------*
+data len is :158400
+label counter is :Counter({3.0: 6666, 2.0: 368, 1.0: 166}) 不均衡！
+
+
+*-------------- texture.csv-------------------*
+data len is :225500
+label counter is :Counter({2.0: 500, 3.0: 500, 4.0: 500, 6.0: 500, 7.0: 500, 8.0: 500, 9.0: 500, 10.0: 500, 12.0: 500, 13.0: 500, 14.0: 500})
+
+
+*-------------- sensor_readings_24.csv-------------------*
+data len is :136400
+label counter is :Counter({'Move-Forward': 2205, 'Sharp-Right-Turn': 2097, 'Slight-Right-Turn': 826, 'Slight-Left-Turn': 328})  不均衡！
+
+
+*-------------- sat.csv-------------------*
+data len is :238095
+label counter is :Counter({1.0: 1533, 7.0: 1508, 3.0: 1358, 5.0: 707, 2.0: 703, 4.0: 626})   不均衡！
+
+
+*-------------- processed.cleveland.csv-------------------*
+data len is :4158
+label counter is :Counter({0: 160, 1: 54, 2: 35, 3: 35, 4: 13})  不均衡！
+
+
+*-------------- penbased.csv-------------------*
+data len is :186864
+label counter is :Counter({2.0: 1144, 4.0: 1144, 0.0: 1143, 1.0: 1143, 7.0: 1142, 6.0: 1056, 3.0: 1055, 5.0: 1055, 8.0: 1055, 9.0: 1055})  
+
+
+*-------------- page-blocks.csv-------------------*
+data len is :60203
+label counter is :Counter({1.0: 4913, 2.0: 329, 5.0: 115, 4.0: 88, 3.0: 28})  不均衡！
+
+
+*-------------- ionosphere.csv-------------------*
+data len is :12285
+label counter is :Counter({'g': 225, 'b': 126})  不均衡！
+
+
+*-------------- fertility_Diagnosis.csv-------------------*
+data len is :1000
+label counter is :Counter({'N': 88, 'O': 12})  不均衡！
+
+
+*-------------- contraceptive.csv-------------------*
+data len is :14730
+label counter is :Counter({1.0: 629, 3.0: 511, 2.0: 333})  不均衡！
+
+
+*-------------- contraceptive-method-choice.csv-------------------*
+data len is :14730
+label counter is :Counter({1.0: 629, 3.0: 511, 2.0: 333})  
+
+
+*-------------- column_2C.csv-------------------*
+data len is :2170
+label counter is :Counter({'AB': 210, 'NO': 100})   不均衡！
+
+
+*-------------- column_3C.csv-------------------*
+data len is :2170
+label counter is :Counter({'SL': 150, 'NO': 100, 'DH': 60})  不均衡！
+
+
+*-------------- Cardiotocography.csv-------------------*
+data len is :76536
+label counter is :Counter({1.0: 1655, 2.0: 295, 3.0: 176})  不均衡！
+
+
+*-------------- breast-cancer-wisconsin.csv-------------------*
+data len is :6830
+label counter is :Counter({2: 444, 4: 239})  不均衡！只有两类，不适合！
+
+
+*-------------- avila-ts.csv-------------------*
+data len is :114807
+label counter is :Counter({'A': 4286, 'F': 1962, 'E': 1095, 'I': 832, 'X': 522, 'H': 520, 'G': 447, 'D': 353, 'Y': 267, 'C': 103, 'W': 45, 'B': 5})  不均衡！
+
+
+*-------------- adult.csv-------------------*
+data len is :488415
+label counter is :Counter({' <=50K': 24720, ' >50K': 7841})
+
+
+*-------------- abalone.csv-------------------*
+data len is :37593
+label counter is :Counter({9: 689, 10: 634, 8: 568, 11: 487, 7: 391, 12: 267, 6: 259, 13: 203, 14: 126, 5: 115, 15: 103, 16: 67, 17: 58, 4: 57, 18: 42, 19: 32, 20: 26, 3: 15, 21: 14, 23: 9, 22: 6, 24: 2, 27: 2, 1: 1, 2: 1, 25: 1, 26: 1, 29: 1})   不均衡！
