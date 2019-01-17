@@ -29,7 +29,11 @@ label counter is :Counter({0.0: 501209, 1.0: 422498, 2.0: 47622, 3.0: 21121, 4.0
 
 *-------------- haberman.csv-------------------*
 data len is :1224
+<<<<<<< HEAD
 label counter is :Counter({1.0: 225, 2.0: 81})  不均衡！ 两类不适合！
+=======
+label counter is :Counter({1.0: 225, 2.0: 81})  不均衡！
+>>>>>>> af553b4001ef0290966d96ece40e17bc3e27c0b5
 
 
 *-------------- transfusion.csv-------------------*
@@ -74,12 +78,20 @@ label counter is :Counter({1.0: 4913, 2.0: 329, 5.0: 115, 4.0: 88, 3.0: 28})  �
 
 *-------------- ionosphere.csv-------------------*
 data len is :12285
+<<<<<<< HEAD
 label counter is :Counter({'g': 225, 'b': 126})  不均衡！ 两类不适合！
+=======
+label counter is :Counter({'g': 225, 'b': 126})  不均衡！
+>>>>>>> af553b4001ef0290966d96ece40e17bc3e27c0b5
 
 
 *-------------- fertility_Diagnosis.csv-------------------*
 data len is :1000
+<<<<<<< HEAD
 label counter is :Counter({'N': 88, 'O': 12})  不均衡！ 两类不适合！
+=======
+label counter is :Counter({'N': 88, 'O': 12})  不均衡！
+>>>>>>> af553b4001ef0290966d96ece40e17bc3e27c0b5
 
 
 *-------------- contraceptive.csv-------------------*

@@ -74,7 +74,7 @@ def fun(count):
 
     module_path = os.path.dirname(__file__)
     data_folder_path = module_path + '/UCI/4_train_val_data/'
-    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
+    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/4_train_val_data/'
 
     # 创建结果文件夹
     res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing' + str(count) + '/'
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
     warnings.filterwarnings('ignore')
 
-    for each in range(28,29):
+    for each in range(29,30):
         fun(each)
 
     # bandwidth=3.063224

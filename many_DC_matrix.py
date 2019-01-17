@@ -50,7 +50,6 @@ if __name__ == '__main__':
 
     # hard_data = ['fertility_Diagnosis','ionosphere','haberman']
 
-
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
     # ecoc_name = ['DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC F3', 'DC_ECOC N2', 'DC_ECOC N3', 'DC_ECOC Cluster']
     ecoc_name = ['Dense_random_ECOC', 'Sparse_random_ECOC']
