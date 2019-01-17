@@ -71,6 +71,10 @@ if __name__ == '__main__':
 
     other_ECOC = ['OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC', 'D_ECOC']
 
+    unbalance_data = ['wine', 'winequality-red', 'winequality-white', 'poker-hand-training-true', 'thyroid',
+                      'sensor_readings_24', 'sat', 'page-blocks', 'contraceptive',
+                      'column_3C', 'Cardiotocography', 'avila-ts', 'abalone']
+
     module_path = os.path.dirname(__file__)
     data_folder_path = module_path + '/UCI/train_val_data/'
     matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'

@@ -44,6 +44,11 @@ if __name__ == '__main__':
 
 
     UCI_dataname = ['car', 'ecoli', 'flare', 'isolet', 'nursery', 'penbased', 'zoo']
+    unbalance_data = ['wine', 'winequality-red', 'winequality-white', 'poker-hand-training-true','thyroid',
+                      'sensor_readings_24', 'sat', 'page-blocks','contraceptive',
+                      'column_3C', 'Cardiotocography', 'avila-ts', 'abalone']
+
+    # hard_data = ['fertility_Diagnosis','ionosphere','haberman']
 
 
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
@@ -51,13 +56,14 @@ if __name__ == '__main__':
     ecoc_name = ['Dense_random_ECOC', 'Sparse_random_ECOC']
     name = ['DR', 'SR']
 
-    folder_path = module_path + '/UCI/train_val_data/'
+    folder_path = module_path + '/UCI/4_train_val_data/'
     save_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
-    selected_dataname = UCI_dataname
+    selected_dataname = unbalance_data
     selected_ecoc_name = ecoc_name
-    selected_fs_name = fs_name
+    selected_fs_name = fs_name[2:]
 
     for k in range(len(selected_fs_name)):
+
         fin_folder_path = folder_path + selected_fs_name[k]
         fin_save_folder_path = save_folder_path + selected_fs_name[k]
         if not os.path.exists(fin_save_folder_path):
@@ -74,9 +80,14 @@ if __name__ == '__main__':
             train_path = fin_folder_path + '/' + selected_dataname[i] + '_train.csv'
             train_data, train_label = read_Microarray_Dataset(train_path)
 
+            print('Dataset： ' + selected_dataname[i])
+
             for j in range(len(selected_ecoc_name)):
                 logging.info('Random: ' + selected_ecoc_name[j])
                 Matrix = ECOC_Process(train_data, train_label, selected_ecoc_name[j])
                 dc = name[j]
                 save_filepath = fin_save_folder_path + '/' + dc + '_' + selected_dataname[i] + '.xls'
                 write_matrix(save_filepath, Matrix)
+
+
+

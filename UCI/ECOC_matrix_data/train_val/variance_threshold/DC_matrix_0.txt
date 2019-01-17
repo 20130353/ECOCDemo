@@ -1,0 +1,340 @@
+Time: 2019-01-03 13:27:48
+Dataset： cleveland
+Random: Dense_random_ECOC
+Time: 2019-01-03 13:30:26
+Dataset： cleveland
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_cleveland.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_cleveland.xls
+Time: 2019-01-03 13:30:27
+Dataset： dermatology
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_dermatology.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_dermatology.xls
+Time: 2019-01-03 13:30:27
+Dataset： led7digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_led7digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_led7digit.xls
+Time: 2019-01-03 13:30:27
+Dataset： led24digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_led24digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_led24digit.xls
+Time: 2019-01-03 13:30:27
+Dataset： letter
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_letter.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_letter.xls
+Time: 2019-01-03 13:30:27
+Dataset： satimage
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_satimage.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_satimage.xls
+Time: 2019-01-03 13:30:27
+Dataset： segment
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_segment.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_segment.xls
+Time: 2019-01-03 13:30:27
+Dataset： vehicle
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_vehicle.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_vehicle.xls
+Time: 2019-01-03 13:30:29
+Dataset： vowel
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_vowel.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_vowel.xls
+Time: 2019-01-03 13:30:29
+Dataset： yeast
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_yeast.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_yeast.xls
+Time: 2019-01-03 13:30:29
+Dataset： cleveland
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_cleveland.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_cleveland.xls
+Time: 2019-01-03 13:30:31
+Dataset： dermatology
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_dermatology.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_dermatology.xls
+Time: 2019-01-03 13:30:31
+Dataset： led7digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_led7digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_led7digit.xls
+Time: 2019-01-03 13:30:31
+Dataset： led24digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_led24digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_led24digit.xls
+Time: 2019-01-03 13:30:31
+Dataset： letter
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_letter.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_letter.xls
+Time: 2019-01-03 13:30:32
+Dataset： satimage
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_satimage.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_satimage.xls
+Time: 2019-01-03 13:30:32
+Dataset： segment
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_segment.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_segment.xls
+Time: 2019-01-03 13:30:32
+Dataset： vehicle
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_vehicle.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_vehicle.xls
+Time: 2019-01-03 13:30:41
+Dataset： vowel
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_vowel.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_vowel.xls
+Time: 2019-01-03 13:30:41
+Dataset： yeast
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_yeast.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_yeast.xls
+Time: 2019-01-03 13:30:41
+Dataset： cleveland
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_cleveland.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_cleveland.xls
+Time: 2019-01-03 13:30:41
+Dataset： dermatology
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_dermatology.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_dermatology.xls
+Time: 2019-01-03 13:30:41
+Dataset： led7digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_led7digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_led7digit.xls
+Time: 2019-01-03 13:30:41
+Dataset： led24digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_led24digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_led24digit.xls
+Time: 2019-01-03 13:30:41
+Dataset： letter
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_letter.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_letter.xls
+Time: 2019-01-03 13:30:41
+Dataset： satimage
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_satimage.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_satimage.xls
+Time: 2019-01-03 13:30:41
+Dataset： segment
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_segment.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_segment.xls
+Time: 2019-01-03 13:30:41
+Dataset： vehicle
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_vehicle.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_vehicle.xls
+Time: 2019-01-03 13:30:54
+Dataset： vowel
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_vowel.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_vowel.xls
+Time: 2019-01-03 13:30:54
+Dataset： yeast
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_yeast.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_yeast.xls
+Time: 2019-01-03 13:30:54
+Dataset： cleveland
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_cleveland.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_cleveland.xls
+Time: 2019-01-03 13:30:55
+Dataset： dermatology
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_dermatology.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_dermatology.xls
+Time: 2019-01-03 13:30:55
+Dataset： led7digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_led7digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_led7digit.xls
+Time: 2019-01-03 13:30:55
+Dataset： led24digit
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_led24digit.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_led24digit.xls
+Time: 2019-01-03 13:30:55
+Dataset： letter
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_letter.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_letter.xls
+Time: 2019-01-03 13:30:56
+Dataset： satimage
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_satimage.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_satimage.xls
+Time: 2019-01-03 13:30:56
+Dataset： segment
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_segment.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_segment.xls
+Time: 2019-01-03 13:30:56
+Dataset： vehicle
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_vehicle.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_vehicle.xls
+Time: 2019-01-03 13:31:02
+Dataset： vowel
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_vowel.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_vowel.xls
+Time: 2019-01-03 13:31:02
+Dataset： yeast
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_yeast.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_yeast.xls
+Time: 2019-01-04 14:00:30
+Dataset： car
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_car.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_car.xls
+Time: 2019-01-04 14:00:36
+Dataset： ecoli
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_ecoli.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_ecoli.xls
+Time: 2019-01-04 14:00:36
+Dataset： flare
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_flare.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_flare.xls
+Time: 2019-01-04 14:00:36
+Dataset： isolet
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_isolet.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_isolet.xls
+Time: 2019-01-04 14:00:37
+Dataset： nursery
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_nursery.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_nursery.xls
+Time: 2019-01-04 14:00:38
+Dataset： penbased
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_penbased.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_penbased.xls
+Time: 2019-01-04 14:00:38
+Dataset： zoo
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/DR_zoo.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/variance_threshold/SR_zoo.xls
+Time: 2019-01-04 14:00:38
+Dataset： car
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_car.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_car.xls
+Time: 2019-01-04 14:00:53
+Dataset： ecoli
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_ecoli.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_ecoli.xls
+Time: 2019-01-04 14:00:53
+Dataset： flare
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_flare.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_flare.xls
+Time: 2019-01-04 14:00:53
+Dataset： isolet
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_isolet.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_isolet.xls
+Time: 2019-01-04 14:00:53
+Dataset： nursery
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_nursery.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_nursery.xls
+Time: 2019-01-04 14:00:55
+Dataset： penbased
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_penbased.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_penbased.xls
+Time: 2019-01-04 14:00:55
+Dataset： zoo
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/DR_zoo.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/linear_svc/SR_zoo.xls
+Time: 2019-01-04 14:00:55
+Dataset： car
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_car.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_car.xls
+Time: 2019-01-04 14:01:00
+Dataset： ecoli
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_ecoli.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_ecoli.xls
+Time: 2019-01-04 14:01:00

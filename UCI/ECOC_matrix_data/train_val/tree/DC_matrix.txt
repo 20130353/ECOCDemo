@@ -1,0 +1,156 @@
+Time: 2019-01-17 22:35:04
+Dataset： wine
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_wine.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_wine.xls
+Time: 2019-01-17 22:35:04
+Dataset： winequality-red
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_winequality-red.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_winequality-red.xls
+Time: 2019-01-17 22:35:04
+Dataset： winequality-white
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_winequality-white.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_winequality-white.xls
+Time: 2019-01-17 22:35:04
+Dataset： poker-hand-training-true
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_poker-hand-training-true.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_poker-hand-training-true.xls
+Time: 2019-01-17 22:35:05
+Dataset： thyroid
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_thyroid.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_thyroid.xls
+Time: 2019-01-17 22:35:05
+Dataset： sensor_readings_24
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_sensor_readings_24.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_sensor_readings_24.xls
+Time: 2019-01-17 22:35:05
+Dataset： sat
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_sat.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_sat.xls
+Time: 2019-01-17 22:35:05
+Dataset： page-blocks
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_page-blocks.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_page-blocks.xls
+Time: 2019-01-17 22:35:06
+Dataset： contraceptive
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_contraceptive.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_contraceptive.xls
+Time: 2019-01-17 22:35:06
+Dataset： column_3C
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_column_3C.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_column_3C.xls
+Time: 2019-01-17 22:35:06
+Dataset： Cardiotocography
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_Cardiotocography.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_Cardiotocography.xls
+Time: 2019-01-17 22:35:06
+Dataset： avila-ts
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_avila-ts.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_avila-ts.xls
+Time: 2019-01-17 22:35:06
+Dataset： abalone
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/DR_abalone.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/tree/SR_abalone.xls
+Time: 2019-01-17 22:35:06
+Dataset： wine
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_wine.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_wine.xls
+Time: 2019-01-17 22:35:06
+Dataset： winequality-red
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_winequality-red.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_winequality-red.xls
+Time: 2019-01-17 22:35:06
+Dataset： winequality-white
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_winequality-white.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_winequality-white.xls
+Time: 2019-01-17 22:35:06
+Dataset： poker-hand-training-true
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_poker-hand-training-true.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_poker-hand-training-true.xls
+Time: 2019-01-17 22:35:06
+Dataset： thyroid
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_thyroid.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_thyroid.xls
+Time: 2019-01-17 22:35:07
+Dataset： sensor_readings_24
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_sensor_readings_24.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_sensor_readings_24.xls
+Time: 2019-01-17 22:35:07
+Dataset： sat
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_sat.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_sat.xls
+Time: 2019-01-17 22:35:07
+Dataset： page-blocks
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_page-blocks.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_page-blocks.xls
+Time: 2019-01-17 22:35:07
+Dataset： contraceptive
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_contraceptive.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_contraceptive.xls
+Time: 2019-01-17 22:35:07
+Dataset： column_3C
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_column_3C.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_column_3C.xls
+Time: 2019-01-17 22:35:07
+Dataset： Cardiotocography
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_Cardiotocography.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_Cardiotocography.xls
+Time: 2019-01-17 22:35:08
+Dataset： avila-ts
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_avila-ts.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_avila-ts.xls
+Time: 2019-01-17 22:35:08
+Dataset： abalone
+Random: Dense_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/DR_abalone.xls
+Random: Sparse_random_ECOC
+save file:/home/smx/Documents/workspace/ECOCDemo/UCI/ECOC_matrix_data/train_val/RandForReg/SR_abalone.xls
