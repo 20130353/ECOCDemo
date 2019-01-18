@@ -1,0 +1,2080 @@
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º wine
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º wine
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º wine
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º wine
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º wine
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:00
+FS: variance_threshold
+Dataset£º winequality-red
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:01
+FS: variance_threshold
+Dataset£º winequality-red
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:02
+FS: variance_threshold
+Dataset£º winequality-red
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:03
+FS: variance_threshold
+Dataset£º winequality-red
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:04
+FS: variance_threshold
+Dataset£º winequality-red
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:06
+FS: variance_threshold
+Dataset£º winequality-white
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:11
+FS: variance_threshold
+Dataset£º winequality-white
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:17
+FS: variance_threshold
+Dataset£º winequality-white
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:23
+FS: variance_threshold
+Dataset£º winequality-white
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:28
+FS: variance_threshold
+Dataset£º winequality-white
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 12:58:34
+FS: variance_threshold
+Dataset£º poker-hand-training-true
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:00:40
+FS: variance_threshold
+Dataset£º poker-hand-training-true
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:02:47
+FS: variance_threshold
+Dataset£º poker-hand-training-true
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:05:53
+FS: variance_threshold
+Dataset£º poker-hand-training-true
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:07:57
+FS: variance_threshold
+Dataset£º poker-hand-training-true
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:10:04
+FS: variance_threshold
+Dataset£º thyroid
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:10:44
+FS: variance_threshold
+Dataset£º thyroid
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:11:24
+FS: variance_threshold
+Dataset£º thyroid
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:12:04
+FS: variance_threshold
+Dataset£º thyroid
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:12:43
+FS: variance_threshold
+Dataset£º thyroid
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:13:24
+FS: variance_threshold
+Dataset£º sensor_readings_24
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:13:31
+FS: variance_threshold
+Dataset£º sensor_readings_24
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:13:38
+FS: variance_threshold
+Dataset£º sensor_readings_24
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:13:45
+FS: variance_threshold
+Dataset£º sensor_readings_24
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:13:54
+FS: variance_threshold
+Dataset£º sensor_readings_24
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:14:01
+FS: variance_threshold
+Dataset£º sat
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:14:13
+FS: variance_threshold
+Dataset£º sat
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:14:26
+FS: variance_threshold
+Dataset£º sat
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:14:39
+FS: variance_threshold
+Dataset£º sat
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:14:52
+FS: variance_threshold
+Dataset£º sat
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:04
+FS: variance_threshold
+Dataset£º page-blocks
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:08
+FS: variance_threshold
+Dataset£º page-blocks
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:13
+FS: variance_threshold
+Dataset£º page-blocks
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:17
+FS: variance_threshold
+Dataset£º page-blocks
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:22
+FS: variance_threshold
+Dataset£º page-blocks
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:26
+FS: variance_threshold
+Dataset£º contraceptive
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:27
+FS: variance_threshold
+Dataset£º contraceptive
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:28
+FS: variance_threshold
+Dataset£º contraceptive
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:28
+FS: variance_threshold
+Dataset£º contraceptive
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:29
+FS: variance_threshold
+Dataset£º contraceptive
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º column_3C
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º column_3C
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º column_3C
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º column_3C
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º column_3C
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:30
+FS: variance_threshold
+Dataset£º Cardiotocography
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:32
+FS: variance_threshold
+Dataset£º Cardiotocography
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:34
+FS: variance_threshold
+Dataset£º Cardiotocography
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:36
+FS: variance_threshold
+Dataset£º Cardiotocography
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:38
+FS: variance_threshold
+Dataset£º Cardiotocography
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:15:40
+FS: variance_threshold
+Dataset£º avila-ts
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:16:01
+FS: variance_threshold
+Dataset£º avila-ts
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:16:31
+FS: variance_threshold
+Dataset£º avila-ts
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:16:58
+FS: variance_threshold
+Dataset£º avila-ts
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:17:18
+FS: variance_threshold
+Dataset£º avila-ts
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:17:38
+FS: variance_threshold
+Dataset£º abalone
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:17:47
+FS: variance_threshold
+Dataset£º abalone
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:18:39
+FS: variance_threshold
+Dataset£º abalone
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:18:48
+FS: variance_threshold
+Dataset£º abalone
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:18:56
+FS: variance_threshold
+Dataset£º abalone
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º wine
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º wine
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º wine
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º wine
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º wine
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:14
+FS: linear_svc
+Dataset£º winequality-red
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:15
+FS: linear_svc
+Dataset£º winequality-red
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:16
+FS: linear_svc
+Dataset£º winequality-red
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:17
+FS: linear_svc
+Dataset£º winequality-red
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:18
+FS: linear_svc
+Dataset£º winequality-red
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:19
+FS: linear_svc
+Dataset£º winequality-white
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:23
+FS: linear_svc
+Dataset£º winequality-white
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:28
+FS: linear_svc
+Dataset£º winequality-white
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:34
+FS: linear_svc
+Dataset£º winequality-white
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:39
+FS: linear_svc
+Dataset£º winequality-white
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:19:45
+FS: linear_svc
+Dataset£º poker-hand-training-true
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:21:22
+FS: linear_svc
+Dataset£º poker-hand-training-true
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:23:05
+FS: linear_svc
+Dataset£º poker-hand-training-true
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:25:37
+FS: linear_svc
+Dataset£º poker-hand-training-true
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:27:46
+FS: linear_svc
+Dataset£º poker-hand-training-true
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:29
+FS: linear_svc
+Dataset£º thyroid
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:34
+FS: linear_svc
+Dataset£º thyroid
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:40
+FS: linear_svc
+Dataset£º thyroid
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:47
+FS: linear_svc
+Dataset£º thyroid
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:53
+FS: linear_svc
+Dataset£º thyroid
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:29:59
+FS: linear_svc
+Dataset£º sensor_readings_24
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:04
+FS: linear_svc
+Dataset£º sensor_readings_24
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:08
+FS: linear_svc
+Dataset£º sensor_readings_24
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:13
+FS: linear_svc
+Dataset£º sensor_readings_24
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:18
+FS: linear_svc
+Dataset£º sensor_readings_24
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:23
+FS: linear_svc
+Dataset£º sat
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:31
+FS: linear_svc
+Dataset£º sat
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:40
+FS: linear_svc
+Dataset£º sat
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:49
+FS: linear_svc
+Dataset£º sat
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:30:59
+FS: linear_svc
+Dataset£º sat
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:07
+FS: linear_svc
+Dataset£º page-blocks
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:11
+FS: linear_svc
+Dataset£º page-blocks
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:15
+FS: linear_svc
+Dataset£º page-blocks
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:19
+FS: linear_svc
+Dataset£º page-blocks
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:25
+FS: linear_svc
+Dataset£º page-blocks
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:29
+FS: linear_svc
+Dataset£º contraceptive
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:30
+FS: linear_svc
+Dataset£º contraceptive
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:30
+FS: linear_svc
+Dataset£º contraceptive
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:31
+FS: linear_svc
+Dataset£º contraceptive
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:32
+FS: linear_svc
+Dataset£º contraceptive
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:32
+FS: linear_svc
+Dataset£º column_3C
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:32
+FS: linear_svc
+Dataset£º column_3C
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:32
+FS: linear_svc
+Dataset£º column_3C
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:32
+FS: linear_svc
+Dataset£º column_3C
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:33
+FS: linear_svc
+Dataset£º column_3C
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:33
+FS: linear_svc
+Dataset£º Cardiotocography
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:34
+FS: linear_svc
+Dataset£º Cardiotocography
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:35
+FS: linear_svc
+Dataset£º Cardiotocography
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:36
+FS: linear_svc
+Dataset£º Cardiotocography
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:37
+FS: linear_svc
+Dataset£º Cardiotocography
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:39
+FS: linear_svc
+Dataset£º avila-ts
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:31:57
+FS: linear_svc
+Dataset£º avila-ts
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:32:24
+FS: linear_svc
+Dataset£º avila-ts
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:32:47
+FS: linear_svc
+Dataset£º avila-ts
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:33:03
+FS: linear_svc
+Dataset£º avila-ts
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:33:20
+FS: linear_svc
+Dataset£º abalone
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:33:28
+FS: linear_svc
+Dataset£º abalone
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:15
+FS: linear_svc
+Dataset£º abalone
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:23
+FS: linear_svc
+Dataset£º abalone
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:29
+FS: linear_svc
+Dataset£º abalone
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:44
+FS: tree
+Dataset£º wine
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:44
+FS: tree
+Dataset£º wine
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:44
+FS: tree
+Dataset£º wine
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:44
+FS: tree
+Dataset£º wine
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:45
+FS: tree
+Dataset£º wine
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:45
+FS: tree
+Dataset£º winequality-red
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:45
+FS: tree
+Dataset£º winequality-red
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:46
+FS: tree
+Dataset£º winequality-red
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:47
+FS: tree
+Dataset£º winequality-red
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:48
+FS: tree
+Dataset£º winequality-red
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:50
+FS: tree
+Dataset£º winequality-white
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:54
+FS: tree
+Dataset£º winequality-white
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:34:59
+FS: tree
+Dataset£º winequality-white
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:35:05
+FS: tree
+Dataset£º winequality-white
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:35:09
+FS: tree
+Dataset£º winequality-white
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:35:15
+FS: tree
+Dataset£º poker-hand-training-true
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:36:53
+FS: tree
+Dataset£º poker-hand-training-true
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:38:34
+FS: tree
+Dataset£º poker-hand-training-true
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:40:47
+FS: tree
+Dataset£º poker-hand-training-true
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:42:30
+FS: tree
+Dataset£º poker-hand-training-true
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:03
+FS: tree
+Dataset£º thyroid
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:09
+FS: tree
+Dataset£º thyroid
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:15
+FS: tree
+Dataset£º thyroid
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:20
+FS: tree
+Dataset£º thyroid
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:26
+FS: tree
+Dataset£º thyroid
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:32
+FS: tree
+Dataset£º sensor_readings_24
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:37
+FS: tree
+Dataset£º sensor_readings_24
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:41
+FS: tree
+Dataset£º sensor_readings_24
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:46
+FS: tree
+Dataset£º sensor_readings_24
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:51
+FS: tree
+Dataset£º sensor_readings_24
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:44:56
+FS: tree
+Dataset£º sat
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:04
+FS: tree
+Dataset£º sat
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:13
+FS: tree
+Dataset£º sat
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:21
+FS: tree
+Dataset£º sat
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:30
+FS: tree
+Dataset£º sat
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:38
+FS: tree
+Dataset£º page-blocks
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:42
+FS: tree
+Dataset£º page-blocks
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:46
+FS: tree
+Dataset£º page-blocks
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:50
+FS: tree
+Dataset£º page-blocks
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:45:56
+FS: tree
+Dataset£º page-blocks
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:00
+FS: tree
+Dataset£º contraceptive
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:01
+FS: tree
+Dataset£º contraceptive
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:01
+FS: tree
+Dataset£º contraceptive
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:02
+FS: tree
+Dataset£º contraceptive
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:03
+FS: tree
+Dataset£º contraceptive
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:03
+FS: tree
+Dataset£º column_3C
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:03
+FS: tree
+Dataset£º column_3C
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:03
+FS: tree
+Dataset£º column_3C
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:03
+FS: tree
+Dataset£º column_3C
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:04
+FS: tree
+Dataset£º column_3C
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:04
+FS: tree
+Dataset£º Cardiotocography
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:05
+FS: tree
+Dataset£º Cardiotocography
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:06
+FS: tree
+Dataset£º Cardiotocography
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:07
+FS: tree
+Dataset£º Cardiotocography
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:08
+FS: tree
+Dataset£º Cardiotocography
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:10
+FS: tree
+Dataset£º avila-ts
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:27
+FS: tree
+Dataset£º avila-ts
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:46:54
+FS: tree
+Dataset£º avila-ts
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:47:18
+FS: tree
+Dataset£º avila-ts
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:47:38
+FS: tree
+Dataset£º avila-ts
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:47:57
+FS: tree
+Dataset£º abalone
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:48:05
+FS: tree
+Dataset£º abalone
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:48:51
+FS: tree
+Dataset£º abalone
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:48:59
+FS: tree
+Dataset£º abalone
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:06
+FS: tree
+Dataset£º abalone
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:20
+FS: RandForReg
+Dataset£º wine
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:20
+FS: RandForReg
+Dataset£º wine
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:20
+FS: RandForReg
+Dataset£º wine
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:20
+FS: RandForReg
+Dataset£º wine
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:21
+FS: RandForReg
+Dataset£º wine
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:21
+FS: RandForReg
+Dataset£º winequality-red
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:22
+FS: RandForReg
+Dataset£º winequality-red
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:23
+FS: RandForReg
+Dataset£º winequality-red
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:24
+FS: RandForReg
+Dataset£º winequality-red
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:25
+FS: RandForReg
+Dataset£º winequality-red
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:26
+FS: RandForReg
+Dataset£º winequality-white
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:30
+FS: RandForReg
+Dataset£º winequality-white
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:35
+FS: RandForReg
+Dataset£º winequality-white
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:41
+FS: RandForReg
+Dataset£º winequality-white
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:45
+FS: RandForReg
+Dataset£º winequality-white
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:49:50
+FS: RandForReg
+Dataset£º poker-hand-training-true
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:51:28
+FS: RandForReg
+Dataset£º poker-hand-training-true
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:53:08
+FS: RandForReg
+Dataset£º poker-hand-training-true
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:55:41
+FS: RandForReg
+Dataset£º poker-hand-training-true
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:57:29
+FS: RandForReg
+Dataset£º poker-hand-training-true
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:14
+FS: RandForReg
+Dataset£º thyroid
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:21
+FS: RandForReg
+Dataset£º thyroid
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:27
+FS: RandForReg
+Dataset£º thyroid
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:34
+FS: RandForReg
+Dataset£º thyroid
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:41
+FS: RandForReg
+Dataset£º thyroid
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:48
+FS: RandForReg
+Dataset£º sensor_readings_24
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:53
+FS: RandForReg
+Dataset£º sensor_readings_24
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 13:59:57
+FS: RandForReg
+Dataset£º sensor_readings_24
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:02
+FS: RandForReg
+Dataset£º sensor_readings_24
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:06
+FS: RandForReg
+Dataset£º sensor_readings_24
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:11
+FS: RandForReg
+Dataset£º sat
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:16
+FS: RandForReg
+Dataset£º sat
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:22
+FS: RandForReg
+Dataset£º sat
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:28
+FS: RandForReg
+Dataset£º sat
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:34
+FS: RandForReg
+Dataset£º sat
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:40
+FS: RandForReg
+Dataset£º page-blocks
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:43
+FS: RandForReg
+Dataset£º page-blocks
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:47
+FS: RandForReg
+Dataset£º page-blocks
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:51
+FS: RandForReg
+Dataset£º page-blocks
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:00:56
+FS: RandForReg
+Dataset£º page-blocks
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:00
+FS: RandForReg
+Dataset£º contraceptive
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:01
+FS: RandForReg
+Dataset£º contraceptive
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:01
+FS: RandForReg
+Dataset£º contraceptive
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:02
+FS: RandForReg
+Dataset£º contraceptive
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:03
+FS: RandForReg
+Dataset£º contraceptive
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:03
+FS: RandForReg
+Dataset£º column_3C
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:03
+FS: RandForReg
+Dataset£º column_3C
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:03
+FS: RandForReg
+Dataset£º column_3C
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:04
+FS: RandForReg
+Dataset£º column_3C
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:04
+FS: RandForReg
+Dataset£º column_3C
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:04
+FS: RandForReg
+Dataset£º Cardiotocography
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:05
+FS: RandForReg
+Dataset£º Cardiotocography
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:06
+FS: RandForReg
+Dataset£º Cardiotocography
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:07
+FS: RandForReg
+Dataset£º Cardiotocography
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:08
+FS: RandForReg
+Dataset£º Cardiotocography
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:10
+FS: RandForReg
+Dataset£º avila-ts
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:27
+FS: RandForReg
+Dataset£º avila-ts
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:01:54
+FS: RandForReg
+Dataset£º avila-ts
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:02:16
+FS: RandForReg
+Dataset£º avila-ts
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:02:34
+FS: RandForReg
+Dataset£º avila-ts
+ECOC: D_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:02:51
+FS: RandForReg
+Dataset£º abalone
+ECOC: OVA_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:02:59
+FS: RandForReg
+Dataset£º abalone
+ECOC: OVO_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:03:50
+FS: RandForReg
+Dataset£º abalone
+ECOC: Dense_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:03:58
+FS: RandForReg
+Dataset£º abalone
+ECOC: Sparse_random_ECOC
+Not Using KNN-Decoding
+
+
+SVM classifier
+Time: 2019-01-18 14:04:04
+FS: RandForReg
+Dataset£º abalone
+ECOC: D_ECOC
+Not Using KNN-Decoding

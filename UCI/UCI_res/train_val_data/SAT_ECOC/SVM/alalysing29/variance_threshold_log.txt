@@ -12,3 +12,25 @@
 11. ç”Ÿæˆè¿‡ç¨‹ä¸­æ·»åŠ äº†åŽ»é‡å¤åŽ»æŽ‰ç›¸åçš„æ— ç”¨å¤„ç†
 12. ç”Ÿæˆmatrixçš„è¿‡ç¨‹æ·»åŠ äº†è‡³å°‘è¦ç”Ÿäº§logNä¸ªcolumnçš„æ¡ä»¶é™åˆ¶
 13. å°†å¤§ç±»æ ·æœ¬ä¸‹é‡‡æ ·
+Ëã·¨±¸×¢£º
+1. Ê¹ÓÃÈý½øÖÆÉú³ÉµÄÐÂµÄÁÐÃ»ÓÐ¾­¹ýÈ¥ÖØ¸´¡¢È¥Ïà·´µÄÅÐ¶Ï
+2. ¶ÔunbalanceµÄÁÐÊ¹ÓÃ½üËÆKNNµÄËã·¨µ÷Õû
+3. ¹ý³Ì´òÓ¡ÁË·Ç³£¶àµÄlog£¬ÓÃÀ´·ÖÎöËã·¨Ð§¹û
+4. ÒªÌí¼ÓÐÞ¸ÄµÄÁÐÊýÁ¿Õ¾ËùÓÐÁÐÊýÁ¿µÄ±ÈÀý
+5. ÒªÌí¼ÓÐÞ¸ÄºóµÄÁÐµÄ½á¹û¶Ô±È
+6. Ö»Òª´ØÖÐ°üº¬Ð¡ÀàÑù±¾¾Í»áÊÕÂ¼
+7. ÐÞ¸Ä¾ö¶¨Ã¿¸ö´ØÊÇ·ñÒª±£ÁôµÄÌõ¼þ£ºµ±´ØÖÐ°üº¬Ð¡ÀàÑù±¾¸öÊý³¬¹ýÒ»°ëµÄÊ±ºò¾ÍÁôÏÂ
+8. Ê¹ÓÃBirchÀ´¾ÛÀà
+9. Ìí¼ÓÐ¡ÀàÑù±¾ÏÞÖÆ
+10. ·ÀÖ¹Ð¡ÀàÑù±¾ÍêÈ«°ÔÕ¼Õû¸öÀà
+11. Éú³É¹ý³ÌÖÐÌí¼ÓÁËÈ¥ÖØ¸´È¥µôÏà·´µÄÎÞÓÃ´¦Àí
+12. Éú³ÉmatrixµÄ¹ý³ÌÌí¼ÓÁËÖÁÉÙÒªÉú²úlogN¸öcolumnµÄÌõ¼þÏÞÖÆ
+13. ½«´óÀàÑù±¾ÏÂ²ÉÑù
+
+
+SVM classifier
+Time: 2019-01-18 12:05:03
+FS: variance_threshold
+Dataset£º wine
+ECOC: SAT_ECOC DR
+Using KNN-Decoding
