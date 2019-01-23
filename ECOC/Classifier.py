@@ -660,7 +660,7 @@ class Self_Adaption_ECOC(__BaseECOC):
     def __init__(self, dc_option, base_M, create_method, distance_measure=euclidean_distance, base_estimator=svm.SVC):
 
         super(Self_Adaption_ECOC, self).__init__(distance_measure, base_estimator)
-        self.dc_option = 'F1'
+        self.dc_option = dc_option
         self.base_M = base_M
         self.create_method = create_method
 
@@ -991,8 +991,11 @@ class Self_Adaption_ECOC(__BaseECOC):
                     column_pre_label = temp_class.predict(self.val_data)
                     column_wrong_inx = [inx for inx in range(len(column_pre_label)) if
                                         column_pre_label[inx] != self.val_label[inx]]
+                    try:
+                        column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx)) / len(set(sub_wrong_inx))
+                    except ZeroDivisionError:
+                        column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx))
 
-                    column_ctrbuton = len(set(sub_wrong_inx) - set(column_wrong_inx)) / len(set(sub_wrong_inx))
                     if column_ctrbuton < 0.01 or len(sub_wrong_inx) / float(data_len) <= whole_wrong_ratio:
                         matrix = sub_matrix
                         weak_clsfer_inx = [each - 1 for each in weak_clsfer_inx]

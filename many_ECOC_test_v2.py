@@ -28,7 +28,7 @@ def ECOC_Process(dataname, train_data, train_label, test_data, test_label, val_d
         dc_option = ECOC_name[8:].strip()
         matrix_path = matrix_folder_path + selected_fs_name + '/'
         base_M = get_base_M(matrix_path, dc_option, dataname)
-        E = Self_Adaption_ECOC(dc_option=dc_option, base_M=base_M, create_method='DC')
+        E = Self_Adaption_ECOC(dc_option='F1', base_M=base_M, create_method='DC')
         E.fit(train_data, train_label, val_data, val_label)
 
     else:
@@ -74,7 +74,7 @@ def fun(count):
 
     module_path = os.path.dirname(__file__)
     data_folder_path = module_path + '/UCI/4_train_val_data/'
-    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/4_train_val_data/'
+    matrix_folder_path = module_path + '/UCI/ECOC_matrix_data/train_val/'
 
     # 创建结果文件夹
     res_folder_path = module_path + '/UCI/UCI_res/train_val_data/SAT_ECOC/SVM/alalysing' + str(count) + '/'
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
     warnings.filterwarnings('ignore')
 
-    for each in range(29,30):
+    for each in range(28,29):
         fun(each)
 
     # bandwidth=3.063224
