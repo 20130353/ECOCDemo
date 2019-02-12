@@ -198,16 +198,19 @@ def ternary_DC(left, right, data, label, evaluation_option, matrix, cplx_class_i
                 and MT.have_same_col(ternary_res[each],matrix) == False\
                 and MT.have_contrast_col(ternary_res[each],matrix) == False:
 
-            if cplx_class_inx == -1 or ternary_res[each][cplx_class_inx] == 0:
+            try:
+                if cplx_class_inx == -1 or ternary_res[each][cplx_class_inx] == 0:
+                    pass
+                else:
+                    group1, group2 = [], []
+                    for j in range(len(ternary_res[each])):
+                        if ternary_res[each][j] == 1:
+                            group1.append(all_classes[j])
+                        elif ternary_res[each][j] == -1:
+                            group2.append(all_classes[j])
+                    cplx[each] = GS.get_DC_value(data, label, group1, group2, dc_option=evaluation_option)
+            except IndexError:
                 pass
-            else:
-                group1,group2 = [],[]
-                for j in range(len(ternary_res[each])):
-                    if ternary_res[each][j] == 1:
-                        group1.append(all_classes[j])
-                    elif ternary_res[each][j] == -1:
-                        group2.append(all_classes[j])
-                cplx[each] = GS.get_DC_value(data, label, group1, group2, dc_option=evaluation_option)
 
     try:
         min_info_inx = sorted(cplx.items(), key=operator.itemgetter(1))[0][0]

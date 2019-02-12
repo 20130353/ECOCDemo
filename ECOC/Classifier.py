@@ -19,6 +19,7 @@ from abc import ABCMeta
 from itertools import combinations
 import logging
 import copy
+import time
 import math
 from collections import Counter
 from sklearn.cluster import AffinityPropagation, MeanShift, estimate_bandwidth, DBSCAN, Birch
@@ -808,11 +809,15 @@ class Self_Adaption_ECOC(__BaseECOC):
                 break
             if k not in small_cls_label:  # 只能修改不是小类的样本
                 class_members = self.val_label == k
-                majority_label = list(Counter(temp_label[class_members])).pop()
-                logging.info('class label %s' % str(k))
-                logging.info('majority label %s' % majority_label)
-                if majority_label == new_column[small_cls[0]]:  # 只有将类别改成和小类一样的话，才允许修改
-                    new_column[self.index[k]] = majority_label  # 这边会修改原先可能为+1，,1，0的值
+                try:
+                    majority_label = list(Counter(temp_label[class_members])).pop()
+                except IndexError:
+                    pass
+                else:
+                    logging.info('class label %s' % str(k))
+                    logging.info('majority label %s' % majority_label)
+                    if majority_label == new_column[small_cls[0]]:  # 只有将类别改成和小类一样的话，才允许修改
+                        new_column[self.index[k]] = majority_label  # 这边会修改原先可能为+1，,1，0的值
 
         logging.info('after change column:\t' + str([each[0] for each in new_column]))
         return new_column
@@ -869,7 +874,7 @@ class Self_Adaption_ECOC(__BaseECOC):
             pos_neg_r_test = self.check_pos_neg_len(matrix, test_data, test_label)
             counter_train = Counter(train_label)
             counter_test = Counter(test_label)
-            pred_label_clsfer = [each for each in range(len(temp_class.predicted_vector))]
+            pred_label_clsfer = [each[0] for each in temp_class.predicted_vector]
             counter_pred = Counter(pred_label_clsfer)
             clsfer_acc_i = classifier_acc[0]
 
@@ -928,6 +933,10 @@ class Self_Adaption_ECOC(__BaseECOC):
         except IndexError:
             return matrix
         else:
+
+            if column_len <= math.log(len(self.index), 2):
+                return matrix
+
 
             #  计算列的准确率
             temp_class = Temp_Class()
@@ -1005,6 +1014,20 @@ class Self_Adaption_ECOC(__BaseECOC):
         prob = 0.5
         matrix_pool = MT.shuffle_matrix(matrix_pool)
         select_cloumn_j = None
+
+
+        # 如果没有复杂类的话，就随机抽取一列
+        cplx_num = sum([1 if each[1] == None else 0 for each in cplx_class.items()])
+        if cplx_num == len(cplx_class):
+            while True:
+                res = [random.randint(-1,1) for _ in matrix_pool[:,0]]
+                if sum(res) == len(matrix_pool[:,0]) or sum(res) == 0:
+                    continue
+                else:
+                    return res
+
+
+
         while True:
             stop = False
             for i in range(matrix_pool.shape[1]):
@@ -1060,7 +1083,7 @@ class Self_Adaption_ECOC(__BaseECOC):
             class_acc = [(cfus_matrix[i][i]) / sum(cfus_matrix[i, :]) for i in range(len(cfus_matrix))]
 
             average_class_acc = np.mean(class_acc)
-            threhold = average_class_acc - average_class_acc * 0.1
+            threhold = min(max(0.9*average_class_acc,0),1)
             for i in range(len(class_acc)):
                 if class_acc[i] <= threhold:
                     cplx_class[i] = True
@@ -1100,7 +1123,7 @@ class Self_Adaption_ECOC(__BaseECOC):
             else:
                 logging.info('select_i_column %s' % str([each for each in select_cloumn_i]))
 
-            select_cloumn_j = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, select_cloumn_i)
+            select_cloumn_j = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, select_cloumn_j)
             if select_cloumn_j is None:
                 raise ValueError('ERROR: SAT_ECOC select_column j is None')
             else:
@@ -1111,8 +1134,8 @@ class Self_Adaption_ECOC(__BaseECOC):
                 most_cplx_class_inx = random.choice([inx for inx, key in cplx_class.items() if key != None])
                 logging.info('most_cplx_inx is %d' % most_cplx_class_inx)
             except IndexError:
-                most_cplx_class_inx = -1
-                logging.info('find no most cplx inx')
+                most_cplx_class_inx = random.randint(0,len(cplx_class.items()))
+                logging.info('random cplx class index is %d' %most_cplx_class_inx)
 
             new_column = MT.left_right_create_parent(select_cloumn_i, select_cloumn_j, self.train_data,
                                                      self.train_label, self.create_method, self.dc_option, res_matrix,
