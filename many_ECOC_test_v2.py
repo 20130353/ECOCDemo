@@ -66,7 +66,7 @@ def fun(count):
 
     unbalance_data = ['wine', 'winequality-red', 'winequality-white','thyroid',
                       'sensor_readings_24', 'sat', 'page-blocks', 'contraceptive',
-                      'column_3C', 'Cardiotocography', 'avila-ts', 'abalone', 'car', 'cleveland',
+                      'column_3C', 'Cardiotocography', 'avila-ts','car', 'cleveland',
                       'dermatology', 'flare','nursery', 'satimage', 'segment', 'yeast']
     # thyroid 时长1个小时，sensor_readings_24 20分钟
 
