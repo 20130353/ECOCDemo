@@ -64,10 +64,13 @@ def get_base_M(path, string, dataname):
 def fun(count):
     fs_name = ['variance_threshold', 'linear_svc', 'tree', 'RandForReg']
 
-    unbalance_data = ['wine', 'winequality-red', 'winequality-white', 'poker-hand-training-true', 'haberman', 'thyroid',
-                      'sensor_readings_24', 'sat', 'page-blocks', 'ionosphere', 'fertility_Diagnosis', 'contraceptive',
-                      'column_2C', 'column_3C', 'Cardiotocography', 'avila-ts', 'abalone', 'car', 'cleveland',
+    unbalance_data = ['wine', 'winequality-red', 'winequality-white','thyroid',
+                      'sensor_readings_24', 'sat', 'page-blocks', 'contraceptive',
+                      'column_3C', 'Cardiotocography', 'avila-ts', 'abalone', 'car', 'cleveland',
                       'dermatology', 'flare','nursery', 'satimage', 'segment', 'yeast']
+    # thyroid 时长1个小时，sensor_readings_24 20分钟
+
+
 
     other_ECOC = ['OVA_ECOC', 'OVO_ECOC', 'Dense_random_ECOC', 'Sparse_random_ECOC' \
         , 'D_ECOC', 'DC_ECOC F1', 'DC_ECOC F2', 'DC_ECOC F3', 'DC_ECOC N2', 'DC_ECOC N3', 'DC_ECOC Cluster']

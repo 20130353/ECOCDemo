@@ -675,7 +675,13 @@ class Self_Adaption_ECOC(__BaseECOC):
                 pos_len += len(d)
             elif new_column[i] == -1:
                 neg_len += len(d)
-        return float(pos_len) / neg_len
+
+        try:
+            res = float(pos_len) / neg_len
+        except ZeroDivisionError:
+            logging.info('check_pos_neg_len: neg len is zero!')
+        return res
+
 
     def find_most_simi_class(self, small_cls, large_cls, new_column):
         '''
@@ -701,7 +707,7 @@ class Self_Adaption_ECOC(__BaseECOC):
             try:
                 pos_len = len(pos_data)
                 neg_len = len(neg_data)
-            except IndexError:  # 数量为０
+            except (IndexError, TypeError):  # 数量为０
                 new_column[each_cls[0]] = 1  # 返回上一步
                 stop = True
             else:
@@ -1065,6 +1071,8 @@ class Self_Adaption_ECOC(__BaseECOC):
         count = 0
         change_count = 0
         while True:
+
+
             # =======    算法开始１．：计算借助confusion matrix计算复杂类      ============================================================
             logging.info('*---------------------iter %d------------------------------*' % count)
             logging.info('**-----------  current matrix info --------------**')
@@ -1113,6 +1121,9 @@ class Self_Adaption_ECOC(__BaseECOC):
             elif column_len >= 10 * math.log(len(self.index), 2):
                 logging.info('column_len >= 10*math.log(len(self.index))')
                 break
+            elif count >= 100:
+                logging.info('** ---------- count is more than 100, exit! ------------**')
+                break
 
             # =======    算法继续３．：挑选包含复杂类的两列     ============================================================
 
@@ -1123,11 +1134,11 @@ class Self_Adaption_ECOC(__BaseECOC):
             else:
                 logging.info('select_i_column %s' % str([each for each in select_cloumn_i]))
 
-            select_cloumn_j = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, select_cloumn_j)
+            select_cloumn_j = self.select_column(matrix_pool, cplx_class, total_cplx_class_num, select_cloumn_i)
             if select_cloumn_j is None:
                 raise ValueError('ERROR: SAT_ECOC select_column j is None')
             else:
-                logging.info('select_j_column %s' % str([each for each in select_cloumn_i]))
+                logging.info('select_j_column %s' % str([each for each in select_cloumn_j]))
 
             # ========   算法继续４．：生成新的一列    ============================
             try:
@@ -1197,6 +1208,7 @@ class Self_Adaption_ECOC(__BaseECOC):
         logging.info('** ---------- after cutting, the new column performance ------------**')
         self.temp_log(final_matrix, self.train_data, self.train_label, self.val_data, self.val_label,
                       row_HD=True, col_HD=True)
+
         return final_matrix
 
     def fit(self, train_data, train_label, val_data, val_label, **param):
